@@ -5,16 +5,32 @@ using UnityEngine.UI;
 using UnityEngine.Playables;
 using Cinemachine;
 using DG.Tweening;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
     #region Serialized Variables
+
+    #region Datas
     [Space, Header("Datas")]
     [SerializeField]
     [Tooltip("GameManager Data")]
     private GameMangerData gmData = default;
+    #endregion
 
-    [Space, Header("UI")]
+    #region Ints
+    [Space, Header("Ints")]
+    [SerializeField]
+    [Tooltip("Play Video Index for 1st panel using current Virtual Cam")]
+    private int videoPanel1Idex = default;
+    #endregion
+
+    #region Floats
+
+    #endregion
+
+    #region UIs
+    [Space, Header("UIs")]
     [SerializeField]
     [Tooltip("Fade Background Panel")]
     private Image fadeBG = default;
@@ -23,6 +39,16 @@ public class GameManager : MonoBehaviour
     [Tooltip("Canvas Group for the Comic Button Panels")]
     private CanvasGroup comicButtonCanvasGroup = default;
 
+    [SerializeField]
+    [Tooltip("First Video Player Reference")]
+    private VideoPlayer firstVidPlayer = default;
+
+    [SerializeField]
+    [Tooltip("First Comic Video Render Texture")]
+    private RenderTexture firstAnimaticTex = default;
+    #endregion
+
+    #region Virtual Cams
     [Space, Header("Virtual Cams")]
     [SerializeField]
     [Tooltip("The First Virtual Camera Reference")]
@@ -31,11 +57,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Array of Virtual Cams for the Comic Book")]
     private CinemachineVirtualCamera[] vCams = default;
+    #endregion
 
+    #region Others
     [Space, Header("Others")]
     [SerializeField]
     [Tooltip("Fade Background Panel")]
     private PlayableDirector comicTimeline = default;
+    #endregion
+
     #endregion
 
     #region Private Variables
@@ -63,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
+        firstAnimaticTex.Release();
     }
 
     void Update()
@@ -73,6 +103,11 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region My Functions
+    /// <summary>
+    /// Tied to Next_Comic_Button;
+    /// Pans the camera to the next panel;
+    /// Also keeps check if there is any Video Panel coming up;
+    /// </summary>
     public void OnClick_ComicNext()
     {
         vCams[_currVCamIndex].gameObject.SetActive(false);
@@ -82,8 +117,15 @@ public class GameManager : MonoBehaviour
             _currVCamIndex = 0;
 
         vCams[_currVCamIndex].gameObject.SetActive(true);
+
+        //CheckVideoPanels();
     }
 
+    /// <summary>
+    /// Tied to Prev_Comic_Button;
+    /// Pans the camera to the previous panel;
+    /// Also keeps check if there is any Video Panel coming up;
+    /// </summary>
     public void OnClick_ComicPrev()
     {
         vCams[_currVCamIndex].gameObject.SetActive(false);
@@ -93,11 +135,29 @@ public class GameManager : MonoBehaviour
 
         _currVCamIndex--;
         vCams[_currVCamIndex].gameObject.SetActive(true);
+
+        //CheckVideoPanels();
     }
 
+    /// <summary>
+    /// Tied to Timeline;
+    /// When book opened, Fade in the Panel Buttons;
+    /// </summary>
     public void OnComicBookOpened()
     {
         comicButtonCanvasGroup.DOFade(1, 0.5f);
+    }
+
+    /// <summary>
+    /// Keeps a check if any Video Player is coming up;
+    /// </summary>
+    void CheckVideoPanels()
+    {
+        if (_currVCamIndex == videoPanel1Idex && !firstVidPlayer.isPlaying)
+        {
+            firstVidPlayer.Play();
+            Debug.Log("Playing Video 1");
+        }
     }
     #endregion
 
