@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Private Variables
-    private int _currVCamIndex = default;
+    [SerializeField] private int _currVCamIndex = default;
     #endregion
 
     #region Unity Callbacks
@@ -75,22 +75,24 @@ public class GameManager : MonoBehaviour
     #region My Functions
     public void OnClick_ComicNext()
     {
-        if (_currVCamIndex < vCams.Length)
-        {
-            vCams[_currVCamIndex].gameObject.SetActive(false);
-            _currVCamIndex++;
-            vCams[_currVCamIndex].gameObject.SetActive(true);
-        }
+        vCams[_currVCamIndex].gameObject.SetActive(false);
+        _currVCamIndex++;
+
+        if (_currVCamIndex >= vCams.Length)
+            _currVCamIndex = 0;
+
+        vCams[_currVCamIndex].gameObject.SetActive(true);
     }
 
     public void OnClick_ComicPrev()
     {
-        if (_currVCamIndex > vCams.Length)
-        {
-            vCams[_currVCamIndex].gameObject.SetActive(false);
-            _currVCamIndex--;
-            vCams[_currVCamIndex].gameObject.SetActive(true);
-        }
+        vCams[_currVCamIndex].gameObject.SetActive(false);
+
+        if (_currVCamIndex <= 0)
+            _currVCamIndex = vCams.Length;
+
+        _currVCamIndex--;
+        vCams[_currVCamIndex].gameObject.SetActive(true);
     }
 
     public void OnComicBookOpened()
