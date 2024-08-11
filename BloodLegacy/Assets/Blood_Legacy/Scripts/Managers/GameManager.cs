@@ -29,6 +29,13 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    #region Transforms
+    [Space, Header("Transforms")]
+    [SerializeField]
+    [Tooltip("")]
+    private Transform comic1Bullet1EndPos = default;
+    #endregion
+
     #region UIs
     [Space, Header("UIs")]
     [SerializeField]
@@ -46,6 +53,27 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("First Comic Video Render Texture")]
     private RenderTexture firstAnimaticTex = default;
+
+
+    #region Comic Layers
+    [Space, Header("Comic Layers")]
+    [SerializeField]
+    [Tooltip("Comic Panel 1 Speech Bubble 1 Image")]
+    private SpriteRenderer comic1Speech1 = default;
+
+    [SerializeField]
+    [Tooltip("Comic Panel 1 Bullet Image")]
+    private SpriteRenderer comic1Bullet = default;
+
+    [SerializeField]
+    [Tooltip("Comic Panel 1 Speech Bubble 2 Image")]
+    private SpriteRenderer comic1Speech2 = default;
+
+    [SerializeField]
+    [Tooltip("Comic Panel 1 Speech Bubble 3 Image")]
+    private SpriteRenderer comic1Speech3 = default;
+    #endregion
+
     #endregion
 
     #region Virtual Cams
@@ -117,8 +145,6 @@ public class GameManager : MonoBehaviour
             _currVCamIndex = 0;
 
         vCams[_currVCamIndex].gameObject.SetActive(true);
-
-        //CheckVideoPanels();
     }
 
     /// <summary>
@@ -135,8 +161,6 @@ public class GameManager : MonoBehaviour
 
         _currVCamIndex--;
         vCams[_currVCamIndex].gameObject.SetActive(true);
-
-        //CheckVideoPanels();
     }
 
     /// <summary>
@@ -148,17 +172,49 @@ public class GameManager : MonoBehaviour
         comicButtonCanvasGroup.DOFade(1, 0.5f);
     }
 
+    #region Comic Book Triggers
     /// <summary>
-    /// Keeps a check if any Video Player is coming up;
+    /// Tield to T_Text_Bubble_1;
+    /// Makes the Speech Bubble Appear;
     /// </summary>
-    void CheckVideoPanels()
+    /// <param name="appearTime"> How long will it take for the Image to FadeIn; </param>
+    public void OnComic1SpeechBubble1Trigger(float appearTime)
     {
-        if (_currVCamIndex == videoPanel1Idex && !firstVidPlayer.isPlaying)
-        {
-            firstVidPlayer.Play();
-            Debug.Log("Playing Video 1");
-        }
+        comic1Speech1.DOFade(1, appearTime);
     }
+
+    /// <summary>
+    /// Tied to T_Bullet_1;
+    /// Fades in the sniper Bullet and Moves it in also to a specific Position;
+    /// </summary>
+    /// <param name="moveAppearTime">How long will it take for the Image to FadeIn; </param>
+    public void OnComic1BulletTrigger(float moveAppearTime)
+    {
+        comic1Bullet.transform.DOMove(comic1Bullet1EndPos.position, moveAppearTime);
+        comic1Bullet.DOFade(1, moveAppearTime);
+    }
+
+    /// <summary>
+    /// Tied to T_Text_2;
+    /// Fades in the Speech Bubble;
+    /// </summary>
+    /// <param name="moveAppearTime"> How long will it take for the Image to FadeIn; </param>
+    public void OnComic1SpeechBubble2Trigger(float moveAppearTime)
+    {
+        comic1Speech2.DOFade(1, moveAppearTime);
+    }
+
+    /// <summary>
+    /// Tied to T_Text_3;
+    /// Fades in the Speech Bubble;
+    /// </summary>
+    /// <param name="moveAppearTime"> How long will it take for the Image to FadeIn; </param>
+    public void OnComic1SpeechBubble3Trigger(float moveAppearTime)
+    {
+        comic1Speech3.DOFade(1, moveAppearTime);
+    }
+    #endregion
+
     #endregion
 
     #region Coroutines
