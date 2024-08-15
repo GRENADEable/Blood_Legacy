@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms;
 
 public class AprilPlayerController : MonoBehaviour
 {
@@ -29,21 +30,6 @@ public class AprilPlayerController : MonoBehaviour
     private float circleRadius = default;
     #endregion
 
-    #region Dash Mechanic
-    [Space, Header("Dash Mechanic")]
-    [SerializeField]
-    [Tooltip("How much power to dash?")]
-    private float dashPower = 12f;
-
-    [SerializeField]
-    [Tooltip("Dash duration")]
-    private float dashingTime = 0.2f;
-
-    [SerializeField]
-    [Tooltip("Dash cooldown")]
-    private float dashingCooldown = 1f;
-    #endregion
-
     #region Player Throwing
     [Space, Header("Player Throwing")]
     [SerializeField]
@@ -63,23 +49,41 @@ public class AprilPlayerController : MonoBehaviour
     private float projectileDestroyTime = default;
     #endregion
 
+    #region Player Attacking
+    [Space, Header("Player Attacking")]
+    [SerializeField]
+    [Tooltip("Trigger Attack Box Collider")]
+    private BoxCollider2D boxCollider;
+
+    [SerializeField]
+    [Tooltip("Distance of the Collider from the Player")]
+    private float colliderDistance;
+
+    [SerializeField]
+    [Tooltip("Width of the Collider")]
+    private float range = default;
+
+    [SerializeField]
+    [Tooltip("The Enemy Layer for attacking")]
+    private LayerMask enemyLayer;
+    #endregion
+
+    #region Audios
+    [Space, Header("Audios")]
+    [SerializeField]
+    [Tooltip("Audio Source for Player SFX")]
+    private AudioSource sfxAud = default;
+
+    [SerializeField]
+    [Tooltip("SFX Audio Clips")]
+    private AudioClip[] sfxClips = default;
+    #endregion
+
     #region Events
 
     #region Void Events
 
     public delegate void SendEvents();
-    /// <summary>
-    /// Event sent from PlayerMovementV2 script to GameManager Level 1, 2, 3, 4, 5, 6 and 7 Scripts;
-    /// Updates the UI when item is picked;
-    /// </summary>
-    public static event SendEvents OnItemPicked;
-
-    /// <summary>
-    /// Event sent from PlayerMovementV2 script to GameManager Level 1, 2, 3, 4, 5, 6 and 7 Scripts;
-    /// Updates the UI when item is used;
-    /// </summary>
-    public static event SendEvents OnItemUsed;
-
     /// <summary>
     /// Event sent from PlayerMovementV2 script to Enemy script;
     /// Lets the enemies know that the Player is dead;
@@ -87,19 +91,16 @@ public class AprilPlayerController : MonoBehaviour
     public static event SendEvents OnPlayerDead;
 
     /// <summary>
-    /// Event sent from PlayerMovementV2 script to GameManager Level 1, 2, 3, 4, 5, 6 and 7 Scripts;
+    /// Event sent from PlayerMovementV2 script to GameManager Script;
     /// For shooting Enemies, an Event shortcut to update UI;
     /// </summary>
     public static event SendEvents OnPlayerKill;
-    #endregion
 
-    #region Bool Events
-    public delegate void SendEventsBool(bool flag);
     /// <summary>
-    /// Event sent from PlayerMovementV2 script to Enemy Script;
-    /// Lets the enemies know that the Player is dashing;
+    /// Event sent from PlayerMovementV2 script to GameManager Script;
+    /// For shooting Enemies, an Event shortcut to update UI;
     /// </summary>
-    public static event SendEventsBool OnPlayerDash;
+    public static event SendEvents OnEnemyKill;
     #endregion
 
     #endregion
@@ -125,17 +126,17 @@ public class AprilPlayerController : MonoBehaviour
     #region Events
     void OnEnable()
     {
-
+        DemonEnemy.OnPlayerKill += OnPlayerKillEventReceived;
     }
 
     void OnDisable()
     {
-
+        DemonEnemy.OnPlayerKill -= OnPlayerKillEventReceived;
     }
 
     void OnDestroy()
     {
-
+        DemonEnemy.OnPlayerKill -= OnPlayerKillEventReceived;
     }
     #endregion
 
@@ -156,6 +157,16 @@ public class AprilPlayerController : MonoBehaviour
         {
             PlayerMove();
             PlayerAnims();
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        if (boxCollider != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(boxCollider.bounds.center + colliderDistance * range * transform.localScale.x * transform.right,
+                new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
         }
     }
     #endregion
@@ -220,6 +231,18 @@ public class AprilPlayerController : MonoBehaviour
     bool IsPlayerGrounded() => Physics2D.OverlapCircle(transform.position, circleRadius, groundLayer);
 
     /// <summary>
+    /// Bool check to see if the Enemy is within the Box Trigger Collider;
+    /// </summary>
+    /// <returns> If true, Enemy in sight, if false, Enemy out of sight; </returns>
+    bool EnemyInSight()
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center + colliderDistance * range * transform.localScale.x * transform.right,
+            new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z), 0, Vector2.left, 0, enemyLayer);
+
+        return hit.collider != null;
+    }
+
+    /// <summary>
     /// Flips the X axis scale of the Player so it looks like its rotating.
     /// </summary>
     void FlipPlayer()
@@ -269,20 +292,6 @@ public class AprilPlayerController : MonoBehaviour
             Debug.Log("Attacking");
         }
     }
-
-    /// <summary>
-    /// Player Movement Script tied to C_Apri PlayerInput;
-    /// Using new Input System to pickup;
-    /// </summary>
-    public void OnPickItem(InputAction.CallbackContext context)
-    {
-        if (context.started && _col2D != null)
-        {
-            Destroy(_col2D.gameObject);
-            _col2D = null;
-            OnItemPicked?.Invoke();
-        }
-    }
     #endregion
 
     /// <summary>
@@ -291,17 +300,36 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     void OnPlayerKillEventReceived()
     {
-        _rb2D.bodyType = RigidbodyType2D.Static;
-        _playerAnim.SetTrigger("isDead");
-        _isPlayerDead = true;
         OnPlayerDead?.Invoke();
+        _isPlayerDead = true;
+        _rb2D.bodyType = RigidbodyType2D.Static;
+        sfxAud.PlayOneShot(sfxClips[1]);
+        //Destroy(this.gameObject);
     }
 
     /// <summary>
-    /// Tied to AnimEvent on C_April;
+    /// Tied to AnimEvent on C_April_Attack_Anim;
     /// Toggles the movement of the Player when Attacking;
     /// </summary>
     public void OnPlayerAttacking() => _isPlayerMoving = !_isPlayerMoving;
+
+    /// <summary>
+    /// Tied to the AnimEvent on C_April_Attack_Anim;
+    /// Plays the sword swipping SFX;
+    /// </summary>
+    public void OnPlayerSwordSwipe()
+    {
+        sfxAud.PlayOneShot(sfxClips[2]);
+    }
+
+    public void OnEnemyHit()
+    {
+        if (EnemyInSight())
+        {
+            OnEnemyKill?.Invoke();
+            Debug.Log("Killing Enemy");
+        }
+    }
 
     public void OnPanelActive()
     {

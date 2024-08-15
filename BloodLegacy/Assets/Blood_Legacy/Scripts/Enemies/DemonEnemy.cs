@@ -29,7 +29,7 @@ public class DemonEnemy : MonoBehaviour
     #region Events Void
     public delegate void SendEvents();
     /// <summary>
-    /// Event sent from Enemy script to PlayerMovementV2 and GameManager Level 1, 2, 3, 4, 5, 6 and 7 Scripts;
+    /// Event sent from Enemy script to PlayerMovementV2 and GameManager Scripts;
     /// Kills the player and starts the coroutine for fading out the UI;
     /// </summary>
     public static event SendEvents OnPlayerKill;
@@ -54,7 +54,6 @@ public class DemonEnemy : MonoBehaviour
     private Collider2D _col2D = default;
     [SerializeField] private float _cooldownTimer = default;
     [SerializeField] private bool _isPlayerDead = default;
-    [SerializeField] private bool _isPlayerDashing = default;
     #endregion
 
     #region Unity Callbacks
@@ -62,17 +61,20 @@ public class DemonEnemy : MonoBehaviour
     #region Events
     void OnEnable()
     {
-
+        AprilPlayerController.OnPlayerDead += OnPlayerDeadEventReceived;
+        AprilPlayerController.OnEnemyKill += OnEnemyKillEventReceived;
     }
 
     void OnDisable()
     {
-
+        AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
+        AprilPlayerController.OnEnemyKill -= OnEnemyKillEventReceived;
     }
 
     void OnDestroy()
     {
-
+        AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
+        AprilPlayerController.OnEnemyKill -= OnEnemyKillEventReceived;
     }
     #endregion
 
@@ -128,38 +130,35 @@ public class DemonEnemy : MonoBehaviour
         return hit.collider != null;
     }
 
+    #endregion
+
+    #region Events
     /// <summary>
-    /// Tied to Enemy E2_Atk_Anim Anim Event;
+    /// Tied to Enemy C_Demon_1_Attack Anim Event;
     /// Kills the Player and updates the game that the Player is dead;
     /// </summary>
-    public void KillPlayer()
+    public void OnKillPlayer()
     {
-        if (PlayerInSight() && !_isPlayerDashing)
+        if (PlayerInSight())
         {
             OnPlayerKill?.Invoke();
             Debug.Log("Killing Player");
         }
     }
-    #endregion
-
-    #region Events
-    /// <summary>
-    /// Subbed to Event from PlayerMovementV2 Script;
-    /// Disables Enemy to kill the Player;
-    /// </summary>
-    /// <param name="isDashing"> If True, Player immune else Player not immune; </param>
-    void OnPlayerDashEventReceived(bool isDashing)
-    {
-        if (isDashing)
-            _isPlayerDashing = true;
-        else
-            _isPlayerDashing = false;
-    }
 
     /// <summary>
-    /// Subbed to PlayerMovementV2 script;
+    /// Subbed to AprilPlayerController Script;
     /// Lets the Enemy Script know that the player is Dead;
     /// </summary>
     void OnPlayerDeadEventReceived() => _isPlayerDead = true;
+
+    /// <summary>
+    /// Subbed to AprilPlayerController Script;
+    /// Kills the enemy;
+    /// </summary>
+    void OnEnemyKillEventReceived()
+    {
+        OnEnemyDead?.Invoke();
+    }
     #endregion
 }

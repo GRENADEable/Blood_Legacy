@@ -25,6 +25,8 @@ AnimationClip:
       value: {fileID: 21300000, guid: b9880a7c3cb601b4ca4feb3cb617074f, type: 3}
     - time: 0.5
       value: {fileID: 21300000, guid: b9880a7c3cb601b4ca4feb3cb617074f, type: 3}
+    - time: 0.75
+      value: {fileID: 21300000, guid: b9880a7c3cb601b4ca4feb3cb617074f, type: 3}
     attribute: m_Sprite
     path: C_Demon_1_Sprite
     classID: 212
@@ -47,12 +49,13 @@ AnimationClip:
     - {fileID: 21300000, guid: 3b28c8d732f52324a8ea2aaad54e61e3, type: 3}
     - {fileID: 21300000, guid: b9880a7c3cb601b4ca4feb3cb617074f, type: 3}
     - {fileID: 21300000, guid: b9880a7c3cb601b4ca4feb3cb617074f, type: 3}
+    - {fileID: 21300000, guid: b9880a7c3cb601b4ca4feb3cb617074f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.75
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -71,4 +74,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.75
+    functionName: OnKillPlayer
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
