@@ -149,8 +149,14 @@ public class AprilPlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!_isPlayerDead)
+        if (_isPlayerDead)
+            return;
+
+        if (_isPlayerMoving)
+        {
             PlayerMove();
+            PlayerAnims();
+        }
     }
     #endregion
 
@@ -167,7 +173,13 @@ public class AprilPlayerController : MonoBehaviour
             _rb2D.velocity = Vector2.zero;
         else
             _rb2D.velocity = new Vector2(horizonalXVel.x * playerSpeed, _rb2D.velocity.y);
+    }
 
+    /// <summary>
+    /// The Player Animations;
+    /// </summary>
+    void PlayerAnims()
+    {
         _playerAnim.SetFloat("playerSpeed", _horizontalMoveX);
 
         if (!_isFacingRight && _horizontalMoveX > 0f)
@@ -200,11 +212,6 @@ public class AprilPlayerController : MonoBehaviour
     //        Destroy(projectileObj, projectileDestroyTime);
     //    }
     //}
-
-    void Attack()
-    {
-        _playerAnim.SetTrigger("isAttacking");
-    }
 
     /// <summary>
     /// Bool ground check to see if the player is hitting the ground according to the layer;
@@ -243,13 +250,12 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     public void OnJumpPlayer(InputAction.CallbackContext context)
     {
-        if (context.performed && IsPlayerGrounded())
+        if (context.performed && IsPlayerGrounded() && _isPlayerMoving)
             _rb2D.velocity = new Vector2(_rb2D.velocity.x, jumpPower);
 
         if (context.canceled && _rb2D.velocity.y > 0f)
             _rb2D.velocity = new Vector2(_rb2D.velocity.x, _rb2D.velocity.y * 0.5f);
     }
-
 
     /// <summary>
     /// Player Movement Script tied to C_Apri PlayerInput;
@@ -257,9 +263,9 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started && !_isPlayerDead)
+        if (context.started && !_isPlayerDead && _isPlayerMoving)
         {
-            Attack();
+            _playerAnim.SetTrigger("isAttacking");
             Debug.Log("Attacking");
         }
     }
@@ -291,7 +297,16 @@ public class AprilPlayerController : MonoBehaviour
         OnPlayerDead?.Invoke();
     }
 
+    /// <summary>
+    /// Tied to AnimEvent on C_April;
+    /// Toggles the movement of the Player when Attacking;
+    /// </summary>
     public void OnPlayerAttacking() => _isPlayerMoving = !_isPlayerMoving;
+
+    public void OnPanelActive()
+    {
+        _isPlayerMoving = true;
+    }
 
     #endregion
 }
