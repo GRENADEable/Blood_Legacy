@@ -163,6 +163,7 @@ public class DemonEnemy : MonoBehaviour
     {
         OnEnemyDead?.Invoke();
         Destroy(gameObject);
+        _demonPatrol.IsDemonAlive = false;
     }
     #endregion
 }

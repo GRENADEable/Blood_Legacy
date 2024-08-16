@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        firstAnimaticTex.Release();
+        OnComicVidTexRelease();
     }
 
     void Update()
@@ -171,6 +171,11 @@ public class GameManager : MonoBehaviour
     {
         comicButtonCanvasGroup.DOFade(1, 0.5f);
     }
+
+    /// <summary>
+    /// Releases the texture of the video on the comic;
+    /// </summary>
+    public void OnComicVidTexRelease() => firstAnimaticTex.Release();
 
     #region Comic Book Triggers
     /// <summary>
