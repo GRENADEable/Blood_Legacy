@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.Playables;
 using Cinemachine;
@@ -131,51 +132,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region My Functions
-    /// <summary>
-    /// Tied to Next_Comic_Button;
-    /// Pans the camera to the next panel;
-    /// Also keeps check if there is any Video Panel coming up;
-    /// </summary>
-    public void OnClick_ComicNext()
-    {
-        vCams[_currVCamIndex].gameObject.SetActive(false);
-        _currVCamIndex++;
-
-        if (_currVCamIndex >= vCams.Length)
-            _currVCamIndex = 0;
-
-        vCams[_currVCamIndex].gameObject.SetActive(true);
-    }
-
-    /// <summary>
-    /// Tied to Prev_Comic_Button;
-    /// Pans the camera to the previous panel;
-    /// Also keeps check if there is any Video Panel coming up;
-    /// </summary>
-    public void OnClick_ComicPrev()
-    {
-        vCams[_currVCamIndex].gameObject.SetActive(false);
-
-        if (_currVCamIndex <= 0)
-            _currVCamIndex = vCams.Length;
-
-        _currVCamIndex--;
-        vCams[_currVCamIndex].gameObject.SetActive(true);
-    }
-
-    /// <summary>
-    /// Tied to Timeline;
-    /// When book opened, Fade in the Panel Buttons;
-    /// </summary>
-    public void OnComicBookOpened()
-    {
-        comicButtonCanvasGroup.DOFade(1, 0.5f);
-    }
-
-    /// <summary>
-    /// Releases the texture of the video on the comic;
-    /// </summary>
-    public void OnComicVidTexRelease() => firstAnimaticTex.Release();
 
     #region Comic Book Triggers
     /// <summary>
@@ -227,6 +183,66 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Events
+    public void OnCamMoveNext(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            OnClick_ComicNext();
+    }
 
+    public void OnCamMovePrev(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            OnClick_ComicPrev();
+    }
+    #region Input Systems
+
+    #endregion
+
+
+    /// <summary>
+    /// Tied to Next_Comic_Button;
+    /// Pans the camera to the next panel;
+    /// Also keeps check if there is any Video Panel coming up;
+    /// </summary>
+    public void OnClick_ComicNext()
+    {
+        vCams[_currVCamIndex].gameObject.SetActive(false);
+        _currVCamIndex++;
+
+        if (_currVCamIndex >= vCams.Length)
+            _currVCamIndex = 0;
+
+        vCams[_currVCamIndex].gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// Tied to Prev_Comic_Button;
+    /// Pans the camera to the previous panel;
+    /// Also keeps check if there is any Video Panel coming up;
+    /// </summary>
+    public void OnClick_ComicPrev()
+    {
+        vCams[_currVCamIndex].gameObject.SetActive(false);
+
+        if (_currVCamIndex <= 0)
+            _currVCamIndex = vCams.Length;
+
+        _currVCamIndex--;
+        vCams[_currVCamIndex].gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// Tied to Timeline;
+    /// When book opened, Fade in the Panel Buttons;
+    /// </summary>
+    public void OnComicBookOpened()
+    {
+        comicButtonCanvasGroup.DOFade(1, 0.5f);
+    }
+
+    /// <summary>
+    /// Releases the texture of the video on the comic;
+    /// </summary>
+    public void OnComicVidTexRelease() => firstAnimaticTex.Release();
     #endregion
 }
