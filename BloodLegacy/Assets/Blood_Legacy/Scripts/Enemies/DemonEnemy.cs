@@ -29,10 +29,16 @@ public class DemonEnemy : MonoBehaviour
     #region Events Void
     public delegate void SendEvents();
     /// <summary>
-    /// Event sent from Enemy script to PlayerMovementV2 and GameManager Scripts;
-    /// Kills the player and starts the coroutine for fading out the UI;
+    /// Event sent from DemonEnemy script to PlayerMovementV2 and AudioManager Scripts;
+    /// Kills the player and plays the death SFX;
     /// </summary>
     public static event SendEvents OnPlayerKill;
+
+    /// <summary>
+    /// Event sent from DemonEnemy to AudioManager Script;
+    /// Kills the enemy and plays the death SFX;
+    /// </summary>
+    public static event SendEvents OnEnemyDead;
     #endregion
 
     #region Events Int
@@ -40,9 +46,6 @@ public class DemonEnemy : MonoBehaviour
     public static event SendEventsInt OnEnemyKillScore;
     #endregion
 
-    [SerializeField]
-    [Tooltip("What to trigger when enemy is dead?")]
-    private UnityEvent OnEnemyDead = default;
     #endregion
 
     #endregion
@@ -159,6 +162,7 @@ public class DemonEnemy : MonoBehaviour
     void OnEnemyKillEventReceived()
     {
         OnEnemyDead?.Invoke();
+        Destroy(gameObject);
     }
     #endregion
 }

@@ -68,39 +68,34 @@ public class AprilPlayerController : MonoBehaviour
     private LayerMask enemyLayer;
     #endregion
 
-    #region Audios
-    [Space, Header("Audios")]
-    [SerializeField]
-    [Tooltip("Audio Source for Player SFX")]
-    private AudioSource sfxAud = default;
-
-    [SerializeField]
-    [Tooltip("SFX Audio Clips")]
-    private AudioClip[] sfxClips = default;
-    #endregion
-
     #region Events
 
     #region Void Events
 
     public delegate void SendEvents();
     /// <summary>
-    /// Event sent from PlayerMovementV2 script to Enemy script;
+    /// Event sent from AprilPlayerController script to Enemy script;
     /// Lets the enemies know that the Player is dead;
     /// </summary>
     public static event SendEvents OnPlayerDead;
 
     /// <summary>
-    /// Event sent from PlayerMovementV2 script to GameManager Script;
+    /// Event sent from AprilPlayerController script to GameManager Script;
     /// For shooting Enemies, an Event shortcut to update UI;
     /// </summary>
     public static event SendEvents OnPlayerKill;
 
     /// <summary>
-    /// Event sent from PlayerMovementV2 script to GameManager Script;
+    /// Event sent from AprilPlayerController script to GameManager Script;
     /// For shooting Enemies, an Event shortcut to update UI;
     /// </summary>
     public static event SendEvents OnEnemyKill;
+
+    /// <summary>
+    /// Event sent from AprilPlayerController script to AudioManager Script;
+    /// For shooting Enemies, an Event shortcut to update UI;
+    /// </summary>
+    public static event SendEvents OnSwordSwipe;
     #endregion
 
     #endregion
@@ -303,8 +298,7 @@ public class AprilPlayerController : MonoBehaviour
         OnPlayerDead?.Invoke();
         _isPlayerDead = true;
         _rb2D.bodyType = RigidbodyType2D.Static;
-        sfxAud.PlayOneShot(sfxClips[1]);
-        //Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 
     /// <summary>
@@ -317,10 +311,7 @@ public class AprilPlayerController : MonoBehaviour
     /// Tied to the AnimEvent on C_April_Attack_Anim;
     /// Plays the sword swipping SFX;
     /// </summary>
-    public void OnPlayerSwordSwipe()
-    {
-        sfxAud.PlayOneShot(sfxClips[2]);
-    }
+    public void OnPlayerSwordSwipe() => OnSwordSwipe?.Invoke();
 
     public void OnEnemyHit()
     {
@@ -331,10 +322,7 @@ public class AprilPlayerController : MonoBehaviour
         }
     }
 
-    public void OnPanelActive()
-    {
-        _isPlayerMoving = true;
-    }
+    public void OnPanelActive() => _isPlayerMoving = true;
 
     #endregion
 }

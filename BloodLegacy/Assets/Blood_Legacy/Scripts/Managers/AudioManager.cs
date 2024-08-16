@@ -4,34 +4,53 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-	#region Serialized Variables
-	//[SerializeField]
-    //[Tooltip("")]
-	#endregion
-	
-	#region Private Variables
+    #region Serialized Variables
 
-	#endregion
-	
-	#region Unity Callbacks
-	
-	#region Events
-	void OnEnable()
+    #region Audios
+    [Space, Header("Audios")]
+    [SerializeField]
+    [Tooltip("Audio Source for Player SFX")]
+    private AudioSource sfxAud = default;
+
+    [SerializeField]
+    [Tooltip("SFX Audio Clips")]
+    private AudioClip[] sfxClips = default;
+    #endregion
+
+    #endregion
+
+    #region Private Variables
+
+    #endregion
+
+    #region Unity Callbacks
+
+    #region Events
+    void OnEnable()
     {
+        DemonEnemy.OnPlayerKill += OnPlayerKillEventReceived;
+        DemonEnemy.OnEnemyDead += OnEnemyDeadEventReceived;
 
+        AprilPlayerController.OnSwordSwipe += OnSwordSwipeEventReceived;
     }
-	
-	void OnDisable()
+
+    void OnDisable()
     {
+        DemonEnemy.OnPlayerKill -= OnPlayerKillEventReceived;
+        DemonEnemy.OnEnemyDead -= OnEnemyDeadEventReceived;
 
+        AprilPlayerController.OnSwordSwipe -= OnSwordSwipeEventReceived;
     }
 
-	void OnDestroy()
+    void OnDestroy()
     {
+        DemonEnemy.OnPlayerKill -= OnPlayerKillEventReceived;
+        DemonEnemy.OnEnemyDead -= OnEnemyDeadEventReceived;
 
+        AprilPlayerController.OnSwordSwipe -= OnSwordSwipeEventReceived;
     }
-	#endregion
-	
+    #endregion
+
     void Start()
     {
 
@@ -41,17 +60,38 @@ public class AudioManager : MonoBehaviour
     {
 
     }
-	#endregion
-	
-	#region My Functions
+    #endregion
 
-	#endregion
-	
-	#region Coroutines
+    #region My Functions
 
-	#endregion
-	
-	#region Events
+    #endregion
 
-	#endregion
+    #region Coroutines
+
+    #endregion
+
+    #region Events
+
+    /// <summary>
+    /// Subbed to Event from Enemy Script;
+    /// Kills the Player and Plays the Death SFX;
+    /// </summary>
+    void OnPlayerKillEventReceived() => sfxAud.PlayOneShot(sfxClips[2]);
+
+    /// <summary>
+    /// Subbed to Event from AprilPlayerController Script;
+    /// Plays the sword swipe SFX;
+    /// </summary>
+    void OnSwordSwipeEventReceived() => sfxAud.PlayOneShot(sfxClips[3]);
+
+    /// <summary>
+    /// Subbed teh Event from DemonEnemy Script;
+    /// Plays the enemy death SFX;
+    /// </summary>
+    void OnEnemyDeadEventReceived()
+    {
+        sfxAud.PlayOneShot(sfxClips[0]);
+        sfxAud.PlayOneShot(sfxClips[1]);
+    }
+    #endregion
 }
