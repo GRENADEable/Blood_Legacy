@@ -37,6 +37,13 @@ public class GameManager : MonoBehaviour
     private Transform comic1Bullet1EndPos = default;
     #endregion
 
+    #region GameObjects
+    [Space, Header("GameObjects")]
+    [SerializeField]
+    [Tooltip("Second Page Comic Book")]
+    private GameObject comicPage2 = default;
+    #endregion
+
     #region UIs
     [Space, Header("UIs")]
     [SerializeField]
@@ -238,6 +245,7 @@ public class GameManager : MonoBehaviour
     public void OnComicBookOpened()
     {
         comicButtonCanvasGroup.DOFade(1, 0.5f);
+        comicPage2.SetActive(true);
     }
 
     /// <summary>

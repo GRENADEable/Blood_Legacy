@@ -163,13 +163,13 @@ public class LevelTrigger : MonoBehaviour
 
         if (TryGetComponent(out BoxCollider bc) && showBoundries)
         {
-            Gizmos.color = Color.yellow;
+            Gizmos.color = Color.red;
             Gizmos.matrix = transform.localToWorldMatrix;
             Gizmos.DrawWireCube(bc.center, bc.size);
         }
         else if (TryGetComponent(out SphereCollider sc) && showBoundries)
         {
-            Gizmos.color = Color.yellow;
+            Gizmos.color = Color.red;
             Gizmos.matrix = transform.localToWorldMatrix;
             Gizmos.DrawWireSphere(sc.center, sc.radius);
         }
