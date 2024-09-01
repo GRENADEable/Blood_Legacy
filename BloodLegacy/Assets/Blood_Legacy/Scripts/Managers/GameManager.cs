@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Second Page Comic Book")]
     private GameObject comicPage2 = default;
+
+    [SerializeField]
+    [Tooltip("")]
+    private GameObject miniGameBG = default;
     #endregion
 
     #region UIs
