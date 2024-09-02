@@ -38,14 +38,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region GameObjects
-    [Space, Header("GameObjects")]
-    [SerializeField]
-    [Tooltip("Second Page Comic Book")]
-    private GameObject comicPage2 = default;
-
-    [SerializeField]
-    [Tooltip("")]
-    private GameObject miniGameBG = default;
+    //[Space, Header("GameObjects")]
+    //[SerializeField]
+    //[Tooltip("Second Page Comic Book")]
+    //private GameObject comicPage2 = default;
     #endregion
 
     #region UIs
@@ -249,7 +245,7 @@ public class GameManager : MonoBehaviour
     public void OnComicBookOpened()
     {
         comicButtonCanvasGroup.DOFade(1, 0.5f);
-        comicPage2.SetActive(true);
+        //comicPage2.SetActive(true);
     }
 
     /// <summary>
