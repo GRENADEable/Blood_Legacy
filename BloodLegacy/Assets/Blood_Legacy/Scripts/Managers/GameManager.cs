@@ -89,6 +89,10 @@ public class GameManager : MonoBehaviour
     private CinemachineVirtualCamera vCam1 = default;
 
     [SerializeField]
+    [Tooltip("The Tenth Virtual Camera Reference")]
+    private CinemachineVirtualCamera vCam10 = default;
+
+    [SerializeField]
     [Tooltip("Array of Virtual Cams for the Comic Book")]
     private CinemachineVirtualCamera[] vCams = default;
     #endregion
@@ -193,6 +197,8 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Events
+
+    #region Input Systems
     public void OnCamMoveNext(InputAction.CallbackContext context)
     {
         if (context.started && gmData.currState == GameMangerData.GameState.Book)
@@ -204,10 +210,7 @@ public class GameManager : MonoBehaviour
         if (context.started && gmData.currState == GameMangerData.GameState.Book)
             OnClick_ComicPrev();
     }
-    #region Input Systems
-
     #endregion
-
 
     /// <summary>
     /// Tied to Next_Comic_Button;
@@ -256,10 +259,20 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void OnComicVidTexRelease() => firstAnimaticTex.Release();
 
+    #region Mini Games
+    /// <summary>
+    /// Tied to Video Player;
+    /// Switches to Mini Game when the Video ends;
+    /// </summary>
+    /// <param name="vid"> Video Player of the First Animatic; </param>
     void OnVideoEnded(VideoPlayer vid)
     {
+        vCams[_currVCamIndex].gameObject.SetActive(false);
+        vCam10.gameObject.SetActive(true);
         mMFFirstVid.PlayFeedbacks();
-        Debug.Log("Vid Ended");
+        gmData.ChangeGameState("MiniGame");
     }
+    #endregion
+    
     #endregion
 }
