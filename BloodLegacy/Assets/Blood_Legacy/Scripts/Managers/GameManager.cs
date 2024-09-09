@@ -7,6 +7,7 @@ using UnityEngine.Playables;
 using Cinemachine;
 using DG.Tweening;
 using UnityEngine.Video;
+using MoreMountains.Feedbacks;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,10 +21,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Ints
-    [Space, Header("Ints")]
-    [SerializeField]
-    [Tooltip("Play Video Index for 1st panel using current Virtual Cam")]
-    private int videoPanel1Idex = default;
+
     #endregion
 
     #region Floats
@@ -100,6 +98,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Fade Background Panel")]
     private PlayableDirector comicTimeline = default;
+
+    [SerializeField]
+    [Tooltip("MMF Player Script after the first Animatic Vid Ends")]
+    private MMF_Player mMFFirstVid = default;
     #endregion
 
     #endregion
@@ -113,22 +115,23 @@ public class GameManager : MonoBehaviour
     #region Events
     void OnEnable()
     {
-
+        firstVidPlayer.loopPointReached += OnVideoEnded;
     }
 
     void OnDisable()
     {
-
+        firstVidPlayer.loopPointReached -= OnVideoEnded;
     }
 
     void OnDestroy()
     {
-
+        firstVidPlayer.loopPointReached -= OnVideoEnded;
     }
     #endregion
 
     void Start()
     {
+        gmData.ChangeGameState("Book");
         OnComicVidTexRelease();
     }
 
@@ -192,13 +195,13 @@ public class GameManager : MonoBehaviour
     #region Events
     public void OnCamMoveNext(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && gmData.currState == GameMangerData.GameState.Book)
             OnClick_ComicNext();
     }
 
     public void OnCamMovePrev(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && gmData.currState == GameMangerData.GameState.Book)
             OnClick_ComicPrev();
     }
     #region Input Systems
@@ -252,5 +255,11 @@ public class GameManager : MonoBehaviour
     /// Releases the texture of the video on the comic;
     /// </summary>
     public void OnComicVidTexRelease() => firstAnimaticTex.Release();
+
+    void OnVideoEnded(VideoPlayer vid)
+    {
+        mMFFirstVid.PlayFeedbacks();
+        Debug.Log("Vid Ended");
+    }
     #endregion
 }

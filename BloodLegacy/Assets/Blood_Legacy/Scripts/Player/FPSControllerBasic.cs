@@ -65,7 +65,7 @@ public class FPSControllerBasic : MonoBehaviour
 
         if (isUsingScriptableObject)
         {
-            if (gmData.currState == GameMangerData.GameState.Game)
+            if (gmData.currState == GameMangerData.GameState.Book)
             {
                 PlayerCurrStance();
                 PlayerMovement();

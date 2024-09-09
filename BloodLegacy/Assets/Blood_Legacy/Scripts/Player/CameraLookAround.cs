@@ -39,7 +39,7 @@ public class CameraLookAround : MonoBehaviour
     {
         if (isUsingScriptableObject)
         {
-            if (gmData.currState == GameMangerData.GameState.Game)
+            if (gmData.currState == GameMangerData.GameState.Book)
             {
                 float mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
                 float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
