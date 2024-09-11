@@ -70,7 +70,7 @@ public class LevelTrigger : MonoBehaviour
                 _timeStayed = 0f;
                 _stayActive = true;
 
-                Debug.Log("Trigger Entered");
+                Debug.Log($"Trigger Entered {gameObject.name}");
 
                 if (triggerDelay > 0)
                     StartCoroutine("EnterDelayed");

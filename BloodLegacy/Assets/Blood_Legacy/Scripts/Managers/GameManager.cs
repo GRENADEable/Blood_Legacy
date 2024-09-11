@@ -25,7 +25,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Floats
-
+    [Space, Header("Floats")]
+    [SerializeField]
+    [Tooltip("Blood splatter intial Scale")]
+    private float bloodEndScale = default;
     #endregion
 
     #region Transforms
@@ -45,10 +48,6 @@ public class GameManager : MonoBehaviour
     #region UIs
     [Space, Header("UIs")]
     [SerializeField]
-    [Tooltip("Fade Background Panel")]
-    private Image fadeBG = default;
-
-    [SerializeField]
     [Tooltip("Canvas Group for the Comic Button Panels")]
     private CanvasGroup comicButtonCanvasGroup = default;
 
@@ -60,9 +59,8 @@ public class GameManager : MonoBehaviour
     [Tooltip("First Comic Video Render Texture")]
     private RenderTexture firstAnimaticTex = default;
 
-
-    #region Comic Layers
-    [Space, Header("Comic Layers")]
+    #region Comic Layer 1
+    [Space, Header("Comic Layer 1")]
     [SerializeField]
     [Tooltip("Comic Panel 1 Speech Bubble 1 Image")]
     private SpriteRenderer comic1Speech1 = default;
@@ -70,6 +68,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Comic Panel 1 Bullet Image")]
     private SpriteRenderer comic1Bullet = default;
+
+    [SerializeField]
+    [Tooltip("Comic Panel 1 Blood Splatter Image")]
+    private SpriteRenderer comic1BloodSplatter = default;
 
     [SerializeField]
     [Tooltip("Comic Panel 1 Speech Bubble 2 Image")]
@@ -84,10 +86,6 @@ public class GameManager : MonoBehaviour
 
     #region Virtual Cams
     [Space, Header("Virtual Cams")]
-    [SerializeField]
-    [Tooltip("The First Virtual Camera Reference")]
-    private CinemachineVirtualCamera vCam1 = default;
-
     [SerializeField]
     [Tooltip("The Tenth Virtual Camera Reference")]
     private CinemachineVirtualCamera vCam10 = default;
@@ -111,7 +109,8 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Private Variables
-    [SerializeField] private int _currVCamIndex = default;
+    private int _currVCamIndex = default;
+    [SerializeField] private MiniGameManager _miniGameManager = default;
     #endregion
 
     #region Unity Callbacks
@@ -137,6 +136,8 @@ public class GameManager : MonoBehaviour
     {
         gmData.ChangeGameState("Book");
         OnComicVidTexRelease();
+
+        _miniGameManager = GetComponent<MiniGameManager>();
     }
 
     void Update()
@@ -167,6 +168,18 @@ public class GameManager : MonoBehaviour
     {
         comic1Bullet.transform.DOMove(comic1Bullet1EndPos.position, moveAppearTime);
         comic1Bullet.DOFade(1, moveAppearTime);
+    }
+
+    /// <summary>
+    /// Tied to T_Aud_Groan;
+    /// Fades in the Blood Spaltter and Scales it up
+    /// </summary>
+    /// <param name="scaleAppearTime">How long will it take for the Image to FadeIn and Scale; </param>
+    public void OnComic1BloodSplatter(float scaleAppearTime)
+    {
+        comic1BloodSplatter.DOFade(1, scaleAppearTime);
+        comic1BloodSplatter.transform.DOScale(bloodEndScale, scaleAppearTime);
+
     }
 
     /// <summary>
@@ -267,12 +280,12 @@ public class GameManager : MonoBehaviour
     /// <param name="vid"> Video Player of the First Animatic; </param>
     void OnVideoEnded(VideoPlayer vid)
     {
+        mMFFirstVid.PlayFeedbacks();
         vCams[_currVCamIndex].gameObject.SetActive(false);
         vCam10.gameObject.SetActive(true);
-        mMFFirstVid.PlayFeedbacks();
         gmData.ChangeGameState("MiniGame");
     }
     #endregion
-    
+
     #endregion
 }

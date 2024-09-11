@@ -86,12 +86,6 @@ public class AprilPlayerController : MonoBehaviour
     public static event SendEvents OnPlayerKill;
 
     /// <summary>
-    /// Event sent from AprilPlayerController script to GameManager Script;
-    /// For shooting Enemies, an Event shortcut to update UI;
-    /// </summary>
-    public static event SendEvents OnEnemyKill;
-
-    /// <summary>
     /// Event sent from AprilPlayerController script to AudioManager Script;
     /// For shooting Enemies, an Event shortcut to update UI;
     /// </summary>
@@ -111,9 +105,9 @@ public class AprilPlayerController : MonoBehaviour
     private Rigidbody2D _rb2D = default;
     //private TrailRenderer _playerTrail = default;
     private Animator _playerAnim = default;
-    private Collider2D _col2D = default;
     [SerializeField] private bool _isPlayerDead = default;
     [SerializeField] private bool _isPlayerMoving = true;
+    private RaycastHit2D _hit2D = default;
     #endregion
 
     #region Unity Callbacks
@@ -231,10 +225,10 @@ public class AprilPlayerController : MonoBehaviour
     /// <returns> If true, Enemy in sight, if false, Enemy out of sight; </returns>
     bool EnemyInSight()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center + colliderDistance * range * transform.localScale.x * transform.right,
+        _hit2D = Physics2D.BoxCast(boxCollider.bounds.center + colliderDistance * range * transform.localScale.x * transform.right,
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z), 0, Vector2.left, 0, enemyLayer);
 
-        return hit.collider != null;
+        return _hit2D.collider != null;
     }
 
     /// <summary>
@@ -284,7 +278,7 @@ public class AprilPlayerController : MonoBehaviour
         if (context.started && !_isPlayerDead && _isPlayerMoving)
         {
             _playerAnim.SetTrigger("isAttacking");
-            Debug.Log("Attacking");
+            //Debug.Log("Attacking");
         }
     }
     #endregion
@@ -317,8 +311,8 @@ public class AprilPlayerController : MonoBehaviour
     {
         if (EnemyInSight())
         {
-            OnEnemyKill?.Invoke();
-            Debug.Log("Killing Enemy");
+            if (_hit2D.collider.GetComponent<DemonEnemy>() != null)
+                _hit2D.collider.GetComponent<DemonEnemy>().EnemyKill();
         }
     }
 

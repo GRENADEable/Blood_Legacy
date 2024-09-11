@@ -1,28 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class DemonEnemy : MonoBehaviour
 {
     #region Serialized Variables
     [Space, Header("Attack Fields")]
-    [SerializeField] private float atkCooldown = default;
-    [SerializeField] private float range = default;
+    [SerializeField]
+    [Tooltip("Attack Cooldown of the Demon")]
+    private float atkCooldown = default;
+
+    [SerializeField]
+    [Tooltip("The attack range of the Demon")]
+    private float range = default;
 
     [Space, Header("Range Fields")]
-    [SerializeField] private float colliderDistance;
-    [SerializeField] private BoxCollider2D boxCollider;
+    [SerializeField]
+    [Tooltip("The Distance of the Collider from the Demon")]
+    private float colliderDistance;
+
+    [SerializeField]
+    [Tooltip("The Box Collder Trigger for Attacking")]
+    private BoxCollider2D boxCollider;
 
     [Space, Header("Player Fields")]
-    [SerializeField] private LayerMask playerLayer;
+    [SerializeField]
+    [Tooltip("Player LayerMask to attach the Player")]
+    private LayerMask playerLayer;
 
-    #region Scoring System
     [Space, Header("Scoring System")]
     [SerializeField]
     [Tooltip("How much score to increment when the Enemy is dead?")]
     private int enemyScoreIncrement = default;
-    #endregion
 
     #region Events
 
@@ -52,10 +61,8 @@ public class DemonEnemy : MonoBehaviour
 
     #region Private Variables
     private Animator _enemyAnim;
-    private Rigidbody2D _rb2D;
     private DemonPatrol _demonPatrol;
-    private Collider2D _col2D = default;
-    [SerializeField] private float _cooldownTimer = default;
+    private float _cooldownTimer = default;
     [SerializeField] private bool _isPlayerDead = default;
     #endregion
 
@@ -65,19 +72,16 @@ public class DemonEnemy : MonoBehaviour
     void OnEnable()
     {
         AprilPlayerController.OnPlayerDead += OnPlayerDeadEventReceived;
-        AprilPlayerController.OnEnemyKill += OnEnemyKillEventReceived;
     }
 
     void OnDisable()
     {
         AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
-        AprilPlayerController.OnEnemyKill -= OnEnemyKillEventReceived;
     }
 
     void OnDestroy()
     {
         AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
-        AprilPlayerController.OnEnemyKill -= OnEnemyKillEventReceived;
     }
     #endregion
 
@@ -85,8 +89,6 @@ public class DemonEnemy : MonoBehaviour
     {
         _enemyAnim = GetComponent<Animator>();
         _demonPatrol = GetComponentInParent<DemonPatrol>();
-        _rb2D = GetComponent<Rigidbody2D>();
-        _col2D = GetComponent<Collider2D>();
     }
 
     void Update()
@@ -100,7 +102,7 @@ public class DemonEnemy : MonoBehaviour
             {
                 _cooldownTimer = 0;
                 _enemyAnim.SetTrigger("isAttacking");
-                Debug.Log("Attacking");
+                //Debug.Log("Attacking");
             }
         }
 
@@ -133,6 +135,15 @@ public class DemonEnemy : MonoBehaviour
         return hit.collider != null;
     }
 
+    public void EnemyKill()
+    {
+        OnEnemyDead?.Invoke();
+        Destroy(gameObject);
+        _demonPatrol.IsDemonAlive = false;
+        OnEnemyKillScore?.Invoke(enemyScoreIncrement);
+        //Debug.Log("Killing Enemy");
+    }
+
     #endregion
 
     #region Events
@@ -154,16 +165,5 @@ public class DemonEnemy : MonoBehaviour
     /// Lets the Enemy Script know that the player is Dead;
     /// </summary>
     void OnPlayerDeadEventReceived() => _isPlayerDead = true;
-
-    /// <summary>
-    /// Subbed to AprilPlayerController Script;
-    /// Kills the enemy;
-    /// </summary>
-    void OnEnemyKillEventReceived()
-    {
-        OnEnemyDead?.Invoke();
-        Destroy(gameObject);
-        _demonPatrol.IsDemonAlive = false;
-    }
     #endregion
 }
