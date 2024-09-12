@@ -86,7 +86,8 @@ public class DemonChase : MonoBehaviour
     [SerializeField] private bool _isMovingLeft = default;
     public GameObject Player { get => _player; set => _player = value; }
     [SerializeField] private GameObject _player = default;
-    private Vector3 _initScale;
+    private Vector3 _initScale = default;
+    private Vector3 _direction = default;
     #endregion
 
     #region Unity Callbacks
@@ -120,7 +121,7 @@ public class DemonChase : MonoBehaviour
     {
         if (_curState != EnemyState.PlayerDead)
         {
-            _distance = Vector3.Distance(transform.position, _player.transform.position);
+            _distance = Vector3.Distance(transform.position, Player.transform.position);
             MovementDirCheck();
         }
 
@@ -199,11 +200,15 @@ public class DemonChase : MonoBehaviour
         _demonAnim.SetBool("isMoving", true);
         _demonAnim.SetBool("isAttacking", false);
 
-        Vector3 target = _player.transform.position;
+        Vector3 target = Player.transform.position;
         target.y = transform.position.y;
 
-        _demonrb2D.velocity = Vector2.MoveTowards(_demonrb2D.velocity, target, demonSpeed * Time.deltaTime);
-        _demonrb2D.velocity = Vector2.ClampMagnitude(_demonrb2D.velocity, demonMaxSpeed);
+        _direction = target - transform.position;
+
+        _demonrb2D.MovePosition(transform.position + demonSpeed * Time.fixedDeltaTime * _direction.normalized);
+
+        //_demonrb2D.velocity = Vector2.MoveTowards(_demonrb2D.velocity, target, demonSpeed * Time.deltaTime);
+        //_demonrb2D.velocity = Vector2.ClampMagnitude(_demonrb2D.velocity, demonMaxSpeed);
         //Debug.Log("Chasing");
     }
 
@@ -237,12 +242,12 @@ public class DemonChase : MonoBehaviour
     /// </summary>
     void MovementDirCheck()
     {
-        if (_player.transform.position.x > transform.position.x && _isMovingLeft)
+        if (Player.transform.position.x > transform.position.x && _isMovingLeft)
         {
             MoveInDirection(1);
             _isMovingLeft = false;
         }
-        else if (_player.transform.position.x < transform.position.x && !_isMovingLeft)
+        else if (Player.transform.position.x < transform.position.x && !_isMovingLeft)
         {
             MoveInDirection(-1);
             _isMovingLeft = true;
