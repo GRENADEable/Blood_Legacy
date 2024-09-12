@@ -10,16 +10,20 @@ public class DemonChase : MonoBehaviour
     #region Floats and Ints
     [Space, Header("Floats and Ints")]
     [SerializeField]
-    [Tooltip("Enemy Speed")]
+    [Tooltip("Demon Speed")]
     private float demonSpeed = default;
+
+    [SerializeField]
+    [Tooltip("Demon Max Speed Clamped")]
+    private float demonMaxSpeed = default;
 
     [SerializeField]
     [Tooltip("At what Distance does the Demon Attack the Player?")]
     private float attackDistance = default;
 
-    [SerializeField]
-    [Tooltip("Attack Cooldown of the Demon")]
-    private float atkCooldown = default;
+    //[SerializeField]
+    //[Tooltip("Attack Cooldown of the Demon")]
+    //private float atkCooldown = default;
 
     [SerializeField]
     [Tooltip("The attack range of the Demon")]
@@ -43,10 +47,6 @@ public class DemonChase : MonoBehaviour
     [SerializeField]
     [Tooltip("Player LayerMask to attach the Player")]
     private LayerMask playerLayer;
-
-    [SerializeField]
-    [Tooltip("Player Reference GameObject")]
-    private GameObject player = default;
     #endregion
 
     #region Events
@@ -76,12 +76,17 @@ public class DemonChase : MonoBehaviour
     #endregion
 
     #region Private Variables
-    private Animator _demonAnim;
+    private Animator _demonAnim = default;
+    private Rigidbody2D _demonrb2D = default;
     [SerializeField] private float _cooldownTimer = default;
     [SerializeField] private EnemyState _curState = EnemyState.Chasing;
     private enum EnemyState { Chasing, Attacking, Dead, PlayerDead };
     [SerializeField] private float _distance = default;
     [SerializeField] private bool _isPlayerDead = default;
+    [SerializeField] private bool _isMovingLeft = default;
+    public GameObject Player { get => _player; set => _player = value; }
+    [SerializeField] private GameObject _player = default;
+    private Vector3 _initScale;
     #endregion
 
     #region Unity Callbacks
@@ -106,13 +111,18 @@ public class DemonChase : MonoBehaviour
     void Start()
     {
         _demonAnim = GetComponent<Animator>();
-        _cooldownTimer = atkCooldown;
+        _demonrb2D = GetComponent<Rigidbody2D>();
+        _initScale = transform.localScale;
+        //_cooldownTimer = atkCooldown;
     }
 
     void Update()
     {
         if (_curState != EnemyState.PlayerDead)
-            _distance = Vector3.Distance(transform.position, player.transform.position);
+        {
+            _distance = Vector3.Distance(transform.position, _player.transform.position);
+            MovementDirCheck();
+        }
 
         DemonStates();
     }
@@ -164,7 +174,7 @@ public class DemonChase : MonoBehaviour
                 if (_distance >= attackDistance && !PlayerInSight())
                 {
                     _curState = EnemyState.Chasing;
-                    _cooldownTimer = atkCooldown;
+                    //_cooldownTimer = atkCooldown;
                     //Debug.Log("Switching to Chase");
                 }
                 break;
@@ -186,12 +196,14 @@ public class DemonChase : MonoBehaviour
     /// </summary>
     void ChasePlayer()
     {
-        _demonAnim.SetBool("isAttackingBool", false);
+        _demonAnim.SetBool("isMoving", true);
+        _demonAnim.SetBool("isAttacking", false);
 
-        Vector3 target = player.transform.position;
+        Vector3 target = _player.transform.position;
         target.y = transform.position.y;
 
-        transform.position = Vector3.MoveTowards(transform.position, target, demonSpeed * Time.deltaTime);
+        _demonrb2D.velocity = Vector2.MoveTowards(_demonrb2D.velocity, target, demonSpeed * Time.deltaTime);
+        _demonrb2D.velocity = Vector2.ClampMagnitude(_demonrb2D.velocity, demonMaxSpeed);
         //Debug.Log("Chasing");
     }
 
@@ -211,13 +223,35 @@ public class DemonChase : MonoBehaviour
         //        _enemyAnim.SetTrigger("isAttacking");
         //    }
         //}
+        _demonAnim.SetBool("isMoving", false);
 
         if (PlayerInSight() && !_isPlayerDead)
         {
-            _demonAnim.SetBool("isAttackingBool", true);
+            _demonAnim.SetBool("isAttacking", true);
+            //Debug.Log("Attacking");
         }
+    }
 
-        //Debug.Log("Attacking");
+    /// <summary>
+    /// 
+    /// </summary>
+    void MovementDirCheck()
+    {
+        if (_player.transform.position.x > transform.position.x && _isMovingLeft)
+        {
+            MoveInDirection(1);
+            _isMovingLeft = false;
+        }
+        else if (_player.transform.position.x < transform.position.x && !_isMovingLeft)
+        {
+            MoveInDirection(-1);
+            _isMovingLeft = true;
+        }
+    }
+
+    void MoveInDirection(int direction)
+    {
+        transform.localScale = new Vector3(Mathf.Abs(_initScale.x) * direction, _initScale.y, _initScale.z);
     }
 
     /// <summary>

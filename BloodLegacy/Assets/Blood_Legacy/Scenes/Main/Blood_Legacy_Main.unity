@@ -1847,7 +1847,7 @@ RectTransform:
   - {fileID: 1078301236}
   - {fileID: 1276469385}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2117,7 +2117,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 446610212}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -2279,7 +2279,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &498092848
 MonoBehaviour:
@@ -2691,7 +2691,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!114 &554450343
 MonoBehaviour:
@@ -2977,7 +2977,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 21.12, y: 5.858, z: 28.592}
 --- !u!1 &715624881
 GameObject:
@@ -3444,7 +3444,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860959752}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -5602,7 +5602,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176363676}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -5654,6 +5654,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 296111879}
     m_Modifications:
     - target: {fileID: 2122301105701305957, guid: a8a8e0295316ecb449fcbc6236aeeef6, type: 3}
+      propertyPath: range
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122301105701305957, guid: a8a8e0295316ecb449fcbc6236aeeef6, type: 3}
       propertyPath: jumpPower
       value: 1
       objectReference: {fileID: 0}
@@ -5661,9 +5665,13 @@ PrefabInstance:
       propertyPath: playerSpeed
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2122301105701305957, guid: a8a8e0295316ecb449fcbc6236aeeef6, type: 3}
+      propertyPath: colliderDistance
+      value: 3.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2122301105701305959, guid: a8a8e0295316ecb449fcbc6236aeeef6, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2122301105701305959, guid: a8a8e0295316ecb449fcbc6236aeeef6, type: 3}
       propertyPath: m_LocalScale.x
@@ -5828,7 +5836,7 @@ Transform:
   m_Children:
   - {fileID: 955318800}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1251079231
 GameObject:
@@ -7361,6 +7369,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e832127a3f75cb5468c6c564217bbe98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalDemonsKilled: 2
+  chaseDemonPrefab: {fileID: 8128033058797188868, guid: 106f86b1a7d77bb47acd80847c866d2c, type: 3}
+  playerPrefab: {fileID: 1189142249}
+  chaseDemonSpawnPos:
+  - {fileID: 1307439473}
+  - {fileID: 832820007}
+  _currEnemyKilled: 0
 --- !u!1 &1554460629
 GameObject:
   m_ObjectHideFlags: 0
@@ -7828,7 +7843,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726453971}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -8096,7 +8111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6505749528832172686, guid: 8e4a6c4db361ebc459e78a2962b747fe, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6505749528832172686, guid: 8e4a6c4db361ebc459e78a2962b747fe, type: 3}
       propertyPath: m_LocalScale.x
@@ -10487,7 +10502,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2077592751
 GameObject:
@@ -10655,7 +10670,7 @@ Transform:
   - {fileID: 1747822364}
   - {fileID: 945584303}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &585974307802234906
 PrefabInstance:
@@ -10669,12 +10684,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1189142249}
     - target: {fileID: 7514449581561563364, guid: 106f86b1a7d77bb47acd80847c866d2c, type: 3}
-      propertyPath: chaseDistance
-      value: 0.21
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1189142249}
+    - target: {fileID: 7514449581561563364, guid: 106f86b1a7d77bb47acd80847c866d2c, type: 3}
+      propertyPath: demonSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514449581561563364, guid: 106f86b1a7d77bb47acd80847c866d2c, type: 3}
+      propertyPath: demonMaxSpeed
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8128033058797188868, guid: 106f86b1a7d77bb47acd80847c866d2c, type: 3}
       propertyPath: m_Name
       value: C_Demon_Chase_2_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128033058797188868, guid: 106f86b1a7d77bb47acd80847c866d2c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128033058797188869, guid: 106f86b1a7d77bb47acd80847c866d2c, type: 3}
+      propertyPath: m_BodyType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8128033058797188875, guid: 106f86b1a7d77bb47acd80847c866d2c, type: 3}
       propertyPath: m_RootOrder
@@ -10682,15 +10713,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8128033058797188875, guid: 106f86b1a7d77bb47acd80847c866d2c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.077
+      value: -3.825
       objectReference: {fileID: 0}
     - target: {fileID: 8128033058797188875, guid: 106f86b1a7d77bb47acd80847c866d2c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8128033058797188875, guid: 106f86b1a7d77bb47acd80847c866d2c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8128033058797188875, guid: 106f86b1a7d77bb47acd80847c866d2c, type: 3}
       propertyPath: m_LocalRotation.w
