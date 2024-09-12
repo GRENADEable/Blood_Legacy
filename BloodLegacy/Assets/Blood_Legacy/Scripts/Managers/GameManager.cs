@@ -39,10 +39,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region GameObjects
-    //[Space, Header("GameObjects")]
-    //[SerializeField]
-    //[Tooltip("Second Page Comic Book")]
-    //private GameObject comicPage2 = default;
+    [Space, Header("GameObjects")]
+    [SerializeField]
+    [Tooltip("The Mini Game Area")]
+    private GameObject miniGameArea = default;
     #endregion
 
     #region UIs
@@ -50,14 +50,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Canvas Group for the Comic Button Panels")]
     private CanvasGroup comicButtonCanvasGroup = default;
-
-    [SerializeField]
-    [Tooltip("First Video Player Reference")]
-    private VideoPlayer firstVidPlayer = default;
-
-    [SerializeField]
-    [Tooltip("First Comic Video Render Texture")]
-    private RenderTexture firstAnimaticTex = default;
 
     #region Comic Layer 1
     [Space, Header("Comic Layer 1")]
@@ -80,6 +72,25 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Comic Panel 1 Speech Bubble 3 Image")]
     private SpriteRenderer comic1Speech3 = default;
+    #endregion
+
+    #region Comic Layer 2
+    [Space, Header("Comic Layer 2")]
+    [SerializeField]
+    [Tooltip("First Video Player Reference")]
+    private VideoPlayer firstVidPlayer = default;
+
+    [SerializeField]
+    [Tooltip("First Comic Video Render Texture")]
+    private RenderTexture firstAnimaticTex = default;
+
+    [SerializeField]
+    [Tooltip("Canvas Group for the First Animatic Video")]
+    private CanvasGroup animaticCanvasGroup = default;
+
+    [SerializeField]
+    [Tooltip("Canvas Group for the Mini Game")]
+    private CanvasGroup miniGameCanvasGroup = default;
     #endregion
 
     #endregion
@@ -110,7 +121,7 @@ public class GameManager : MonoBehaviour
 
     #region Private Variables
     private int _currVCamIndex = default;
-    [SerializeField] private MiniGameManager _miniGameManager = default;
+    private MiniGameManager _miniGameManager = default;
     #endregion
 
     #region Unity Callbacks
@@ -280,9 +291,12 @@ public class GameManager : MonoBehaviour
     /// <param name="vid"> Video Player of the First Animatic; </param>
     void OnVideoEnded(VideoPlayer vid)
     {
-        mMFFirstVid.PlayFeedbacks();
-        vCams[_currVCamIndex].gameObject.SetActive(false);
-        vCam10.gameObject.SetActive(true);
+        animaticCanvasGroup.DOFade(0, 0.5f);
+        miniGameCanvasGroup.DOFade(1, 0.5f);
+        miniGameArea.SetActive(true);
+        //mMFFirstVid.PlayFeedbacks();
+        //vCams[_currVCamIndex].gameObject.SetActive(false);
+        //vCam10.gameObject.SetActive(true);
         gmData.ChangeGameState("MiniGame");
     }
     #endregion
