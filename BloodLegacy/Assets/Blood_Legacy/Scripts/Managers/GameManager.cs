@@ -91,30 +91,25 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Canvas Group for the Mini Game")]
     private CanvasGroup miniGameCanvasGroup = default;
+
+    [SerializeField]
+    [Tooltip("Canvas Group for Comic Panel Buttons")]
+    private CanvasGroup comicPanelButtonCanvasGroup = default;
+
+    [SerializeField]
+    [Tooltip("Canvas Group for Comic Panel Buttons")]
+    private CanvasGroup miniGamePanelButtonCanvasGroup = default;
     #endregion
 
     #endregion
 
     #region Virtual Cams
-    [Space, Header("Virtual Cams")]
-    [SerializeField]
-    [Tooltip("The Tenth Virtual Camera Reference")]
-    private CinemachineVirtualCamera vCam10 = default;
-
     [SerializeField]
     [Tooltip("Array of Virtual Cams for the Comic Book")]
     private CinemachineVirtualCamera[] vCams = default;
     #endregion
 
     #region Others
-    [Space, Header("Others")]
-    [SerializeField]
-    [Tooltip("Fade Background Panel")]
-    private PlayableDirector comicTimeline = default;
-
-    [SerializeField]
-    [Tooltip("MMF Player Script after the first Animatic Vid Ends")]
-    private MMF_Player mMFFirstVid = default;
     #endregion
 
     #endregion
@@ -214,6 +209,40 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    public void ToggleButtonPanels(bool isToggled)
+    {
+        if (isToggled)
+        {
+            comicPanelButtonCanvasGroup.DOFade(0, 0.5f);
+            miniGamePanelButtonCanvasGroup.DOFade(1, 0.5f);
+
+            miniGamePanelButtonCanvasGroup.interactable = true;
+            miniGamePanelButtonCanvasGroup.blocksRaycasts = true;
+
+            comicPanelButtonCanvasGroup.interactable = false;
+            comicPanelButtonCanvasGroup.blocksRaycasts = false;
+        }
+        else
+        {
+            comicPanelButtonCanvasGroup.DOFade(1, 0.5f);
+            miniGamePanelButtonCanvasGroup.DOFade(0, 0.5f);
+
+            miniGamePanelButtonCanvasGroup.interactable = false;
+            miniGamePanelButtonCanvasGroup.blocksRaycasts = false;
+
+            comicPanelButtonCanvasGroup.interactable = true;
+            comicPanelButtonCanvasGroup.blocksRaycasts = true;
+        }
+    }
+
+    void MiniGameReset()
+    {
+        animaticCanvasGroup.DOFade(1, 0.5f);
+        miniGameCanvasGroup.DOFade(0, 0.5f);
+        miniGameArea.SetActive(false);
+        gmData.ChangeGameState("Book");
+    }
+
     #endregion
 
     #region Coroutines
@@ -249,6 +278,9 @@ public class GameManager : MonoBehaviour
         if (_currVCamIndex >= vCams.Length)
             _currVCamIndex = 0;
 
+        if (gmData.currState == GameMangerData.GameState.MiniGame)
+            MiniGameReset();
+
         vCams[_currVCamIndex].gameObject.SetActive(true);
     }
 
@@ -263,6 +295,9 @@ public class GameManager : MonoBehaviour
 
         if (_currVCamIndex <= 0)
             _currVCamIndex = vCams.Length;
+
+        if (gmData.currState == GameMangerData.GameState.MiniGame)
+            MiniGameReset();
 
         _currVCamIndex--;
         vCams[_currVCamIndex].gameObject.SetActive(true);
@@ -294,6 +329,7 @@ public class GameManager : MonoBehaviour
         animaticCanvasGroup.DOFade(0, 0.5f);
         miniGameCanvasGroup.DOFade(1, 0.5f);
         miniGameArea.SetActive(true);
+        //ToggleButtonPanels(true);
         //mMFFirstVid.PlayFeedbacks();
         //vCams[_currVCamIndex].gameObject.SetActive(false);
         //vCam10.gameObject.SetActive(true);

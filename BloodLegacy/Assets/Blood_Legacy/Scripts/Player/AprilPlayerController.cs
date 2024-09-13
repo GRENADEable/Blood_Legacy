@@ -68,10 +68,24 @@ public class AprilPlayerController : MonoBehaviour
     private LayerMask enemyLayer;
     #endregion
 
+    #region Player Dashing
+    [Space, Header("Player Dashing")]
+    [SerializeField]
+    [Tooltip("How much power to dash?")]
+    private float dashPower = 12f;
+
+    [SerializeField]
+    [Tooltip("Dash duration")]
+    private float dashingTime = 0.2f;
+
+    [SerializeField]
+    [Tooltip("Dash cooldown")]
+    private float dashingCooldown = 1f;
+    #endregion
+
     #region Events
 
     #region Void Events
-
     public delegate void SendEvents();
     /// <summary>
     /// Event sent from AprilPlayerController script to Enemy script;
@@ -92,18 +106,32 @@ public class AprilPlayerController : MonoBehaviour
     public static event SendEvents OnSwordSwipe;
     #endregion
 
+    #region Bool Events
+    public delegate void SendEventsBool(bool flag);
+    /// <summary>
+    /// Event sent from PlayerMovementV2 script to Enemy Script;
+    /// Lets the enemies know that the Player is dashing;
+    /// </summary>
+    public static event SendEventsBool OnPlayerDash;
+    #endregion
+
     #endregion
 
     #endregion
 
     #region Private Variables
     [Header("Movement")]
-    private bool _isFacingRight = true;
+    [SerializeField] private bool _isFacingRight = true;
     private float _horizontalMoveX = default;
+    private Vector2 _moveDirection2D = default;
 
-    [Header("Play Componenets")]
+    [Header("Dash Mechanic")]
+    [SerializeField] private bool _canDash = true;
+    [SerializeField] private bool _isPlayerDashing;
+    private TrailRenderer _playerTrail = default;
+
+    [Header("Player Componenets")]
     private Rigidbody2D _rb2D = default;
-    //private TrailRenderer _playerTrail = default;
     private Animator _playerAnim = default;
     [SerializeField] private bool _isPlayerDead = default;
     [SerializeField] private bool _isPlayerMoving = true;
@@ -121,6 +149,7 @@ public class AprilPlayerController : MonoBehaviour
     void OnDisable()
     {
         DemonEnemy.OnPlayerKill -= OnPlayerKillEventReceived;
+        _isPlayerMoving = true;
     }
 
     void OnDestroy()
@@ -131,15 +160,15 @@ public class AprilPlayerController : MonoBehaviour
 
     void Start()
     {
-        _playerAnim = GetComponentInChildren<Animator>();
+        _playerAnim = GetComponent<Animator>();
         _rb2D = GetComponent<Rigidbody2D>();
-        //_playerTrail = GetComponentInChildren<TrailRenderer>();
+        _playerTrail = GetComponentInChildren<TrailRenderer>();
         _isPlayerDead = false;
     }
 
     void Update()
     {
-        if (_isPlayerDead)
+        if (_isPlayerDead || _isPlayerDashing)
             return;
 
         if (_isPlayerMoving)
@@ -167,12 +196,12 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     void PlayerMove()
     {
-        Vector2 horizonalXVel = new Vector2(_horizontalMoveX, 0f).normalized;
+        _moveDirection2D = new Vector2(_horizontalMoveX, 0f).normalized;
 
-        if (!_isPlayerMoving)
-            _rb2D.velocity = Vector2.zero;
-        else
-            _rb2D.velocity = new Vector2(horizonalXVel.x * playerSpeed, _rb2D.velocity.y);
+        //if (!_isPlayerMoving)
+        //    _rb2D.velocity = Vector2.zero;
+        //else
+        _rb2D.velocity = new Vector2(_moveDirection2D.x * playerSpeed, _rb2D.velocity.y);
     }
 
     /// <summary>
@@ -244,25 +273,49 @@ public class AprilPlayerController : MonoBehaviour
     #endregion
 
     #region Coroutines
+    /// <summary>
+    /// Player Dash with Cooldowns;
+    /// </summary>
+    /// <returns> Float delay; </returns>
+    private IEnumerator Dash()
+    {
+        _canDash = false;
+        _isPlayerDashing = true;
+        OnPlayerDash?.Invoke(_isPlayerDashing);
+        _playerAnim.SetBool("isDashing", true);
 
+        if (_isFacingRight)
+            _rb2D.AddForce(Vector2.right * dashPower, ForceMode2D.Impulse);
+        else
+            _rb2D.AddForce(Vector2.left * dashPower, ForceMode2D.Impulse);
+
+        _playerTrail.emitting = true;
+        yield return new WaitForSeconds(dashingTime);
+        _playerTrail.emitting = false;
+        _isPlayerDashing = false;
+        OnPlayerDash?.Invoke(_isPlayerDashing);
+        _playerAnim.SetBool("isDashing", false);
+        yield return new WaitForSeconds(dashingCooldown);
+        _canDash = true;
+    }
     #endregion
 
     #region Events
 
     #region Input Systems
     /// <summary>
-    /// Player Movement Script tied to C_Apri PlayerInput;
+    /// Player Movement Script tied to C_April PlayerInput;
     /// Using new Input System to move;
     /// </summary>
     public void OnMovePlayer(InputAction.CallbackContext context) => _horizontalMoveX = context.ReadValue<Vector2>().x;
 
     /// <summary>
-    /// Player Movement Script tied to C_Apri PlayerInput;
+    /// Player Movement Script tied to C_April PlayerInput;
     /// Using new Input System to jump;
     /// </summary>
     public void OnJumpPlayer(InputAction.CallbackContext context)
     {
-        if (context.performed && IsPlayerGrounded() && _isPlayerMoving)
+        if (context.performed && IsPlayerGrounded() && _isPlayerMoving && !_isPlayerDashing)
             _rb2D.velocity = new Vector2(_rb2D.velocity.x, jumpPower);
 
         if (context.canceled && _rb2D.velocity.y > 0f)
@@ -275,11 +328,44 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started && !_isPlayerDead && _isPlayerMoving)
+        if (context.started && !_isPlayerDead && _isPlayerMoving && !_isPlayerDashing)
         {
             _playerAnim.SetTrigger("isAttacking");
             //Debug.Log("Attacking");
         }
+    }
+
+    /// <summary>
+    /// Player Movement Script tied to C_April PlayerInput;
+    /// Using new Input System to dash;
+    /// </summary>
+    public void OnDashPlayer(InputAction.CallbackContext context)
+    {
+        if (context.started && _canDash && _isPlayerMoving)
+        {
+            StartCoroutine(Dash());
+            Debug.Log("Dashing");
+        }
+    }
+
+    /// <summary>
+    /// Player Movement Script tied to C_April PlayerInput;
+    /// Using new Input System to block;
+    /// </summary>
+    public void OnBlockPlayer(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            _playerAnim.SetBool("isBlocking", true);
+            _isPlayerMoving = false;
+        }
+
+        if (context.canceled)
+        {
+            _playerAnim.SetBool("isBlocking", false);
+            _isPlayerMoving = true;
+        }
+
     }
     #endregion
 
@@ -307,6 +393,10 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     public void OnPlayerSwordSwipe() => OnSwordSwipe?.Invoke();
 
+    /// <summary>
+    /// Tied to AnimEvent on C_April_Attack_Anim;
+    /// Checks if the Demon is within the attack range and Kills it;
+    /// </summary>
     public void OnEnemyHit()
     {
         if (EnemyInSight())
