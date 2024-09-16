@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DemonEnemy : MonoBehaviour
+public class DemonDefault : MonoBehaviour
 {
     #region Serialized Variables
     [Space, Header("Attack Fields")]
@@ -38,7 +38,7 @@ public class DemonEnemy : MonoBehaviour
     #region Events Void
     public delegate void SendEvents();
     /// <summary>
-    /// Event sent from DemonEnemy script to PlayerMovementV2 and AudioManager Scripts;
+    /// Event sent from DemonEnemy script to AprilPlayerController and AudioManager Scripts;
     /// Kills the player and plays the death SFX;
     /// </summary>
     public static event SendEvents OnPlayerKill;
@@ -63,7 +63,8 @@ public class DemonEnemy : MonoBehaviour
     private Animator _enemyAnim;
     private DemonPatrol _demonPatrol;
     private float _cooldownTimer = default;
-    [SerializeField] private bool _isPlayerDead = default;
+    private bool _isPlayerDead = default;
+    [SerializeField] private bool _canAttackPlayer = true;
     #endregion
 
     #region Unity Callbacks
@@ -72,16 +73,19 @@ public class DemonEnemy : MonoBehaviour
     void OnEnable()
     {
         AprilPlayerController.OnPlayerDead += OnPlayerDeadEventReceived;
+        AprilPlayerController.OnPlayerInvincible += OnPlayerInvincibleEventReceived;
     }
 
     void OnDisable()
     {
         AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
+        AprilPlayerController.OnPlayerInvincible -= OnPlayerInvincibleEventReceived;
     }
 
     void OnDestroy()
     {
         AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
+        AprilPlayerController.OnPlayerInvincible -= OnPlayerInvincibleEventReceived;
     }
     #endregion
 
@@ -109,7 +113,6 @@ public class DemonEnemy : MonoBehaviour
         if (_demonPatrol != null)
             _demonPatrol.enabled = !PlayerInSight();
     }
-
 
     void OnDrawGizmos()
     {
@@ -139,8 +142,8 @@ public class DemonEnemy : MonoBehaviour
     {
         OnEnemyDead?.Invoke();
         Destroy(gameObject);
-        _demonPatrol.IsDemonAlive = false;
         OnEnemyKillScore?.Invoke(enemyScoreIncrement);
+        _demonPatrol.IsDemonAlive = false;
         //Debug.Log("Killing Enemy");
     }
 
@@ -153,7 +156,7 @@ public class DemonEnemy : MonoBehaviour
     /// </summary>
     public void OnKillPlayer()
     {
-        if (PlayerInSight())
+        if (PlayerInSight() && _canAttackPlayer)
         {
             OnPlayerKill?.Invoke();
             Debug.Log("Killing Player");
@@ -165,5 +168,13 @@ public class DemonEnemy : MonoBehaviour
     /// Lets the Enemy Script know that the player is Dead;
     /// </summary>
     void OnPlayerDeadEventReceived() => _isPlayerDead = true;
+
+    void OnPlayerInvincibleEventReceived(bool isInvincible)
+    {
+        if (isInvincible)
+            _canAttackPlayer = false;
+        else
+            _canAttackPlayer = true;
+    }
     #endregion
 }

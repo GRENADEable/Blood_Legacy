@@ -8,6 +8,14 @@ public class AprilPlayerController : MonoBehaviour
 {
     #region Serialized Fields
 
+    #region Datas
+    [Space, Header("Datas")]
+    [SerializeField]
+    [Tooltip("")]
+    private PlayerState currState = PlayerState.Moving;
+    private enum PlayerState { Moving, Jumping, Attacking, Blocking, Dashing, Dead };
+    #endregion
+
     #region Movement
     [Space, Header("Movement")]
     [SerializeField]
@@ -31,22 +39,22 @@ public class AprilPlayerController : MonoBehaviour
     #endregion
 
     #region Player Throwing
-    [Space, Header("Player Throwing")]
-    [SerializeField]
-    [Tooltip("The projectile Prefab itself")]
-    private GameObject projectilePrefab = default;
+    //[Space, Header("Player Throwing")]
+    //[SerializeField]
+    //[Tooltip("The projectile Prefab itself")]
+    //private GameObject projectilePrefab = default;
 
-    [SerializeField]
-    [Tooltip("From where do you want to spawn the projectile?")]
-    private Transform throwPos = default;
+    //[SerializeField]
+    //[Tooltip("From where do you want to spawn the projectile?")]
+    //private Transform throwPos = default;
 
-    [SerializeField]
-    [Tooltip("Throw Power")]
-    private float throwPower = default;
+    //[SerializeField]
+    //[Tooltip("Throw Power")]
+    //private float throwPower = default;
 
-    [SerializeField]
-    [Tooltip("After how many seconds do you want to destroy the projectile?")]
-    private float projectileDestroyTime = default;
+    //[SerializeField]
+    //[Tooltip("After how many seconds do you want to destroy the projectile?")]
+    //private float projectileDestroyTime = default;
     #endregion
 
     #region Player Attacking
@@ -108,11 +116,19 @@ public class AprilPlayerController : MonoBehaviour
 
     #region Bool Events
     public delegate void SendEventsBool(bool flag);
-    /// <summary>
-    /// Event sent from PlayerMovementV2 script to Enemy Script;
-    /// Lets the enemies know that the Player is dashing;
-    /// </summary>
-    public static event SendEventsBool OnPlayerDash;
+    ///// <summary>
+    ///// Event sent from PlayerMovementV2 script to Enemy Script;
+    ///// Lets the enemies know that the Player is dashing;
+    ///// </summary>
+    //public static event SendEventsBool OnPlayerDash;
+
+    ///// <summary>
+    ///// Event sent from PlayerMovementV2 script to Enemy Script;
+    ///// Lets the enemies know that the Player is Blocking;
+    ///// </summary>
+    //public static event SendEventsBool OnPlayerBlock;
+
+    public static event SendEventsBool OnPlayerInvincible;
     #endregion
 
     #endregion
@@ -121,19 +137,19 @@ public class AprilPlayerController : MonoBehaviour
 
     #region Private Variables
     [Header("Movement")]
-    [SerializeField] private bool _isFacingRight = true;
+    private bool _isFacingRight = true;
     private float _horizontalMoveX = default;
     private Vector2 _moveDirection2D = default;
 
     [Header("Dash Mechanic")]
-    [SerializeField] private bool _canDash = true;
-    [SerializeField] private bool _isPlayerDashing;
+    private bool _canDash = true;
+    //private bool _isPlayerDashing = default;
     private TrailRenderer _playerTrail = default;
 
     [Header("Player Componenets")]
     private Rigidbody2D _rb2D = default;
     private Animator _playerAnim = default;
-    [SerializeField] private bool _isPlayerDead = default;
+    //private bool _isPlayerDead = false;
     [SerializeField] private bool _isPlayerMoving = true;
     private RaycastHit2D _hit2D = default;
     #endregion
@@ -143,18 +159,22 @@ public class AprilPlayerController : MonoBehaviour
     #region Events
     void OnEnable()
     {
-        DemonEnemy.OnPlayerKill += OnPlayerKillEventReceived;
+        DemonDefault.OnPlayerKill += OnPlayerKillEventReceived;
+        DemonChase.OnPlayerKill += OnPlayerKillEventReceived;
     }
 
     void OnDisable()
     {
-        DemonEnemy.OnPlayerKill -= OnPlayerKillEventReceived;
+        DemonDefault.OnPlayerKill -= OnPlayerKillEventReceived;
+        DemonChase.OnPlayerKill -= OnPlayerKillEventReceived;
+
         _isPlayerMoving = true;
     }
 
     void OnDestroy()
     {
-        DemonEnemy.OnPlayerKill -= OnPlayerKillEventReceived;
+        DemonDefault.OnPlayerKill -= OnPlayerKillEventReceived;
+        DemonChase.OnPlayerKill -= OnPlayerKillEventReceived;
     }
     #endregion
 
@@ -163,15 +183,22 @@ public class AprilPlayerController : MonoBehaviour
         _playerAnim = GetComponent<Animator>();
         _rb2D = GetComponent<Rigidbody2D>();
         _playerTrail = GetComponentInChildren<TrailRenderer>();
-        _isPlayerDead = false;
+        //_isPlayerDead = false;
+        //_isFacingRight = true;
+        //_isPlayerMoving = true;
+        //_canDash = true;
     }
 
     void Update()
     {
-        if (_isPlayerDead || _isPlayerDashing)
+        //if (_isPlayerDead || _isPlayerDashing)
+        //    return;
+
+        if (currState == PlayerState.Dead || currState == PlayerState.Dashing || currState == PlayerState.Blocking)
             return;
 
-        if (_isPlayerMoving)
+        //if (_isPlayerMoving)
+        if (currState == PlayerState.Moving || currState == PlayerState.Jumping)
         {
             PlayerMove();
             PlayerAnims();
@@ -280,8 +307,10 @@ public class AprilPlayerController : MonoBehaviour
     private IEnumerator Dash()
     {
         _canDash = false;
-        _isPlayerDashing = true;
-        OnPlayerDash?.Invoke(_isPlayerDashing);
+        //_isPlayerDashing = true;
+        currState = PlayerState.Dashing;
+        //OnPlayerDash?.Invoke(true);
+        OnPlayerInvincible?.Invoke(true);
         _playerAnim.SetBool("isDashing", true);
 
         if (_isFacingRight)
@@ -292,8 +321,10 @@ public class AprilPlayerController : MonoBehaviour
         _playerTrail.emitting = true;
         yield return new WaitForSeconds(dashingTime);
         _playerTrail.emitting = false;
-        _isPlayerDashing = false;
-        OnPlayerDash?.Invoke(_isPlayerDashing);
+        //_isPlayerDashing = false;
+        currState = PlayerState.Moving;
+        //OnPlayerDash?.Invoke(false);
+        OnPlayerInvincible?.Invoke(false);
         _playerAnim.SetBool("isDashing", false);
         yield return new WaitForSeconds(dashingCooldown);
         _canDash = true;
@@ -315,11 +346,17 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     public void OnJumpPlayer(InputAction.CallbackContext context)
     {
-        if (context.performed && IsPlayerGrounded() && _isPlayerMoving && !_isPlayerDashing)
+        if (context.performed && IsPlayerGrounded() && _isPlayerMoving /*&& !_isPlayerDashing*/)
+        {
             _rb2D.velocity = new Vector2(_rb2D.velocity.x, jumpPower);
+            //currState = PlayerState.Jumping;
+        }
 
         if (context.canceled && _rb2D.velocity.y > 0f)
+        {
             _rb2D.velocity = new Vector2(_rb2D.velocity.x, _rb2D.velocity.y * 0.5f);
+            //currState = PlayerState.Moving;
+        }
     }
 
     /// <summary>
@@ -328,9 +365,11 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started && !_isPlayerDead && _isPlayerMoving && !_isPlayerDashing)
+        //if (context.started && !_isPlayerDead && _isPlayerMoving && !_isPlayerDashing)
+        if (context.started && currState == PlayerState.Moving)
         {
             _playerAnim.SetTrigger("isAttacking");
+            currState = PlayerState.Attacking;
             //Debug.Log("Attacking");
         }
     }
@@ -341,7 +380,8 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     public void OnDashPlayer(InputAction.CallbackContext context)
     {
-        if (context.started && _canDash && _isPlayerMoving)
+        //if (context.started && _canDash && _isPlayerMoving)
+        if (context.started && _canDash && currState == PlayerState.Moving)
         {
             StartCoroutine(Dash());
             Debug.Log("Dashing");
@@ -354,16 +394,22 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     public void OnBlockPlayer(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && currState == PlayerState.Moving)
         {
             _playerAnim.SetBool("isBlocking", true);
-            _isPlayerMoving = false;
+            currState = PlayerState.Blocking;
+            //OnPlayerBlock?.Invoke(true);
+            OnPlayerInvincible?.Invoke(true);
+            //_isPlayerMoving = false;
         }
 
-        if (context.canceled)
+        if (context.canceled && currState == PlayerState.Blocking)
         {
             _playerAnim.SetBool("isBlocking", false);
-            _isPlayerMoving = true;
+            currState = PlayerState.Moving;
+            //OnPlayerBlock?.Invoke(false);
+            OnPlayerInvincible?.Invoke(false);
+            //_isPlayerMoving = true;
         }
 
     }
@@ -376,7 +422,7 @@ public class AprilPlayerController : MonoBehaviour
     void OnPlayerKillEventReceived()
     {
         OnPlayerDead?.Invoke();
-        _isPlayerDead = true;
+        //_isPlayerDead = true;
         _rb2D.bodyType = RigidbodyType2D.Static;
         Destroy(this.gameObject);
     }
@@ -385,7 +431,15 @@ public class AprilPlayerController : MonoBehaviour
     /// Tied to AnimEvent on C_April_Attack_Anim;
     /// Toggles the movement of the Player when Attacking;
     /// </summary>
-    public void OnPlayerAttacking() => _isPlayerMoving = !_isPlayerMoving;
+    public void OnPlayerAttacking()
+    {
+        _isPlayerMoving = !_isPlayerMoving;
+
+        if (_isPlayerMoving)
+            currState = PlayerState.Moving;
+        else
+            currState = PlayerState.Attacking;
+    }
 
     /// <summary>
     /// Tied to the AnimEvent on C_April_Attack_Anim;
@@ -401,12 +455,18 @@ public class AprilPlayerController : MonoBehaviour
     {
         if (EnemyInSight())
         {
-            if (_hit2D.collider.GetComponent<DemonEnemy>() != null)
-                _hit2D.collider.GetComponent<DemonEnemy>().EnemyKill();
+            if (_hit2D.collider.GetComponent<DemonDefault>() != null)
+                _hit2D.collider.GetComponent<DemonDefault>().EnemyKill();
+
+            if (_hit2D.collider.GetComponent<DemonChase>() != null)
+                _hit2D.collider.GetComponent<DemonChase>().EnemyKill();
         }
     }
 
-    public void OnPanelActive() => _isPlayerMoving = true;
+    public void OnPanelActive()
+    {
+        _isPlayerMoving = true;
+    }
 
     #endregion
 }

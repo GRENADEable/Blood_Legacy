@@ -312,6 +312,7 @@ MonoBehaviour:
   demonSpeed: 0.3
   demonMaxSpeed: 0.1
   attackDistance: 0.12
+  atkCooldown: 2
   range: 0.92
   colliderDistance: 2.6
   enemyScoreIncrement: 1
@@ -321,7 +322,4 @@ MonoBehaviour:
     m_Bits: 8
   _cooldownTimer: 0
   _curState: 0
-  _distance: 0
-  _isPlayerDead: 0
-  _isMovingLeft: 0
-  _player: {fileID: 0}
+  _canAttackPlayer: 1

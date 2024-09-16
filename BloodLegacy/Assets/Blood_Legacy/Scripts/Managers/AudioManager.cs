@@ -28,24 +28,33 @@ public class AudioManager : MonoBehaviour
     #region Events
     void OnEnable()
     {
-        DemonEnemy.OnPlayerKill += OnPlayerKillEventReceived;
-        DemonEnemy.OnEnemyDead += OnEnemyDeadEventReceived;
+        DemonDefault.OnPlayerKill += OnPlayerKillEventReceived;
+        DemonDefault.OnEnemyDead += OnEnemyDeadEventReceived;
+
+        DemonChase.OnPlayerKill += OnPlayerKillEventReceived;
+        DemonChase.OnEnemyDead += OnEnemyDeadEventReceived;
 
         AprilPlayerController.OnSwordSwipe += OnSwordSwipeEventReceived;
     }
 
     void OnDisable()
     {
-        DemonEnemy.OnPlayerKill -= OnPlayerKillEventReceived;
-        DemonEnemy.OnEnemyDead -= OnEnemyDeadEventReceived;
+        DemonDefault.OnPlayerKill -= OnPlayerKillEventReceived;
+        DemonDefault.OnEnemyDead -= OnEnemyDeadEventReceived;
+
+        DemonChase.OnPlayerKill -= OnPlayerKillEventReceived;
+        DemonChase.OnEnemyDead -= OnEnemyDeadEventReceived;
 
         AprilPlayerController.OnSwordSwipe -= OnSwordSwipeEventReceived;
     }
 
     void OnDestroy()
     {
-        DemonEnemy.OnPlayerKill -= OnPlayerKillEventReceived;
-        DemonEnemy.OnEnemyDead -= OnEnemyDeadEventReceived;
+        DemonDefault.OnPlayerKill -= OnPlayerKillEventReceived;
+        DemonDefault.OnEnemyDead -= OnEnemyDeadEventReceived;
+
+        DemonChase.OnPlayerKill -= OnPlayerKillEventReceived;
+        DemonChase.OnEnemyDead -= OnEnemyDeadEventReceived;
 
         AprilPlayerController.OnSwordSwipe -= OnSwordSwipeEventReceived;
     }

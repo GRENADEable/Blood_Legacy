@@ -306,7 +306,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9015334028355409509}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a8ff8d9855c0794a903754fc37355d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c71cadf4cc9dac4c96f8a6df2c383cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   atkCooldown: 1
@@ -317,4 +317,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   enemyScoreIncrement: 1
-  _isPlayerDead: 0
+  _canAttackPlayer: 1

@@ -32,17 +32,23 @@ public class MiniGameManager : MonoBehaviour
     #region Events
     void OnEnable()
     {
-        DemonEnemy.OnEnemyKillScore += OnEnemyKillScoreEventReceived;
+        DemonDefault.OnEnemyKillScore += OnEnemyKillScoreEventReceived;
+
+        DemonChase.OnEnemyKillScore += OnEnemyKillScoreEventReceived;
     }
 
     void OnDisable()
     {
-        DemonEnemy.OnEnemyKillScore -= OnEnemyKillScoreEventReceived;
+        DemonDefault.OnEnemyKillScore -= OnEnemyKillScoreEventReceived;
+
+        DemonChase.OnEnemyKillScore -= OnEnemyKillScoreEventReceived;
     }
 
     void OnDestroy()
     {
-        DemonEnemy.OnEnemyKillScore -= OnEnemyKillScoreEventReceived;
+        DemonDefault.OnEnemyKillScore -= OnEnemyKillScoreEventReceived;
+
+        DemonChase.OnEnemyKillScore -= OnEnemyKillScoreEventReceived;
     }
     #endregion
 
@@ -63,6 +69,8 @@ public class MiniGameManager : MonoBehaviour
         int spawnIndex = Random.Range(0, chaseDemonSpawnPos.Length);
         GameObject chaseDemonObj = Instantiate(chaseDemonPrefab, chaseDemonSpawnPos[spawnIndex].position, Quaternion.identity, chaseDemonSpawnPos[spawnIndex]);
         chaseDemonObj.GetComponent<DemonChase>().Player = playerPrefab;
+
+        Debug.Log("Spawning Chase Demon");
     }
     #endregion
 
