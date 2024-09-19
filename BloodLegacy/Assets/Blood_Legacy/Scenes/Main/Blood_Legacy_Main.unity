@@ -1550,7 +1550,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301281532}
-  m_LocalRotation: {x: 0, y: 0, z: 0.06701402, w: 0.9977521}
+  m_LocalRotation: {x: -0.000000018626451, y: -0, z: 0.9970765, w: 0.07641007}
   m_LocalPosition: {x: 0.2993096, y: 1.3044872, z: 6.3789997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1560,7 +1560,7 @@ Transform:
   - {fileID: 521073769}
   m_Father: {fileID: 1480577841}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 7.685}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 171.236}
 --- !u!1 &327052314
 GameObject:
   m_ObjectHideFlags: 0
@@ -7662,7 +7662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3887185075125053422, guid: 380b50b6ac90726409bc0e2b6162c2d2, type: 3}
       propertyPath: m_BlendShapeWeights.Array.data[2]
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 380b50b6ac90726409bc0e2b6162c2d2, type: 3}
       propertyPath: m_Name
