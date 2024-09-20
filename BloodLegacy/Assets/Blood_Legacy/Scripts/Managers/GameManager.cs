@@ -37,13 +37,13 @@ public class GameManager : MonoBehaviour
     [Tooltip("Bullet Move End Position")]
     private Transform comic1Bullet1EndPos = default;
 
-    [SerializeField]
-    [Tooltip("May Shooting Overlay Panel Start Position")]
-    private Transform mayShootingOverlayStartPos = default;
+    //[SerializeField]
+    //[Tooltip("May Shooting Overlay Panel Start Position")]
+    //private Transform mayShootingOverlayStartPos = default;
 
-    [SerializeField]
-    [Tooltip("May Shooting Overlay Panel End Position")]
-    private Transform mayShootingOverlayEndPos = default;
+    //[SerializeField]
+    //[Tooltip("May Shooting Overlay Panel End Position")]
+    //private Transform mayShootingOverlayEndPos = default;
     #endregion
 
     #region GameObjects
@@ -61,9 +61,9 @@ public class GameManager : MonoBehaviour
 
     #region Comic Layer 1
     [Space, Header("Comic Layer 1")]
-    [SerializeField]
-    [Tooltip("Canvas Group for May Shooting Overlay")]
-    private CanvasGroup mayShootingOverlayCanvasGroup = default;
+    //[SerializeField]
+    //[Tooltip("Canvas Group for May Shooting Overlay")]
+    //private CanvasGroup mayShootingOverlayCanvasGroup = default;
 
     [SerializeField]
     [Tooltip("Comic Panel 1 Speech Bubble 1 Image")]
@@ -216,27 +216,27 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Comic Page 1
-    /// <summary>
-    /// Tied to Img_Page_1_Next_Button;
-    /// Shows the overlay of the first comic Panels;
-    /// </summary>
-    /// <param name="appearTime"> How long will it take for the Image to FadeIn; </param>
-    public void OnComic1MayShootReveal(float appearTime)
-    {
-        mayShootingOverlayCanvasGroup.DOFade(1, appearTime);
-        mayShootingOverlayCanvasGroup.transform.DOMove(mayShootingOverlayEndPos.position, appearTime);
-    }
+    ///// <summary>
+    ///// Tied to Img_Page_1_Next_Button;
+    ///// Shows the overlay of the first comic Panels;
+    ///// </summary>
+    ///// <param name="appearTime"> How long will it take for the Image to FadeIn; </param>
+    //public void OnComic1MayShootReveal(float appearTime)
+    //{
+    //    mayShootingOverlayCanvasGroup.DOFade(1, appearTime);
+    //    mayShootingOverlayCanvasGroup.transform.DOMove(mayShootingOverlayEndPos.position, appearTime);
+    //}
 
-    /// <summary>
-    /// Tied to May_Shooting_Comic_Close_Button;
-    /// Hides the overlay of the first comic Panels;
-    /// </summary>
-    /// <param name="appearTime"> How long will it take for the Image to FadeIn; </param>
-    public void OnComic1MayShootHide(float appearTime)
-    {
-        mayShootingOverlayCanvasGroup.DOFade(0, appearTime);
-        mayShootingOverlayCanvasGroup.transform.DOMove(mayShootingOverlayStartPos.position, appearTime);
-    }
+    ///// <summary>
+    ///// Tied to May_Shooting_Comic_Close_Button;
+    ///// Hides the overlay of the first comic Panels;
+    ///// </summary>
+    ///// <param name="appearTime"> How long will it take for the Image to FadeIn; </param>
+    //public void OnComic1MayShootHide(float appearTime)
+    //{
+    //    mayShootingOverlayCanvasGroup.DOFade(0, appearTime);
+    //    mayShootingOverlayCanvasGroup.transform.DOMove(mayShootingOverlayStartPos.position, appearTime);
+    //}
     #endregion
 
     #endregion
