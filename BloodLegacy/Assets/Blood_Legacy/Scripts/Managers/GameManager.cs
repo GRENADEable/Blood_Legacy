@@ -34,8 +34,16 @@ public class GameManager : MonoBehaviour
     #region Transforms
     [Space, Header("Transforms")]
     [SerializeField]
-    [Tooltip("")]
+    [Tooltip("Bullet Move End Position")]
     private Transform comic1Bullet1EndPos = default;
+
+    [SerializeField]
+    [Tooltip("May Shooting Overlay Panel Start Position")]
+    private Transform mayShootingOverlayStartPos = default;
+
+    [SerializeField]
+    [Tooltip("May Shooting Overlay Panel End Position")]
+    private Transform mayShootingOverlayEndPos = default;
     #endregion
 
     #region GameObjects
@@ -46,13 +54,17 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region UIs
-    [Space, Header("UIs")]
-    [SerializeField]
-    [Tooltip("Canvas Group for the Comic Button Panels")]
-    private CanvasGroup comicButtonCanvasGroup = default;
+    //[Space, Header("UIs")]
+    //[SerializeField]
+    //[Tooltip("Canvas Group for the Comic Button Panels")]
+    //private CanvasGroup comicButtonCanvasGroup = default;
 
     #region Comic Layer 1
     [Space, Header("Comic Layer 1")]
+    [SerializeField]
+    [Tooltip("Canvas Group for May Shooting Overlay")]
+    private CanvasGroup mayShootingOverlayCanvasGroup = default;
+
     [SerializeField]
     [Tooltip("Comic Panel 1 Speech Bubble 1 Image")]
     private SpriteRenderer comic1Speech1 = default;
@@ -91,14 +103,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Canvas Group for the Mini Game")]
     private CanvasGroup miniGameCanvasGroup = default;
-
-    [SerializeField]
-    [Tooltip("Canvas Group for Comic Panel Buttons")]
-    private CanvasGroup comicPanelButtonCanvasGroup = default;
-
-    [SerializeField]
-    [Tooltip("Canvas Group for Comic Panel Buttons")]
-    private CanvasGroup miniGamePanelButtonCanvasGroup = default;
     #endregion
 
     #endregion
@@ -155,6 +159,8 @@ public class GameManager : MonoBehaviour
     #region My Functions
 
     #region Comic Book Triggers
+
+    #region Archives
     /// <summary>
     /// Tield to T_Text_Bubble_1;
     /// Makes the Speech Bubble Appear;
@@ -209,31 +215,31 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public void ToggleButtonPanels(bool isToggled)
+    #region Comic Page 1
+    /// <summary>
+    /// Tied to Img_Page_1_Next_Button;
+    /// Shows the overlay of the first comic Panels;
+    /// </summary>
+    /// <param name="appearTime"> How long will it take for the Image to FadeIn; </param>
+    public void OnComic1MayShootReveal(float appearTime)
     {
-        if (isToggled)
-        {
-            comicPanelButtonCanvasGroup.DOFade(0, 0.5f);
-            miniGamePanelButtonCanvasGroup.DOFade(1, 0.5f);
-
-            miniGamePanelButtonCanvasGroup.interactable = true;
-            miniGamePanelButtonCanvasGroup.blocksRaycasts = true;
-
-            comicPanelButtonCanvasGroup.interactable = false;
-            comicPanelButtonCanvasGroup.blocksRaycasts = false;
-        }
-        else
-        {
-            comicPanelButtonCanvasGroup.DOFade(1, 0.5f);
-            miniGamePanelButtonCanvasGroup.DOFade(0, 0.5f);
-
-            miniGamePanelButtonCanvasGroup.interactable = false;
-            miniGamePanelButtonCanvasGroup.blocksRaycasts = false;
-
-            comicPanelButtonCanvasGroup.interactable = true;
-            comicPanelButtonCanvasGroup.blocksRaycasts = true;
-        }
+        mayShootingOverlayCanvasGroup.DOFade(1, appearTime);
+        mayShootingOverlayCanvasGroup.transform.DOMove(mayShootingOverlayEndPos.position, appearTime);
     }
+
+    /// <summary>
+    /// Tied to May_Shooting_Comic_Close_Button;
+    /// Hides the overlay of the first comic Panels;
+    /// </summary>
+    /// <param name="appearTime"> How long will it take for the Image to FadeIn; </param>
+    public void OnComic1MayShootHide(float appearTime)
+    {
+        mayShootingOverlayCanvasGroup.DOFade(0, appearTime);
+        mayShootingOverlayCanvasGroup.transform.DOMove(mayShootingOverlayStartPos.position, appearTime);
+    }
+    #endregion
+
+    #endregion
 
     void MiniGameReset()
     {
@@ -309,7 +315,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void OnComicBookOpened()
     {
-        comicButtonCanvasGroup.DOFade(1, 0.5f);
+        //comicButtonCanvasGroup.DOFade(1, 0.5f);
         //comicPage2.SetActive(true);
     }
 
@@ -329,7 +335,6 @@ public class GameManager : MonoBehaviour
         animaticCanvasGroup.DOFade(0, 0.5f);
         miniGameCanvasGroup.DOFade(1, 0.5f);
         miniGameArea.SetActive(true);
-        //ToggleButtonPanels(true);
         //mMFFirstVid.PlayFeedbacks();
         //vCams[_currVCamIndex].gameObject.SetActive(false);
         //vCam10.gameObject.SetActive(true);
