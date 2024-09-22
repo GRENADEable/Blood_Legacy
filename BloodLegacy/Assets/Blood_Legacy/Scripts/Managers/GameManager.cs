@@ -114,12 +114,13 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Others
+
     #endregion
 
     #endregion
 
     #region Private Variables
-    private int _currVCamIndex = default;
+    [SerializeField] private int _currVCamIndex = default;
     private MiniGameManager _miniGameManager = default;
     #endregion
 
@@ -307,16 +308,6 @@ public class GameManager : MonoBehaviour
 
         _currVCamIndex--;
         vCams[_currVCamIndex].gameObject.SetActive(true);
-    }
-
-    /// <summary>
-    /// Tied to Timeline;
-    /// When book opened, Fade in the Panel Buttons;
-    /// </summary>
-    public void OnComicBookOpened()
-    {
-        //comicButtonCanvasGroup.DOFade(1, 0.5f);
-        //comicPage2.SetActive(true);
     }
 
     /// <summary>
