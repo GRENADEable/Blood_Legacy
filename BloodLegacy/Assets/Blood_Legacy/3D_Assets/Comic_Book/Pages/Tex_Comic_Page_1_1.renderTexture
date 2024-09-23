@@ -6,7 +6,7 @@ RenderTexture:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Comic_Page_1_Tex_2
+  m_Name: Tex_Comic_Page_1_1
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000

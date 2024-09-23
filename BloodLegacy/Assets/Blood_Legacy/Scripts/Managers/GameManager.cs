@@ -114,7 +114,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Others
-
+    [Space, Header("Other")]
+    [SerializeField]
+    [Tooltip("All the render texture GameObjects")]
+    private RenderTexture[] rendTexs = default;
     #endregion
 
     #endregion
@@ -146,7 +149,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gmData.ChangeGameState("Book");
-        OnComicVidTexRelease();
+        ComicBookTexRelease();
+        //OnComicVidTexRelease();
 
         _miniGameManager = GetComponent<MiniGameManager>();
     }
@@ -250,6 +254,15 @@ public class GameManager : MonoBehaviour
         gmData.ChangeGameState("Book");
     }
 
+    /// <summary>
+    /// Releases and letft over Camera output render texture data;
+    /// </summary>
+    void ComicBookTexRelease()
+    {
+        for (int i = 0; i < rendTexs.Length; i++)
+            rendTexs[i].Release();
+    }
+
     #endregion
 
     #region Coroutines
@@ -313,7 +326,10 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Releases the texture of the video on the comic;
     /// </summary>
-    public void OnComicVidTexRelease() => firstAnimaticTex.Release();
+    public void OnComicVidTexRelease()
+    {
+        firstAnimaticTex.Release();
+    }
 
     #region Mini Games
     /// <summary>

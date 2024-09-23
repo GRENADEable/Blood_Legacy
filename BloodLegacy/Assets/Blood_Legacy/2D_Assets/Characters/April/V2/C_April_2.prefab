@@ -409,16 +409,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b73043870b9dcc4880f46dc15e6a157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currState: 0
   playerSpeed: 5
   jumpPower: 8
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   circleRadius: 0.01
-  projectilePrefab: {fileID: 0}
-  throwPos: {fileID: 0}
-  throwPower: 0
-  projectileDestroyTime: 0
   boxCollider: {fileID: 3642204052734511365}
   colliderDistance: 3.85
   range: 0.7
@@ -428,10 +425,6 @@ MonoBehaviour:
   dashPower: 1
   dashingTime: 0.2
   dashingCooldown: 1
-  _isFacingRight: 1
-  _canDash: 1
-  _isPlayerDashing: 0
-  _isPlayerDead: 0
   _isPlayerMoving: 1
 --- !u!1 &3066589269006446045
 GameObject:
