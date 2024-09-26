@@ -10666,7 +10666,6 @@ GameObject:
   - component: {fileID: 705387595}
   - component: {fileID: 705387598}
   - component: {fileID: 705387597}
-  - component: {fileID: 705387596}
   m_Layer: 5
   m_Name: Comic_Page_1_Intro_World_Canvas
   m_TagString: Untagged
@@ -10713,23 +10712,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.62, y: 0.11}
   m_SizeDelta: {x: 20.8777, y: 30.5912}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &705387596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705387594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &705387597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28983,7 +28965,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747822363}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
   m_Name: 
