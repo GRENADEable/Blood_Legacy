@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region UIs
-    //[Space, Header("UIs")]
+    [Space, Header("UIs")]
     //[SerializeField]
     //[Tooltip("Canvas Group for the Comic Button Panels")]
     //private CanvasGroup comicButtonCanvasGroup = default;
