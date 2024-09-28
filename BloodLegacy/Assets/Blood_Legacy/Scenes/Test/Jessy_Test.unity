@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 174732445}
   - component: {fileID: 174732447}
   - component: {fileID: 174732446}
+  - component: {fileID: 174732448}
   m_Layer: 5
   m_Name: Intro_Text_3
   m_TagString: Untagged
@@ -540,8 +541,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Infused with demon blood, these warriors possess extraordinary powers\u2014human
-    weapons are useless against the otherworldly threat"
+  m_text: Infused with demon blood, these warriors possess extraordinary powers,
+    because human weapons are useless against it threat
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b5ff7314b47750a4cafb7aebd5799f6c, type: 2}
   m_sharedMaterial: {fileID: 7108760223754154878, guid: b5ff7314b47750a4cafb7aebd5799f6c, type: 2}
@@ -618,6 +619,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174732444}
   m_CullTransparentMesh: 1
+--- !u!95 &174732448
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174732444}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &183190754
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,6 +937,7 @@ GameObject:
   - component: {fileID: 257883830}
   - component: {fileID: 257883832}
   - component: {fileID: 257883831}
+  - component: {fileID: 257883833}
   m_Layer: 5
   m_Name: Intro_Text_4
   m_TagString: Untagged
@@ -963,8 +984,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Among them, three sisters\u2014Aprilessa, Junesia, and Maylara\u2014stand
-    out, each shaped by unique pasts and driven by their own inner battles.\r"
+  m_text: "Among them, three sisters\u2014Aprilessa, Junesia, and Maylara\u2014each
+    stand out by unique pasts and driven by their own inner battles"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b5ff7314b47750a4cafb7aebd5799f6c, type: 2}
   m_sharedMaterial: {fileID: 7108760223754154878, guid: b5ff7314b47750a4cafb7aebd5799f6c, type: 2}
@@ -1041,6 +1062,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257883829}
   m_CullTransparentMesh: 1
+--- !u!95 &257883833
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257883829}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &267996876
 GameObject:
   m_ObjectHideFlags: 3
@@ -1390,6 +1430,7 @@ GameObject:
   - component: {fileID: 365289753}
   - component: {fileID: 365289755}
   - component: {fileID: 365289754}
+  - component: {fileID: 365289756}
   m_Layer: 5
   m_Name: Intro_Text_1
   m_TagString: Untagged
@@ -1514,6 +1555,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365289752}
   m_CullTransparentMesh: 1
+--- !u!95 &365289756
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365289752}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &369423904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,22 +1839,40 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -1912642665439581956, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 365289752}
   - key: {fileID: 2961409687301921560, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 979173256}
   - key: {fileID: 2010725806323599119, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 174732444}
   - key: {fileID: 7403257447003363261, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 257883829}
   - key: {fileID: -6307147734829906264, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1272943999}
   - key: {fileID: 4234488551631222609, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 836800181}
   - key: {fileID: 8325714621538644835, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1559628018}
   - key: {fileID: 2866463211975009141, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 725497070}
   - key: {fileID: -3546868979710616537, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8851928577330883137, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
+    value: {fileID: 365289756}
+  - key: {fileID: 695266983555919522, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
+    value: {fileID: 979173260}
+  - key: {fileID: -8172425034590016162, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
+    value: {fileID: 174732448}
+  - key: {fileID: 4591509647713131756, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
+    value: {fileID: 257883833}
+  - key: {fileID: -9120336169136618216, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
+    value: {fileID: 1272944003}
+  - key: {fileID: -8125791279734468313, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
+    value: {fileID: 836800185}
+  - key: {fileID: 6167730779405633840, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
+    value: {fileID: 1559628022}
+  - key: {fileID: 1687610902582095231, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
+    value: {fileID: 725497074}
+  - key: {fileID: -4687477262483398446, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
     value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
@@ -2123,6 +2201,7 @@ GameObject:
   - component: {fileID: 725497071}
   - component: {fileID: 725497073}
   - component: {fileID: 725497072}
+  - component: {fileID: 725497074}
   m_Layer: 5
   m_Name: Intro_Text_8
   m_TagString: Untagged
@@ -2247,6 +2326,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725497070}
   m_CullTransparentMesh: 1
+--- !u!95 &725497074
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725497070}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &733683618
 GameObject:
   m_ObjectHideFlags: 0
@@ -2768,6 +2866,7 @@ GameObject:
   - component: {fileID: 836800182}
   - component: {fileID: 836800184}
   - component: {fileID: 836800183}
+  - component: {fileID: 836800185}
   m_Layer: 5
   m_Name: Intro_Text_6
   m_TagString: Untagged
@@ -2892,6 +2991,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836800181}
   m_CullTransparentMesh: 1
+--- !u!95 &836800185
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836800181}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &840224695
 GameObject:
   m_ObjectHideFlags: 0
@@ -3275,6 +3393,7 @@ GameObject:
   - component: {fileID: 979173257}
   - component: {fileID: 979173259}
   - component: {fileID: 979173258}
+  - component: {fileID: 979173260}
   m_Layer: 5
   m_Name: Intro_Text_2
   m_TagString: Untagged
@@ -3331,7 +3450,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281743093
+    rgba: 3553013
   m_fontColor: {r: 0.9607843, g: 0.21176471, b: 0.21176471, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3399,6 +3518,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979173256}
   m_CullTransparentMesh: 1
+--- !u!95 &979173260
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979173256}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1052103436
 GameObject:
   m_ObjectHideFlags: 0
@@ -4113,6 +4251,7 @@ GameObject:
   - component: {fileID: 1272944000}
   - component: {fileID: 1272944002}
   - component: {fileID: 1272944001}
+  - component: {fileID: 1272944003}
   m_Layer: 5
   m_Name: Intro_Text_5
   m_TagString: Untagged
@@ -4159,8 +4298,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "In this journey, you\u2019ll witness their struggles, triumphs, and personal
-    growth"
+  m_text: "In this journey, you\u2019ll witness their struggles, triumphs, and growth"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b5ff7314b47750a4cafb7aebd5799f6c, type: 2}
   m_sharedMaterial: {fileID: 7108760223754154878, guid: b5ff7314b47750a4cafb7aebd5799f6c, type: 2}
@@ -4237,6 +4375,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272943999}
   m_CullTransparentMesh: 1
+--- !u!95 &1272944003
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272943999}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1279356390
 GameObject:
   m_ObjectHideFlags: 0
@@ -5008,6 +5165,7 @@ GameObject:
   - component: {fileID: 1559628019}
   - component: {fileID: 1559628021}
   - component: {fileID: 1559628020}
+  - component: {fileID: 1559628022}
   m_Layer: 5
   m_Name: Intro_Text_7
   m_TagString: Untagged
@@ -5063,7 +5221,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281743093
+    rgba: 1312175861
   m_fontColor: {r: 0.9607843, g: 0.21176471, b: 0.21176471, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -5131,6 +5289,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559628018}
   m_CullTransparentMesh: 1
+--- !u!95 &1559628022
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559628018}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1564327648
 GameObject:
   m_ObjectHideFlags: 0
