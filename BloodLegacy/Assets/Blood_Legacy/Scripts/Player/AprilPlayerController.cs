@@ -11,9 +11,11 @@ public class AprilPlayerController : MonoBehaviour
     #region Datas
     [Space, Header("Datas")]
     [SerializeField]
-    [Tooltip("")]
+    [Tooltip("Current State of the Player")]
     private PlayerState currState = PlayerState.Moving;
     private enum PlayerState { Moving, Jumping, Attacking, Blocking, Dashing, Dead };
+
+
     #endregion
 
     #region Movement
@@ -25,6 +27,17 @@ public class AprilPlayerController : MonoBehaviour
     [SerializeField]
     [Tooltip("Player jump power")]
     private float jumpPower = default;
+    #endregion
+
+    #region Player Health
+    [Space, Header("Player Health")]
+    [SerializeField]
+    [Tooltip("Max Player Health")]
+    private int maxPlayerHealth = default;
+
+    [SerializeField]
+    [Tooltip("How long will the Player be invincible when taken Damage?")]
+    private float damageInvincibility = 0.5f;
     #endregion
 
     #region Ground Check
@@ -140,9 +153,10 @@ public class AprilPlayerController : MonoBehaviour
     private bool _isFacingRight = true;
     private float _horizontalMoveX = default;
     private Vector2 _moveDirection2D = default;
+    private bool _isPlayerDamaged = default;
 
     [Header("Dash Mechanic")]
-    private bool _canDash = true;
+    [SerializeField] private bool _canDash = true;
     //private bool _isPlayerDashing = default;
     private TrailRenderer _playerTrail = default;
 
@@ -152,6 +166,7 @@ public class AprilPlayerController : MonoBehaviour
     //private bool _isPlayerDead = false;
     [SerializeField] private bool _isPlayerMoving = true;
     private RaycastHit2D _hit2D = default;
+    [SerializeField] private int _currPlayerHealth = 0;
     #endregion
 
     #region Unity Callbacks
@@ -159,22 +174,22 @@ public class AprilPlayerController : MonoBehaviour
     #region Events
     void OnEnable()
     {
-        DemonDefault.OnPlayerKill += OnPlayerKillEventReceived;
-        DemonChase.OnPlayerKill += OnPlayerKillEventReceived;
+        DemonDefault.OnPlayerDamage += OnPlayerDamageEventReceived;
+        DemonChase.OnPlayerDamage += OnPlayerDamageEventReceived;
     }
 
     void OnDisable()
     {
-        DemonDefault.OnPlayerKill -= OnPlayerKillEventReceived;
-        DemonChase.OnPlayerKill -= OnPlayerKillEventReceived;
+        DemonDefault.OnPlayerDamage -= OnPlayerDamageEventReceived;
+        DemonChase.OnPlayerDamage -= OnPlayerDamageEventReceived;
 
         _isPlayerMoving = true;
     }
 
     void OnDestroy()
     {
-        DemonDefault.OnPlayerKill -= OnPlayerKillEventReceived;
-        DemonChase.OnPlayerKill -= OnPlayerKillEventReceived;
+        DemonDefault.OnPlayerDamage -= OnPlayerDamageEventReceived;
+        DemonChase.OnPlayerDamage -= OnPlayerDamageEventReceived;
     }
     #endregion
 
@@ -183,6 +198,7 @@ public class AprilPlayerController : MonoBehaviour
         _playerAnim = GetComponent<Animator>();
         _rb2D = GetComponent<Rigidbody2D>();
         _playerTrail = GetComponentInChildren<TrailRenderer>();
+        _currPlayerHealth = maxPlayerHealth;
         //_isPlayerDead = false;
         //_isFacingRight = true;
         //_isPlayerMoving = true;
@@ -191,13 +207,9 @@ public class AprilPlayerController : MonoBehaviour
 
     void Update()
     {
-        //if (_isPlayerDead || _isPlayerDashing)
-        //    return;
-
         if (currState == PlayerState.Dead || currState == PlayerState.Dashing || currState == PlayerState.Blocking)
             return;
 
-        //if (_isPlayerMoving)
         if (currState == PlayerState.Moving || currState == PlayerState.Jumping)
         {
             PlayerMove();
@@ -297,6 +309,27 @@ public class AprilPlayerController : MonoBehaviour
         localScale.x *= -1f;
         transform.localScale = localScale;
     }
+
+    /// <summary>
+    /// Damages the Player and adds invincibility buffer for few seconds;
+    /// </summary>
+    void PlayerDamaged()
+    {
+        Debug.Log("Taking Damage");
+        StartCoroutine(DamageBuffer());
+    }
+
+    /// <summary>
+    /// Kills the Player and notifies the demons to become idle;
+    /// </summary>
+    void PlayerKilled()
+    {
+        Debug.Log("Dead");
+        OnPlayerDead?.Invoke();
+        //_isPlayerDead = true;
+        _rb2D.bodyType = RigidbodyType2D.Static;
+        Destroy(this.gameObject);
+    }
     #endregion
 
     #region Coroutines
@@ -329,6 +362,21 @@ public class AprilPlayerController : MonoBehaviour
         yield return new WaitForSeconds(dashingCooldown);
         _canDash = true;
     }
+
+    /// <summary>
+    /// Player Damage with Cooldown;
+    /// </summary>
+    /// <returns> Float delay; </returns>
+    private IEnumerator DamageBuffer()
+    {
+        _isPlayerDamaged = true;
+        OnPlayerInvincible?.Invoke(true);
+        _playerAnim.SetBool("isDamaged", true);
+        yield return new WaitForSeconds(damageInvincibility);
+        _isPlayerDamaged = false;
+        OnPlayerInvincible?.Invoke(false);
+        _playerAnim.SetBool("isDamaged", false);
+    }
     #endregion
 
     #region Events
@@ -346,7 +394,7 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     public void OnJumpPlayer(InputAction.CallbackContext context)
     {
-        if (context.performed && IsPlayerGrounded() && _isPlayerMoving /*&& !_isPlayerDashing*/)
+        if (context.performed && IsPlayerGrounded() && _isPlayerMoving)
         {
             _rb2D.velocity = new Vector2(_rb2D.velocity.x, jumpPower);
             //currState = PlayerState.Jumping;
@@ -365,7 +413,6 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     public void OnAttack(InputAction.CallbackContext context)
     {
-        //if (context.started && !_isPlayerDead && _isPlayerMoving && !_isPlayerDashing)
         if (context.started && currState == PlayerState.Moving)
         {
             _playerAnim.SetTrigger("isAttacking");
@@ -380,7 +427,6 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     public void OnDashPlayer(InputAction.CallbackContext context)
     {
-        //if (context.started && _canDash && _isPlayerMoving)
         if (context.started && _canDash && currState == PlayerState.Moving)
         {
             StartCoroutine(Dash());
@@ -417,14 +463,22 @@ public class AprilPlayerController : MonoBehaviour
 
     /// <summary>
     /// Subbed to Event from Enemy Script;
-    /// Kills the Player;
+    /// Damages the Player;
     /// </summary>
-    void OnPlayerKillEventReceived()
+    void OnPlayerDamageEventReceived()
     {
-        OnPlayerDead?.Invoke();
-        //_isPlayerDead = true;
-        _rb2D.bodyType = RigidbodyType2D.Static;
-        Destroy(this.gameObject);
+        _currPlayerHealth--;
+
+        if (_currPlayerHealth > 0)
+        {
+            if (!_isPlayerDamaged)
+                PlayerDamaged();
+        }
+        else if (_currPlayerHealth <= 0)
+        {
+            if (!_isPlayerDamaged)
+                PlayerKilled();
+        }
     }
 
     /// <summary>

@@ -39,9 +39,9 @@ public class DemonDefault : MonoBehaviour
     public delegate void SendEvents();
     /// <summary>
     /// Event sent from DemonEnemy script to AprilPlayerController and AudioManager Scripts;
-    /// Kills the player and plays the death SFX;
+    /// Damages the player;
     /// </summary>
-    public static event SendEvents OnPlayerKill;
+    public static event SendEvents OnPlayerDamage;
 
     /// <summary>
     /// Event sent from DemonEnemy to AudioManager Script;
@@ -141,7 +141,7 @@ public class DemonDefault : MonoBehaviour
     public void EnemyKill()
     {
         OnEnemyDead?.Invoke();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
         OnEnemyKillScore?.Invoke(enemyScoreIncrement);
         _demonPatrol.IsDemonAlive = false;
         //Debug.Log("Killing Enemy");
@@ -158,7 +158,7 @@ public class DemonDefault : MonoBehaviour
     {
         if (PlayerInSight() && _canAttackPlayer)
         {
-            OnPlayerKill?.Invoke();
+            OnPlayerDamage?.Invoke();
             Debug.Log("Killing Player");
         }
     }

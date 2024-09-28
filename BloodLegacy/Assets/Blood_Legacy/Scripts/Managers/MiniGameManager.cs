@@ -6,7 +6,7 @@ public class MiniGameManager : MonoBehaviour
 {
     #region Serialized Variables
     [SerializeField]
-    [Tooltip("After how many patrol demons to kill to spawn chase demons?")]
+    [Tooltip("After how many demons to kill to goto the next panel?")]
     private int totalDemonsKilled = default;
 
     [SerializeField]
@@ -24,7 +24,7 @@ public class MiniGameManager : MonoBehaviour
 
     #region Private Variables
     [SerializeField] private int _currEnemyKilled = default;
-    private int _chaseDemonSpawnIndex = default;
+    [SerializeField] private List<GameObject> _totalDemonObjs = new List<GameObject>();
     #endregion
 
     #region Unity Callbacks
@@ -64,18 +64,22 @@ public class MiniGameManager : MonoBehaviour
     #endregion
 
     #region My Functions
+    /// <summary>
+    /// Spawns the Chase Demon;
+    /// </summary>
     void SpawnChaseDemon()
     {
         int spawnIndex = Random.Range(0, chaseDemonSpawnPos.Length);
         GameObject chaseDemonObj = Instantiate(chaseDemonPrefab, chaseDemonSpawnPos[spawnIndex].position, Quaternion.identity, chaseDemonSpawnPos[spawnIndex]);
         chaseDemonObj.GetComponent<DemonChase>().Player = playerPrefab;
 
+        _totalDemonObjs.Add(chaseDemonObj);
+
         Debug.Log("Spawning Chase Demon");
     }
     #endregion
 
     #region Coroutines
-
     #endregion
 
     #region Events
@@ -87,8 +91,12 @@ public class MiniGameManager : MonoBehaviour
     {
         _currEnemyKilled++;
 
-        if (_currEnemyKilled >= totalDemonsKilled)
-            SpawnChaseDemon();
+        if (_totalDemonObjs.Count <= totalDemonsKilled)
+        {
+            int spawnNumber = Random.Range(1, 3);
+            for (int i = 0; i < spawnNumber; i++)
+                SpawnChaseDemon();
+        }
     }
     #endregion
 }

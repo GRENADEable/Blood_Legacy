@@ -410,22 +410,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currState: 0
-  playerSpeed: 5
-  jumpPower: 8
+  playerSpeed: 1.5
+  jumpPower: 1
+  maxPlayerHealth: 3
+  damageInvincibility: 3
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   circleRadius: 0.01
   boxCollider: {fileID: 3642204052734511365}
-  colliderDistance: 3.85
-  range: 0.7
+  colliderDistance: 1.24
+  range: 2.4
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  dashPower: 1
-  dashingTime: 0.2
+  dashPower: 1.3
+  dashingTime: 0.3
   dashingCooldown: 1
   _isPlayerMoving: 1
+  _currPlayerHealth: 0
 --- !u!1 &3066589269006446045
 GameObject:
   m_ObjectHideFlags: 0

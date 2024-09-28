@@ -55,9 +55,9 @@ public class DemonChase : MonoBehaviour
     public delegate void SendEvents();
     /// <summary>
     /// Event sent from DemonEnemy script to AprilPlayerController and AudioManager Scripts;
-    /// Kills the player and plays the death SFX;
+    /// Damages the player;
     /// </summary>
-    public static event SendEvents OnPlayerKill;
+    public static event SendEvents OnPlayerDamage;
 
     /// <summary>
     /// Event sent from DemonEnemy to AudioManager Script;
@@ -85,7 +85,7 @@ public class DemonChase : MonoBehaviour
     private bool _isPlayerDead = false;
     private bool _isMovingLeft = false;
     public GameObject Player { get => _player; set => _player = value; }
-    private GameObject _player = default;
+    [SerializeField] private GameObject _player = default;
     private Vector3 _initScale = default;
     private Vector3 _direction = default;
     [SerializeField] private bool _canAttackPlayer = true;
@@ -123,7 +123,7 @@ public class DemonChase : MonoBehaviour
 
     void Update()
     {
-        if (_curState != EnemyState.PlayerDead)
+        if (_curState != EnemyState.PlayerDead && Player != null)
         {
             _distance = Vector3.Distance(transform.position, Player.transform.position);
             MovementDirCheck();
@@ -152,8 +152,9 @@ public class DemonChase : MonoBehaviour
     {
         OnEnemyDead?.Invoke();
         OnEnemyKillScore?.Invoke(enemyScoreIncrement);
-        Destroy(gameObject);
-        Debug.Log("Killing Enemy");
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
+        //Debug.Log("Killing Enemy");
     }
 
     /// <summary>
@@ -286,8 +287,8 @@ public class DemonChase : MonoBehaviour
     {
         if (PlayerInSight() && _canAttackPlayer)
         {
-            OnPlayerKill?.Invoke();
-            Debug.Log("Killing Player");
+            OnPlayerDamage?.Invoke();
+            //Debug.Log("Killing Player");
         }
     }
 
@@ -298,6 +299,9 @@ public class DemonChase : MonoBehaviour
     void OnPlayerDeadEventReceived()
     {
         _curState = EnemyState.PlayerDead;
+        _demonAnim.Play("C_Demon_2_Idle_Anim");
+        _demonAnim.SetBool("isMoving", false);
+        _demonAnim.SetBool("isAttacking", false);
         //_isPlayerDead = true;
     }
 
