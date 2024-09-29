@@ -28,34 +28,28 @@ public class AudioManager : MonoBehaviour
     #region Events
     void OnEnable()
     {
-        DemonDefault.OnPlayerDamage += OnPlayerKillEventReceived;
         DemonDefault.OnEnemyDead += OnEnemyDeadEventReceived;
-
-        DemonChase.OnPlayerDamage += OnPlayerKillEventReceived;
         DemonChase.OnEnemyDead += OnEnemyDeadEventReceived;
 
+        AprilPlayerController.OnPlayerDead += OnPlayerDeadEventReceived;
         AprilPlayerController.OnSwordSwipe += OnSwordSwipeEventReceived;
     }
 
     void OnDisable()
     {
-        DemonDefault.OnPlayerDamage -= OnPlayerKillEventReceived;
         DemonDefault.OnEnemyDead -= OnEnemyDeadEventReceived;
-
-        DemonChase.OnPlayerDamage -= OnPlayerKillEventReceived;
         DemonChase.OnEnemyDead -= OnEnemyDeadEventReceived;
 
+        AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
         AprilPlayerController.OnSwordSwipe -= OnSwordSwipeEventReceived;
     }
 
     void OnDestroy()
     {
-        DemonDefault.OnPlayerDamage -= OnPlayerKillEventReceived;
         DemonDefault.OnEnemyDead -= OnEnemyDeadEventReceived;
-
-        DemonChase.OnPlayerDamage -= OnPlayerKillEventReceived;
         DemonChase.OnEnemyDead -= OnEnemyDeadEventReceived;
 
+        AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
         AprilPlayerController.OnSwordSwipe -= OnSwordSwipeEventReceived;
     }
     #endregion
@@ -85,7 +79,7 @@ public class AudioManager : MonoBehaviour
     /// Subbed to Event from Enemy Script;
     /// Kills the Player and Plays the Death SFX;
     /// </summary>
-    void OnPlayerKillEventReceived() => sfxAud.PlayOneShot(sfxClips[2]);
+    void OnPlayerDeadEventReceived() => sfxAud.PlayOneShot(sfxClips[2]);
 
     /// <summary>
     /// Subbed to Event from AprilPlayerController Script;
