@@ -27890,6 +27890,8 @@ MonoBehaviour:
   chaseDemonSpawnPos:
   - {fileID: 1307439473}
   - {fileID: 832820007}
+  redTintPP: {fileID: 1101977570}
+  redTintPPLerpVal: 1
   _currEnemyKilled: 0
   _totalDemonObjs: []
 --- !u!1 &1554460629
