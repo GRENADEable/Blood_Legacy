@@ -11067,16 +11067,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 567326722}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1818442008}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.54, y: 0.41133457}
-  m_AnchorMax: {x: 0.9476763, y: 0.87777334}
-  m_AnchoredPosition: {x: 2, y: 3.159851}
-  m_SizeDelta: {x: 0.93899536, y: 8.119995}
+  m_AnchorMax: {x: 0.54, y: 0.41133457}
+  m_AnchoredPosition: {x: 233.585, y: 248.234}
+  m_SizeDelta: {x: 701.011, y: 566.682}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &567326724
 MonoBehaviour:
@@ -11091,15 +11091,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: be0a55f05cfb33046b65e38779965fe1, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -13117,8 +13117,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 321.65, y: 126.12}
-  m_SizeDelta: {x: -775.53, y: -445.73}
+  m_AnchoredPosition: {x: 313, y: 144}
+  m_SizeDelta: {x: -934.2, y: -541.894}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &808412659
 MonoBehaviour:
@@ -13152,8 +13152,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -13170,8 +13170,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.2
-  m_fontSizeBase: 35.2
+  m_fontSize: 31.9
+  m_fontSizeBase: 31.9
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -16845,7 +16845,7 @@ MonoBehaviour:
     00000002:
       type: {class: MMF_Pause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 305113238
         Label: Pause
         Channel: 0
@@ -17105,7 +17105,7 @@ MonoBehaviour:
     00000004:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 1621767982
         Label: Holding Pause
         Channel: 0
@@ -17194,7 +17194,7 @@ MonoBehaviour:
     00000006:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 2124898554
         Label: Holding Pause
         Channel: 0
@@ -17283,7 +17283,7 @@ MonoBehaviour:
     00000008:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: -1834452241
         Label: Holding Pause
         Channel: 0
@@ -17416,7 +17416,7 @@ MonoBehaviour:
     0000000B:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 1718225997
         Label: Holding Pause
         Channel: 0
@@ -17505,7 +17505,7 @@ MonoBehaviour:
     0000000D:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 1180118122
         Label: Holding Pause
         Channel: 0
@@ -17594,7 +17594,7 @@ MonoBehaviour:
     0000000F:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: -1305550259
         Label: Holding Pause
         Channel: 0
@@ -17898,7 +17898,7 @@ MonoBehaviour:
     00000012:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 511282258
         Label: Holding Pause
         Channel: 0
@@ -21461,7 +21461,7 @@ MonoBehaviour:
     00000001:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 1052593416
         Label: Holding Pause
         Channel: 0
@@ -21550,7 +21550,7 @@ MonoBehaviour:
     00000003:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: -2000990271
         Label: Holding Pause
         Channel: 0
@@ -28555,7 +28555,7 @@ MonoBehaviour:
     00000002:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 361597226
         Label: Holding Pause
         Channel: 0
@@ -28888,7 +28888,7 @@ MonoBehaviour:
     00000005:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 1755271832
         Label: Holding Pause
         Channel: 0
@@ -29391,7 +29391,7 @@ MonoBehaviour:
     0000000D:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: -966194843
         Label: Holding Pause
         Channel: 0
@@ -29480,7 +29480,7 @@ MonoBehaviour:
     0000000F:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: -1113458931
         Label: Holding Pause
         Channel: 0
