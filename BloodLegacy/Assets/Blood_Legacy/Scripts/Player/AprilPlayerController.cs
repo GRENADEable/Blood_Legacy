@@ -182,8 +182,6 @@ public class AprilPlayerController : MonoBehaviour
     {
         DemonDefault.OnPlayerDamage -= OnPlayerDamageEventReceived;
         DemonChase.OnPlayerDamage -= OnPlayerDamageEventReceived;
-
-        _isPlayerMoving = true;
     }
 
     void OnDestroy()
@@ -229,6 +227,16 @@ public class AprilPlayerController : MonoBehaviour
     #endregion
 
     #region My Functions
+    /// <summary>
+    /// Tied to OnCharEnable Event on MMF_MiniGame_Intro;
+    /// Enables the input afterthe cutscene;
+    /// </summary>
+    public void OnAprilMove()
+    {
+        currState = PlayerState.Moving;
+        _isPlayerMoving = true;
+    }
+
 
     /// <summary>
     /// Player Movement function;

@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Comic_Rend_Tex_June
   - Comic_Rend_Tex_May
   - Comic_Rend_Tex_Demon_Shot
-  - 
+  - Comic_Rend_Tex_June_Callout
   - 
   - 
   - 

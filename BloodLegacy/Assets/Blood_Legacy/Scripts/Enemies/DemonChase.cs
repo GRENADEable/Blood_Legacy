@@ -1,6 +1,3 @@
-using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DemonChase : MonoBehaviour
@@ -14,8 +11,8 @@ public class DemonChase : MonoBehaviour
     private float demonSpeed = default;
 
     [SerializeField]
-    [Tooltip("Demon Max Speed Clamped")]
-    private float demonMaxSpeed = default;
+    [Tooltip("Demon Speed in cutscene")]
+    private float demonSpeedCutscene = default;
 
     [SerializeField]
     [Tooltip("At what Distance does the Demon Attack the Player?")]
@@ -79,6 +76,7 @@ public class DemonChase : MonoBehaviour
     private Animator _demonAnim = default;
     private Rigidbody2D _demonrb2D = default;
     //[SerializeField] private float _cooldownTimer = default;
+    [SerializeField] private float _currDemonSpeed = default;
     [SerializeField] private EnemyState _curState = EnemyState.Chasing;
     private enum EnemyState { Chasing, Attacking, Dead, PlayerDead };
     private float _distance = default;
@@ -118,6 +116,7 @@ public class DemonChase : MonoBehaviour
         _demonAnim = GetComponent<Animator>();
         _demonrb2D = GetComponent<Rigidbody2D>();
         _initScale = transform.localScale;
+        _currDemonSpeed = demonSpeed;
         //_cooldownTimer = atkCooldown;
     }
 
@@ -156,6 +155,18 @@ public class DemonChase : MonoBehaviour
         //Destroy(gameObject);
         //Debug.Log("Killing Enemy");
     }
+
+    /// <summary>
+    /// Tied to OnCharDisable Event on MMF_MiniGame_Intro;
+    /// Slows the Demon for the cutscene;
+    /// </summary>
+    public void OnDemonChaseSlow() => _currDemonSpeed = demonSpeedCutscene;
+
+    /// <summary>
+    /// Tied to OnCharDisable Event on MMF_MiniGame_Intro;
+    /// Changes the Demon speed after the cutscene;
+    /// </summary>
+    public void OnDemonChaseDefault() => _currDemonSpeed = demonSpeed;
 
     /// <summary>
     /// 
@@ -209,7 +220,7 @@ public class DemonChase : MonoBehaviour
 
         _direction = target - transform.position;
 
-        _demonrb2D.MovePosition(transform.position + demonSpeed * Time.fixedDeltaTime * _direction.normalized);
+        _demonrb2D.MovePosition(transform.position + _currDemonSpeed * Time.fixedDeltaTime * _direction.normalized);
 
         //_demonrb2D.velocity = Vector2.MoveTowards(_demonrb2D.velocity, target, demonSpeed * Time.deltaTime);
         //_demonrb2D.velocity = Vector2.ClampMagnitude(_demonrb2D.velocity, demonMaxSpeed);
