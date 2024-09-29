@@ -77,7 +77,7 @@ public class DemonChase : MonoBehaviour
     private Rigidbody2D _demonrb2D = default;
     //[SerializeField] private float _cooldownTimer = default;
     [SerializeField] private float _currDemonSpeed = default;
-    [SerializeField] private EnemyState _curState = EnemyState.Chasing;
+    [SerializeField] private EnemyState _currState = EnemyState.Chasing;
     private enum EnemyState { Chasing, Attacking, Dead, PlayerDead };
     private float _distance = default;
     private bool _isPlayerDead = false;
@@ -122,7 +122,7 @@ public class DemonChase : MonoBehaviour
 
     void Update()
     {
-        if (_curState != EnemyState.PlayerDead && Player != null)
+        if (_currState != EnemyState.PlayerDead && Player != null)
         {
             _distance = Vector3.Distance(transform.position, Player.transform.position);
             MovementDirCheck();
@@ -155,32 +155,28 @@ public class DemonChase : MonoBehaviour
         //Destroy(gameObject);
         //Debug.Log("Killing Enemy");
     }
-
-    /// <summary>
-    /// Tied to OnCharDisable Event on MMF_MiniGame_Intro;
-    /// Slows the Demon for the cutscene;
-    /// </summary>
-    public void OnDemonChaseSlow() => _currDemonSpeed = demonSpeedCutscene;
-
     /// <summary>
     /// Tied to OnCharDisable Event on MMF_MiniGame_Intro;
     /// Changes the Demon speed after the cutscene;
     /// </summary>
-    public void OnDemonChaseDefault() => _currDemonSpeed = demonSpeed;
+    public void OnDemonChaseDefault()
+    {
+        _currState = EnemyState.Chasing;
+    }
 
     /// <summary>
     /// 
     /// </summary>
     void DemonStates()
     {
-        switch (_curState)
+        switch (_currState)
         {
             case EnemyState.Chasing:
                 ChasePlayer();
 
                 if (_distance <= attackDistance)
                 {
-                    _curState = EnemyState.Attacking;
+                    _currState = EnemyState.Attacking;
                     //Debug.Log("Switching to Attack");
                 }
                 break;
@@ -189,7 +185,7 @@ public class DemonChase : MonoBehaviour
 
                 if (_distance >= attackDistance && !PlayerInSight())
                 {
-                    _curState = EnemyState.Chasing;
+                    _currState = EnemyState.Chasing;
                     //_cooldownTimer = atkCooldown;
                     //Debug.Log("Switching to Chase");
                 }
@@ -309,7 +305,7 @@ public class DemonChase : MonoBehaviour
     /// </summary>
     void OnPlayerDeadEventReceived()
     {
-        _curState = EnemyState.PlayerDead;
+        _currState = EnemyState.PlayerDead;
         _demonAnim.Play("C_Demon_2_Idle_Anim");
         _demonAnim.SetBool("isMoving", false);
         _demonAnim.SetBool("isAttacking", false);

@@ -14,8 +14,6 @@ public class AprilPlayerController : MonoBehaviour
     [Tooltip("Current State of the Player")]
     private PlayerState currState = PlayerState.Moving;
     private enum PlayerState { Moving, Jumping, Attacking, Blocking, Dashing, Dead };
-
-
     #endregion
 
     #region Movement
@@ -49,25 +47,6 @@ public class AprilPlayerController : MonoBehaviour
     [SerializeField]
     [Tooltip("Circle radius value")]
     private float circleRadius = default;
-    #endregion
-
-    #region Player Throwing
-    //[Space, Header("Player Throwing")]
-    //[SerializeField]
-    //[Tooltip("The projectile Prefab itself")]
-    //private GameObject projectilePrefab = default;
-
-    //[SerializeField]
-    //[Tooltip("From where do you want to spawn the projectile?")]
-    //private Transform throwPos = default;
-
-    //[SerializeField]
-    //[Tooltip("Throw Power")]
-    //private float throwPower = default;
-
-    //[SerializeField]
-    //[Tooltip("After how many seconds do you want to destroy the projectile?")]
-    //private float projectileDestroyTime = default;
     #endregion
 
     #region Player Attacking
@@ -157,13 +136,11 @@ public class AprilPlayerController : MonoBehaviour
 
     [Header("Dash Mechanic")]
     [SerializeField] private bool _canDash = true;
-    //private bool _isPlayerDashing = default;
     private TrailRenderer _playerTrail = default;
 
     [Header("Player Componenets")]
     private Rigidbody2D _rb2D = default;
     private Animator _playerAnim = default;
-    //private bool _isPlayerDead = false;
     [SerializeField] private bool _isPlayerMoving = true;
     private RaycastHit2D _hit2D = default;
     [SerializeField] private int _currPlayerHealth = 0;
@@ -197,10 +174,6 @@ public class AprilPlayerController : MonoBehaviour
         _rb2D = GetComponent<Rigidbody2D>();
         _playerTrail = GetComponentInChildren<TrailRenderer>();
         _currPlayerHealth = maxPlayerHealth;
-        //_isPlayerDead = false;
-        //_isFacingRight = true;
-        //_isPlayerMoving = true;
-        //_canDash = true;
     }
 
     void Update()
@@ -237,17 +210,12 @@ public class AprilPlayerController : MonoBehaviour
         _isPlayerMoving = true;
     }
 
-
     /// <summary>
     /// Player Movement function;
     /// </summary>
     void PlayerMove()
     {
         _moveDirection2D = new Vector2(_horizontalMoveX, 0f).normalized;
-
-        //if (!_isPlayerMoving)
-        //    _rb2D.velocity = Vector2.zero;
-        //else
         _rb2D.velocity = new Vector2(_moveDirection2D.x * playerSpeed, _rb2D.velocity.y);
     }
 
@@ -263,31 +231,6 @@ public class AprilPlayerController : MonoBehaviour
         else if (_isFacingRight && _horizontalMoveX < 0f)
             FlipPlayer();
     }
-
-    ///// <summary>
-    ///// Spawns a projectile at a specific location when key is pressed;
-    ///// </summary>
-    //void Shoot()
-    //{
-    //    _canThrow = false;
-    //    _canPickup = true;
-    //    OnItemUsed?.Invoke();
-    //    _playerAnim.SetTrigger("isThrowing");
-
-    //    if (_isFacingRight)
-    //    {
-    //        GameObject projectileObj = Instantiate(projectilePrefab, throwPos.position, Quaternion.identity);
-    //        projectileObj.GetComponent<Rigidbody2D>().AddForce(throwPos.right * throwPower, ForceMode2D.Impulse);
-    //        Destroy(projectileObj, projectileDestroyTime);
-    //    }
-    //    else
-    //    {
-    //        GameObject projectileObj = Instantiate(projectilePrefab, throwPos.position, Quaternion.identity);
-    //        projectileObj.GetComponent<Rigidbody2D>().AddForce(-throwPos.right * throwPower, ForceMode2D.Impulse);
-    //        projectileObj.GetComponent<SpriteRenderer>().flipX = true;
-    //        Destroy(projectileObj, projectileDestroyTime);
-    //    }
-    //}
 
     /// <summary>
     /// Bool ground check to see if the player is hitting the ground according to the layer;
@@ -334,7 +277,6 @@ public class AprilPlayerController : MonoBehaviour
     {
         Debug.Log("Dead");
         OnPlayerDead?.Invoke();
-        //_isPlayerDead = true;
         _rb2D.bodyType = RigidbodyType2D.Static;
         Destroy(this.gameObject);
     }
@@ -403,16 +345,10 @@ public class AprilPlayerController : MonoBehaviour
     public void OnJumpPlayer(InputAction.CallbackContext context)
     {
         if (context.performed && IsPlayerGrounded() && _isPlayerMoving)
-        {
             _rb2D.velocity = new Vector2(_rb2D.velocity.x, jumpPower);
-            //currState = PlayerState.Jumping;
-        }
 
         if (context.canceled && _rb2D.velocity.y > 0f)
-        {
             _rb2D.velocity = new Vector2(_rb2D.velocity.x, _rb2D.velocity.y * 0.5f);
-            //currState = PlayerState.Moving;
-        }
     }
 
     /// <summary>
@@ -452,18 +388,14 @@ public class AprilPlayerController : MonoBehaviour
         {
             _playerAnim.SetBool("isBlocking", true);
             currState = PlayerState.Blocking;
-            //OnPlayerBlock?.Invoke(true);
             OnPlayerInvincible?.Invoke(true);
-            //_isPlayerMoving = false;
         }
 
         if (context.canceled && currState == PlayerState.Blocking)
         {
             _playerAnim.SetBool("isBlocking", false);
             currState = PlayerState.Moving;
-            //OnPlayerBlock?.Invoke(false);
             OnPlayerInvincible?.Invoke(false);
-            //_isPlayerMoving = true;
         }
 
     }
@@ -524,11 +456,5 @@ public class AprilPlayerController : MonoBehaviour
                 _hit2D.collider.GetComponent<DemonChase>().EnemyKill();
         }
     }
-
-    public void OnPanelActive()
-    {
-        _isPlayerMoving = true;
-    }
-
     #endregion
 }
