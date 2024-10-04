@@ -3652,7 +3652,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f7ae70cb1af506d4797eb009967a262a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 81f06685583311747997629a7e00ccd7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22545,34 +22545,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f0b0b6d0b7542bfbd20a3e05b04ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_IsTrail: 0
-  m_IgnoreCanvasScaler: 0
-  m_AbsoluteMode: 0
-  m_Scale3D: {x: 110, y: 110, z: 110}
-  m_AnimatableProperties: []
-  m_Particles:
-  - {fileID: 6956152258322262004}
-  - {fileID: 6986285183629746764}
-  - {fileID: 951233295}
-  - {fileID: 643626434}
-  - {fileID: 659499834}
-  - {fileID: 1953595448}
-  m_MeshSharing: 0
-  m_GroupId: 0
-  m_GroupMaxId: 0
-  m_PositionMode: 1
-  m_AutoScaling: 0
-  m_AutoScalingMode: 2
-  m_UseCustomView: 0
-  m_CustomViewSize: 10
 --- !u!222 &814844551
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34886,7 +34858,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 092792526790c5445896834265128ed7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb725e6aefc2b4540b8a320c7517dd77, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -55311,7 +55283,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4b96ca87440e19e49b9dce3de3c30bae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 714a83ea9b904244ab4e9c5e46c036dc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
