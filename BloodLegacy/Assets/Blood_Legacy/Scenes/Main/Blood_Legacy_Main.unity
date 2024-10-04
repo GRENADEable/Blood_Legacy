@@ -4579,7 +4579,7 @@ MonoBehaviour:
       type: {class: MMF_DestinationTransform, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 2068765066
+        UniqueID: 1352159455
         Label: Mini_Game_Overlay_Panel
         Channel: 0
         Chance: 100
@@ -4796,7 +4796,7 @@ MonoBehaviour:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 540989393
+        UniqueID: -758377428
         Label: Holding Pause
         Channel: 0
         Chance: 100
@@ -4839,7 +4839,7 @@ MonoBehaviour:
       type: {class: MMF_ImageAlpha, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
       data:
         Active: 1
-        UniqueID: 602750366
+        UniqueID: 1443704498
         Label: 1_Img_April_Intro_Appear
         Channel: 0
         Chance: 100
@@ -4911,7 +4911,7 @@ MonoBehaviour:
       type: {class: MMF_ImageAlpha, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
       data:
         Active: 1
-        UniqueID: 473502323
+        UniqueID: -496064245
         Label: 2_Img_Demon_Intro_Appear
         Channel: 0
         Chance: 100
@@ -4983,7 +4983,7 @@ MonoBehaviour:
       type: {class: MMF_DestinationTransform, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -263751680
+        UniqueID: 60190698
         Label: 1_Img_April_Intro_Move_1
         Channel: 0
         Chance: 100
@@ -5200,7 +5200,7 @@ MonoBehaviour:
       type: {class: MMF_DestinationTransform, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 1176732111
+        UniqueID: 2064849516
         Label: 2_Img_Demon_Intro_Move_1
         Channel: 0
         Chance: 100
@@ -5417,7 +5417,7 @@ MonoBehaviour:
       type: {class: MMF_AudioSource, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 40603991
+        UniqueID: -1374309848
         Label: Speed_SFX
         Channel: 0
         Chance: 100
@@ -5461,7 +5461,7 @@ MonoBehaviour:
       type: {class: MMF_Pause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -1994186127
+        UniqueID: 817959621
         Label: Pause
         Channel: 0
         Chance: 100
@@ -5504,7 +5504,7 @@ MonoBehaviour:
       type: {class: MMF_DestinationTransform, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 1090216479
+        UniqueID: 1593024468
         Label: 1_Img_April_Intro_Move_2
         Channel: 0
         Chance: 100
@@ -5721,7 +5721,7 @@ MonoBehaviour:
       type: {class: MMF_DestinationTransform, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -642099966
+        UniqueID: 201002207
         Label: 2_Img_Demon_Intro_Move_2
         Channel: 0
         Chance: 100
@@ -5938,7 +5938,7 @@ MonoBehaviour:
       type: {class: MMF_Pause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -1616732085
+        UniqueID: 1621223862
         Label: Pause
         Channel: 0
         Chance: 100
@@ -5981,7 +5981,7 @@ MonoBehaviour:
       type: {class: MMF_ImageAlpha, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
       data:
         Active: 1
-        UniqueID: 1201754172
+        UniqueID: -767223955
         Label: 1_Img_April_Intro_Disappear
         Channel: 0
         Chance: 100
@@ -6053,7 +6053,7 @@ MonoBehaviour:
       type: {class: MMF_ImageAlpha, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
       data:
         Active: 1
-        UniqueID: -1906126578
+        UniqueID: -469133430
         Label: 2_Img_Demon_Intro_Disappear
         Channel: 0
         Chance: 100
@@ -6125,7 +6125,7 @@ MonoBehaviour:
       type: {class: MMF_Pause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 1393661960
+        UniqueID: -1534592664
         Label: Pause
         Channel: 0
         Chance: 100
@@ -6168,7 +6168,7 @@ MonoBehaviour:
       type: {class: MMF_ImageAlpha, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
       data:
         Active: 1
-        UniqueID: 1943751606
+        UniqueID: -643736604
         Label: 3_ImgApril_Eye_Red_Appear
         Channel: 0
         Chance: 100
@@ -6240,7 +6240,7 @@ MonoBehaviour:
       type: {class: MMF_Animation, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -939051030
+        UniqueID: -2073430436
         Label: 3_ImgApril_Eye_Red_Anim_Trigger
         Channel: 0
         Chance: 100
@@ -6301,7 +6301,7 @@ MonoBehaviour:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 768947676
+        UniqueID: 1487217501
         Label: Holding Pause
         Channel: 0
         Chance: 100
@@ -6344,7 +6344,7 @@ MonoBehaviour:
       type: {class: MMF_Events, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -1872113022
+        UniqueID: -603176523
         Label: OnClickComicNext
         Channel: 0
         Chance: 100
@@ -6403,7 +6403,7 @@ MonoBehaviour:
       type: {class: MMF_AudioSource, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -1012924268
+        UniqueID: 905814701
         Label: April_Eyes_SFX
         Channel: 0
         Chance: 100
@@ -6447,7 +6447,7 @@ MonoBehaviour:
       type: {class: MMF_ImageAlpha, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
       data:
         Active: 1
-        UniqueID: -1476380690
+        UniqueID: 872142106
         Label: 3_ImgApril_Eye_Red_Disappear
         Channel: 0
         Chance: 100
@@ -6519,7 +6519,7 @@ MonoBehaviour:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -49380944
+        UniqueID: 632993285
         Label: Holding Pause
         Channel: 0
         Chance: 100
@@ -6562,7 +6562,7 @@ MonoBehaviour:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -1670445125
+        UniqueID: 552893219
         Label: Mini_Game_Overlay_BG_Off
         Channel: 0
         Chance: 100
@@ -6608,7 +6608,7 @@ MonoBehaviour:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -1197898927
+        UniqueID: 61717523
         Label: Mini_Game_Button_On
         Channel: 0
         Chance: 100
@@ -6654,7 +6654,7 @@ MonoBehaviour:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -346744136
+        UniqueID: -587224160
         Label: 'Mini_Game_Controls_On '
         Channel: 0
         Chance: 100
@@ -6700,7 +6700,7 @@ MonoBehaviour:
       type: {class: MMF_Events, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -1410116823
+        UniqueID: 1798797707
         Label: OnMMFPause
         Channel: 0
         Chance: 100
@@ -6759,7 +6759,7 @@ MonoBehaviour:
       type: {class: MMF_Events, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 976957228
+        UniqueID: 907051183
         Label: OnCharEnable
         Channel: 0
         Chance: 100
@@ -6830,7 +6830,7 @@ MonoBehaviour:
       type: {class: MMF_CanvasGroup, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
       data:
         Active: 1
-        UniqueID: -2055434584
+        UniqueID: 362081870
         Label: Mini_Game_Canvas_Fade
         Channel: 0
         Chance: 100
@@ -20679,7 +20679,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 092792526790c5445896834265128ed7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb725e6aefc2b4540b8a320c7517dd77, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -27890,8 +27890,6 @@ MonoBehaviour:
   chaseDemonSpawnPos:
   - {fileID: 1307439473}
   - {fileID: 832820007}
-  redTintPP: {fileID: 1101977570}
-  redTintPPLerpVal: 1
   _currEnemyKilled: 0
   _totalDemonObjs: []
 --- !u!1 &1554460629
@@ -32214,7 +32212,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -400.30267, y: -31.570915}
-  m_SizeDelta: {x: 688.23, y: 955.393}
+  m_SizeDelta: {x: 867, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1778232773
 MonoBehaviour:
@@ -32236,7 +32234,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2884e7f9df0562a4095bdd21372d5a4e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5f24f8d0c16e4b144abf70e427fb351a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
