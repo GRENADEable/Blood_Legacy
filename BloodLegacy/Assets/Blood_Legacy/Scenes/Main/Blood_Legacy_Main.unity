@@ -2023,7 +2023,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -10896,11 +10896,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1818442008}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.54, y: 0.41133457}
   m_AnchorMax: {x: 0.54, y: 0.41133457}
-  m_AnchoredPosition: {x: 233.585, y: 248.234}
+  m_AnchoredPosition: {x: 190.58507, y: 215.23401}
   m_SizeDelta: {x: 701.011, y: 566.682}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &567326724
@@ -22386,12 +22386,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1818442008}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 313, y: 144}
-  m_SizeDelta: {x: -934.2, y: -541.894}
+  m_AnchoredPosition: {x: 267, y: 118}
+  m_SizeDelta: {x: -880.481, y: -541.894}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &808412659
 MonoBehaviour:
@@ -22449,7 +22449,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -29148,7 +29148,7 @@ SpriteRenderer:
   m_Size: {x: 1.96, y: 1.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &992108191
@@ -30136,7 +30136,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 384, y: 167.64}
+  m_AnchoredPosition: {x: 346, y: 155}
   m_SizeDelta: {x: 343.419, y: 335.275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1129290377
@@ -32375,7 +32375,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3b328e4bd61f64040b93e030b3d47e77, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ddb5195005b98ae4bb60d1b99a4fa200, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -32950,7 +32950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -42733,7 +42733,7 @@ MonoBehaviour:
       type: {class: MMF_DestinationTransform, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -1347179942
+        UniqueID: 1978934301
         Label: Sniper_Bullet_Trail
         Channel: 0
         Chance: 100
@@ -42950,7 +42950,7 @@ MonoBehaviour:
       type: {class: MMF_AudioSource, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 359605297
+        UniqueID: -1495291795
         Label: Bullet_Speed_SFX
         Channel: 0
         Chance: 100
@@ -42994,7 +42994,7 @@ MonoBehaviour:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 361597226
+        UniqueID: 881002996
         Label: Holding Pause
         Channel: 0
         Chance: 100
@@ -43037,7 +43037,7 @@ MonoBehaviour:
       type: {class: MMF_AnimatorSpeed, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -1496396272
+        UniqueID: -913488875
         Label: C_Demon_3_Anim_Speed
         Channel: 0
         Chance: 100
@@ -43109,8 +43109,8 @@ MonoBehaviour:
     00000004:
       type: {class: MMF_DestinationTransform, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
-        UniqueID: -77034922
+        Active: 1
+        UniqueID: 1687725277
         Label: Demon_Shot_Pos
         Channel: 0
         Chance: 100
@@ -43327,7 +43327,7 @@ MonoBehaviour:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 552993160
+        UniqueID: 1917472098
         Label: Demon_Shot_Overlay_On
         Channel: 0
         Chance: 100
@@ -43373,7 +43373,7 @@ MonoBehaviour:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 1755271832
+        UniqueID: 684568893
         Label: Holding Pause
         Channel: 0
         Chance: 100
@@ -43416,7 +43416,7 @@ MonoBehaviour:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -759535027
+        UniqueID: 147160515
         Label: 1_Demon_Shot_BG
         Channel: 0
         Chance: 100
@@ -43462,7 +43462,7 @@ MonoBehaviour:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 860691136
+        UniqueID: 460313172
         Label: 1_Demon_Shot_FG
         Channel: 0
         Chance: 100
@@ -43508,7 +43508,7 @@ MonoBehaviour:
       type: {class: MMF_AudioSource, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -812537932
+        UniqueID: 978461093
         Label: Bullet_Through_SFX
         Channel: 0
         Chance: 100
@@ -43552,7 +43552,7 @@ MonoBehaviour:
       type: {class: MMF_PositionShake, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -2034200554
+        UniqueID: 1460601482
         Label: Demon_Growl_Img_Shake
         Channel: 0
         Chance: 100
@@ -43636,7 +43636,7 @@ MonoBehaviour:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -1919818315
+        UniqueID: -15444329
         Label: 2_Demon_Shot_Blood
         Channel: 0
         Chance: 100
@@ -43682,7 +43682,7 @@ MonoBehaviour:
       type: {class: MMF_Scale, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -208907372
+        UniqueID: -809662573
         Label: 2_Demon_Shot_Blood_Scale
         Channel: 0
         Chance: 100
@@ -43832,7 +43832,7 @@ MonoBehaviour:
       type: {class: MMF_AudioSource, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 1998155074
+        UniqueID: -1538554743
         Label: Demon_Groan_SFX
         Channel: 0
         Chance: 100
@@ -43876,7 +43876,7 @@ MonoBehaviour:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -966194843
+        UniqueID: 1192946062
         Label: Holding Pause
         Channel: 0
         Chance: 100
@@ -43919,7 +43919,7 @@ MonoBehaviour:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 51184966
+        UniqueID: 1930387449
         Label: 3_June_Sniper
         Channel: 0
         Chance: 100
@@ -43965,7 +43965,7 @@ MonoBehaviour:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -1113458931
+        UniqueID: -255035851
         Label: Holding Pause
         Channel: 0
         Chance: 100
@@ -44008,7 +44008,7 @@ MonoBehaviour:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -1539872884
+        UniqueID: 40287679
         Label: 3_June_Text_On
         Channel: 0
         Chance: 100
@@ -44054,7 +44054,7 @@ MonoBehaviour:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 1289691100
+        UniqueID: -1634835167
         Label: Demon_Shot_Button_On
         Channel: 0
         Chance: 100
@@ -44100,7 +44100,7 @@ MonoBehaviour:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -613636196
+        UniqueID: -2011893822
         Label: Comic_1_May_Demon_Off
         Channel: 0
         Chance: 100
@@ -44146,7 +44146,7 @@ MonoBehaviour:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -944239072
+        UniqueID: -1709854070
         Label: Comic_1_June_Shooting_Off
         Channel: 0
         Chance: 100
@@ -44192,7 +44192,7 @@ MonoBehaviour:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -1407634070
+        UniqueID: -1465765405
         Label: Comic_2_June_Callout_On
         Channel: 0
         Chance: 100
@@ -47294,7 +47294,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2020758280}
   - {fileID: 1832454790}
   - {fileID: 567326723}
   - {fileID: 808412658}
@@ -47409,12 +47408,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1818442008}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 636, y: 315}
+  m_SizeDelta: {x: 1463.837, y: 1174.358}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1832454791
 MonoBehaviour:
@@ -47436,7 +47435,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -959839005264389175, guid: c7f1aa045f818574397c5d9832de47f1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c1e0ac974c99ee44b09bc896acc4c16, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -54157,8 +54156,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -243, y: 251.99997}
-  m_SizeDelta: {x: 732.731, y: 559.81}
+  m_AnchoredPosition: {x: -304, y: 112.41}
+  m_SizeDelta: {x: 763.85, y: 837.872}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2007864485
 MonoBehaviour:
@@ -54180,7 +54179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 294edc908206d744796eff34a1d8d125, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6fb86e9ad7abf24884d72d837d7b8a0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -54424,81 +54423,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2020758279
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2020758280}
-  - component: {fileID: 2020758282}
-  - component: {fileID: 2020758281}
-  m_Layer: 5
-  m_Name: 4_June_Sniper_BG
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2020758280
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2020758279}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1818442008}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2020758281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2020758279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &2020758282
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2020758279}
-  m_CullTransparentMesh: 1
 --- !u!1 &2023439875
 GameObject:
   m_ObjectHideFlags: 0
@@ -55395,8 +55319,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 335, y: -75.790016}
-  m_SizeDelta: {x: 618.418, y: 606.047}
+  m_AnchoredPosition: {x: 279, y: -105.609}
+  m_SizeDelta: {x: 633.437, y: 772.218}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2083439021
 MonoBehaviour:
@@ -55470,7 +55394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 19}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2116751380
@@ -55495,8 +55419,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: JUNE?!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b5ff7314b47750a4cafb7aebd5799f6c, type: 2}
+  m_sharedMaterial: {fileID: 7108760223754154878, guid: b5ff7314b47750a4cafb7aebd5799f6c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -55520,8 +55444,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54.7
-  m_fontSizeBase: 54.7
+  m_fontSize: 48.1
+  m_fontSizeBase: 48.1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
