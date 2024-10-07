@@ -296,8 +296,6 @@ RectTransform:
   - {fileID: 235109890}
   - {fileID: 2083439020}
   - {fileID: 1207715575}
-  - {fileID: 1165757441}
-  - {fileID: 2007864484}
   - {fileID: 1129290376}
   - {fileID: 1114040581}
   - {fileID: 397457280}
@@ -4051,11 +4049,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 992860117}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15.406}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48, y: 361}
+  m_AnchoredPosition: {x: 80.99992, y: 361}
   m_SizeDelta: {x: 286.127, y: 107.643}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &308637328
@@ -7211,11 +7209,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 992860117}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 12.23}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -162, y: 69}
+  m_AnchoredPosition: {x: -129.00003, y: 69}
   m_SizeDelta: {x: 329.11, y: 147.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &353025438
@@ -8035,11 +8033,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 992860117}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10.856}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220, y: 396}
+  m_AnchoredPosition: {x: -187, y: 396}
   m_SizeDelta: {x: 286.127, y: 107.643}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &374405305
@@ -8392,7 +8390,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 21264369}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8888,7 +8886,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1689663631}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10415,7 +10413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 250, y: 160}
+  m_AnchoredPosition: {x: 283, y: 160}
   m_SizeDelta: {x: 644.659, y: 462.762}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &536708950
@@ -10623,7 +10621,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 225.25694, y: -240.90778}
+  m_AnchoredPosition: {x: 258.2569, y: -240.90778}
   m_SizeDelta: {x: 744.724, y: 319.989}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &554450338
@@ -10894,13 +10892,14 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1818442008}
-  m_RootOrder: 1
+  m_Children:
+  - {fileID: 808412658}
+  m_Father: {fileID: 1689663631}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.54, y: 0.41133457}
   m_AnchorMax: {x: 0.54, y: 0.41133457}
-  m_AnchoredPosition: {x: 190.58507, y: 215.23401}
+  m_AnchoredPosition: {x: 192.26591, y: 235.59192}
   m_SizeDelta: {x: 701.011, y: 566.682}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &567326724
@@ -22382,16 +22381,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808412657}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1818442008}
-  m_RootOrder: 2
+  m_Father: {fileID: 567326723}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 267, y: 118}
-  m_SizeDelta: {x: -880.481, y: -541.894}
+  m_AnchoredPosition: {x: 23.979233, y: -21.81427}
+  m_SizeDelta: {x: -270.60297, y: -257.966}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &808412659
 MonoBehaviour:
@@ -22526,11 +22525,11 @@ RectTransform:
   - {fileID: 951233292}
   - {fileID: 659499831}
   m_Father: {fileID: 992860117}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 383.5, y: 121.95}
+  m_AnchoredPosition: {x: 416.50006, y: 121.95}
   m_SizeDelta: {x: 312.91, y: 169.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &814844550
@@ -22835,7 +22834,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 533, y: 271}
+  m_AnchoredPosition: {x: 566, y: 271}
   m_SizeDelta: {x: 566.242, y: 107.643}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &838508171
@@ -28956,11 +28955,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 992860117}
-  m_RootOrder: 8
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 783.2, y: -442.6}
+  m_AnchoredPosition: {x: 803, y: -425.22}
   m_SizeDelta: {x: -1871.58, y: -1031.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &984381994
@@ -29216,11 +29215,11 @@ RectTransform:
   - {fileID: 536708949}
   - {fileID: 838508170}
   - {fileID: 551372889}
-  - {fileID: 984381993}
   - {fileID: 374405304}
   - {fileID: 353025437}
   - {fileID: 308637327}
   - {fileID: 814844549}
+  - {fileID: 984381993}
   m_Father: {fileID: 367040569}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29980,7 +29979,7 @@ RectTransform:
   - {fileID: 40919615}
   - {fileID: 2066042013}
   m_Father: {fileID: 21264369}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -30132,7 +30131,7 @@ RectTransform:
   m_Children:
   - {fileID: 2116751379}
   m_Father: {fileID: 21264369}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -30247,7 +30246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -375, y: -25}
+  m_AnchoredPosition: {x: -342, y: -25}
   m_SizeDelta: {x: 779.376, y: 733.601}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1137443409
@@ -32304,16 +32303,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1165757440}
-  m_LocalRotation: {x: 0, y: 0, z: -0.12186928, w: 0.9925462}
+  m_LocalRotation: {x: -0, y: -0, z: -0.12186928, w: 0.9925462}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 21264369}
-  m_RootOrder: 4
+  m_Father: {fileID: 1207715575}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -14}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -284, y: 195}
+  m_AnchoredPosition: {x: 69.99988, y: 138.57095}
   m_SizeDelta: {x: 196, y: 171}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1165757442
@@ -32889,7 +32888,9 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1165757441}
+  - {fileID: 2007864484}
   m_Father: {fileID: 21264369}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -34712,17 +34713,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1388129235}
-  m_LocalRotation: {x: -0, y: -0, z: 0.1753623, w: -0.984504}
+  m_LocalRotation: {x: -0, y: -0, z: 0.012050793, w: 0.99992746}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1508746090}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -20.199}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.381}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 993.2, y: 361.4}
-  m_SizeDelta: {x: 67.747, y: 49.179}
+  m_AnchoredPosition: {x: 964, y: 385}
+  m_SizeDelta: {x: 91.737, y: 101.684}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1388129237
 MonoBehaviour:
@@ -34744,7 +34745,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0259f2fa9e6009646a6f4cb92bae35fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b889ab606e94600428c534734beb09a2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -35335,6 +35336,8 @@ MonoBehaviour:
   - id: 3
   - id: 4
   - id: 5
+  - id: 6
+  - id: 7
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   ForceStopFeedbacksOnDisable: 1
@@ -35651,7 +35654,7 @@ MonoBehaviour:
       data:
         Active: 1
         UniqueID: -2017646589
-        Label: 1_June_Sniper_Area_On
+        Label: June_Standing_ON
         Channel: 0
         Chance: 100
         DisplayColor: {r: 0, g: 0, b: 0, a: 1}
@@ -35681,7 +35684,7 @@ MonoBehaviour:
         RandomDurationMultiplier: {x: 0.5, y: 2}
         Owner: {fileID: 1433393475}
         DebugActive: 0
-        TargetGameObject: {fileID: 1818442007}
+        TargetGameObject: {fileID: 1832454789}
         SetStateOnInit: 1
         StateOnInit: 1
         SetStateOnPlay: 1
@@ -35736,6 +35739,95 @@ MonoBehaviour:
         AutoResume: 0
         AutoResumeAfter: 0.25
     00000005:
+      type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
+      data:
+        Active: 1
+        UniqueID: -1334231338
+        Label: Speech_Text
+        Channel: 0
+        Chance: 100
+        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
+        Timing:
+          TimescaleMode: 0
+          ExcludeFromHoldingPauses: 0
+          ContributeToTotalDuration: 1
+          InitialDelay: 0
+          CooldownDuration: 0
+          InterruptsOnStop: 1
+          NumberOfRepeats: 0
+          RepeatForever: 0
+          DelayBetweenRepeats: 1
+          MMFeedbacksDirectionCondition: 0
+          PlayDirection: 0
+          ConstantIntensity: 0
+          UseIntensityInterval: 0
+          IntensityIntervalMin: 0
+          IntensityIntervalMax: 0
+          Sequence: {fileID: 0}
+          TrackID: 0
+          Quantized: 0
+          TargetBPM: 120
+        RandomizeOutput: 0
+        RandomMultiplier: {x: 0.8, y: 1}
+        RandomizeDuration: 0
+        RandomDurationMultiplier: {x: 0.5, y: 2}
+        Owner: {fileID: 1433393475}
+        DebugActive: 0
+        TargetGameObject: {fileID: 567326722}
+        SetStateOnInit: 1
+        StateOnInit: 1
+        SetStateOnPlay: 1
+        StateOnPlay: 0
+        SetStateOnStop: 0
+        StateOnStop: 1
+        SetStateOnReset: 0
+        StateOnReset: 1
+        SetStateOnSkip: 0
+        StateOnSkip: 1
+    00000006:
+      type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
+      data:
+        Active: 1
+        UniqueID: -470605357
+        Label: Holding Pause
+        Channel: 0
+        Chance: 100
+        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
+        Timing:
+          TimescaleMode: 0
+          ExcludeFromHoldingPauses: 0
+          ContributeToTotalDuration: 1
+          InitialDelay: 0
+          CooldownDuration: 0
+          InterruptsOnStop: 1
+          NumberOfRepeats: 0
+          RepeatForever: 0
+          DelayBetweenRepeats: 1
+          MMFeedbacksDirectionCondition: 0
+          PlayDirection: 0
+          ConstantIntensity: 0
+          UseIntensityInterval: 0
+          IntensityIntervalMin: 0
+          IntensityIntervalMax: 0
+          Sequence: {fileID: 0}
+          TrackID: 0
+          Quantized: 0
+          TargetBPM: 120
+        RandomizeOutput: 0
+        RandomMultiplier: {x: 0.8, y: 1}
+        RandomizeDuration: 0
+        RandomDurationMultiplier: {x: 0.5, y: 2}
+        Owner: {fileID: 1433393475}
+        DebugActive: 0
+        PauseDuration: 0.5
+        RandomizePauseDuration: 0
+        MinPauseDuration: 1
+        MaxPauseDuration: 3
+        RandomizeOnEachPlay: 1
+        ScriptDriven: 0
+        AutoResume: 0
+        AutoResumeAfter: 0.25
+    00000007:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
@@ -36164,7 +36256,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1466084557}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -404.24512, y: -31.570936, z: 0}
+  m_LocalPosition: {x: -371.24512, y: -31.570936, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 992860117}
@@ -36553,8 +36645,6 @@ MonoBehaviour:
   - id: 34
   - id: 35
   - id: 36
-  - id: 37
-  - id: 38
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   ForceStopFeedbacksOnDisable: 1
@@ -36942,7 +37032,7 @@ MonoBehaviour:
     00000004:
       type: {class: MMF_DestinationTransform, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 1
+        Active: 0
         UniqueID: -987025844
         Label: May_Overlay_Pos
         Channel: 0
@@ -37191,7 +37281,7 @@ MonoBehaviour:
         RandomDurationMultiplier: {x: 0.5, y: 2}
         Owner: {fileID: 1498722550}
         DebugActive: 0
-        PauseDuration: 0.5
+        PauseDuration: 0.4
         RandomizePauseDuration: 0
         MinPauseDuration: 1
         MaxPauseDuration: 3
@@ -37641,7 +37731,7 @@ MonoBehaviour:
         RandomDurationMultiplier: {x: 0.5, y: 2}
         Owner: {fileID: 1498722550}
         DebugActive: 0
-        PauseDuration: 0.5
+        PauseDuration: 0.4
         RandomizePauseDuration: 0
         MinPauseDuration: 1
         MaxPauseDuration: 3
@@ -37815,7 +37905,7 @@ MonoBehaviour:
         RandomDurationMultiplier: {x: 0.5, y: 2}
         Owner: {fileID: 1498722550}
         DebugActive: 0
-        PauseDuration: 0.5
+        PauseDuration: 0.3
         RandomizePauseDuration: 0
         MinPauseDuration: 1
         MaxPauseDuration: 3
@@ -37989,7 +38079,7 @@ MonoBehaviour:
         RandomDurationMultiplier: {x: 0.5, y: 2}
         Owner: {fileID: 1498722550}
         DebugActive: 0
-        PauseDuration: 0.5
+        PauseDuration: 0.3
         RandomizePauseDuration: 0
         MinPauseDuration: 1
         MaxPauseDuration: 3
@@ -38218,48 +38308,6 @@ MonoBehaviour:
         SetStateOnSkip: 0
         StateOnSkip: 1
     00000018:
-      type: {class: MMF_TMPTextReveal, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.TextMeshPro}
-      data:
-        Active: 1
-        UniqueID: 1778257052
-        Label: Monster_Growl_Reveal
-        Channel: 0
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        Owner: {fileID: 1498722550}
-        DebugActive: 0
-        TargetTMPText: {fileID: 838508171}
-        ReplaceText: 0
-        NewText: Hello World
-        RevealMode: 0
-        DurationMode: 0
-        IntervalBetweenReveals: 0.09
-        RevealDuration: 1
-    00000019:
       type: {class: MMF_PositionShake, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
@@ -38343,7 +38391,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-    0000001A:
+    00000019:
       type: {class: MMF_PositionShake, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
@@ -38427,7 +38475,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-    0000001B:
+    0000001A:
       type: {class: MMF_AudioSource, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
@@ -38471,7 +38519,7 @@ MonoBehaviour:
         MinPitch: 1
         MaxPitch: 1
         SfxAudioMixerGroup: {fileID: 0}
-    0000001C:
+    0000001B:
       type: {class: MMF_CinemachineImpulse, ns: MoreMountains.FeedbacksForThirdParty, asm: MoreMountains.Feedbacks.Cinemachine}
       data:
         Active: 1
@@ -38538,7 +38586,7 @@ MonoBehaviour:
           m_PropagationSpeed: 343
         Velocity: {x: 0.1, y: 0.1, z: 0.1}
         ClearImpulseOnStop: 0
-    0000001D:
+    0000001C:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
@@ -38581,7 +38629,7 @@ MonoBehaviour:
         ScriptDriven: 0
         AutoResume: 0
         AutoResumeAfter: 0.25
-    0000001E:
+    0000001D:
       type: {class: MMF_ImageAlpha, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
       data:
         Active: 1
@@ -38653,79 +38701,7 @@ MonoBehaviour:
         CurveRemapOne: 1
         DestinationAlpha: 1
         DisableOnStop: 1
-    0000001F:
-      type: {class: MMF_ImageAlpha, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
-      data:
-        Active: 0
-        UniqueID: 722430180
-        Label: Box_Text_Appear
-        Channel: 0
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        Owner: {fileID: 1498722550}
-        DebugActive: 0
-        BoundImage: {fileID: 730288326}
-        Mode: 0
-        Duration: 0.5
-        AllowAdditivePlays: 0
-        InstantAlpha: 1
-        Curve:
-          MMTweenDefinitionType: 0
-          MMTweenCurve: 4
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        CurveRemapZero: 0
-        CurveRemapOne: 1
-        DestinationAlpha: 1
-        DisableOnStop: 1
-    00000020:
+    0000001E:
       type: {class: MMF_TMPAlpha, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.TextMeshPro}
       data:
         Active: 1
@@ -38796,7 +38772,7 @@ MonoBehaviour:
         CurveRemapOne: 1
         DestinationAlpha: 1
         AllowAdditivePlays: 0
-    00000021:
+    0000001F:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
@@ -38839,7 +38815,7 @@ MonoBehaviour:
         ScriptDriven: 0
         AutoResume: 0
         AutoResumeAfter: 0.25
-    00000022:
+    00000020:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
@@ -38885,7 +38861,7 @@ MonoBehaviour:
         StateOnReset: 1
         SetStateOnSkip: 0
         StateOnSkip: 1
-    00000023:
+    00000021:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
@@ -38931,7 +38907,7 @@ MonoBehaviour:
         StateOnReset: 1
         SetStateOnSkip: 0
         StateOnSkip: 1
-    00000024:
+    00000022:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
@@ -38977,7 +38953,7 @@ MonoBehaviour:
         StateOnReset: 1
         SetStateOnSkip: 0
         StateOnSkip: 1
-    00000025:
+    00000023:
       type: {class: MMF_AnimatorSpeed, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
@@ -39050,7 +39026,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-    00000026:
+    00000024:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
@@ -42446,8 +42422,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -52.49, y: 0}
+  m_SizeDelta: {x: 104.979, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1581842059
 MonoBehaviour:
@@ -44767,7 +44743,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 181703280}
-  - {fileID: 1818442008}
+  - {fileID: 1832454790}
+  - {fileID: 567326723}
   - {fileID: 1842330340}
   - {fileID: 441618918}
   m_Father: {fileID: 367040569}
@@ -46710,7 +46687,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -389.43, y: 0.0000095367}
+  m_AnchoredPosition: {x: -356.43, y: 0.0000095367}
   m_SizeDelta: {x: 778.86, y: 970.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1778232773
@@ -47228,44 +47205,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 11cbd8712a32e3946b9284c1a6080211, type: 3}
   m_PrefabInstance: {fileID: 1809650871}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1818442007
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1818442008}
-  m_Layer: 5
-  m_Name: 1_June_Sniper_Area
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1818442008
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1818442007}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1832454790}
-  - {fileID: 567326723}
-  - {fileID: 808412658}
-  m_Father: {fileID: 1689663631}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26.03, y: 0}
-  m_SizeDelta: {x: 1310.889, y: 850.61}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1819239171
 GameObject:
   m_ObjectHideFlags: 3
@@ -47368,12 +47307,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1818442008}
-  m_RootOrder: 0
+  m_Father: {fileID: 1689663631}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 636, y: 315}
+  m_AnchoredPosition: {x: 966.3953, y: 429.80188}
   m_SizeDelta: {x: 1463.837, y: 1174.358}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1832454791
@@ -47579,7 +47518,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1689663631}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -54112,12 +54051,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 21264369}
-  m_RootOrder: 5
+  m_Father: {fileID: 1207715575}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -304, y: 112.41}
+  m_AnchoredPosition: {x: 49.999878, y: 55.980965}
   m_SizeDelta: {x: 763.85, y: 837.872}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2007864485
