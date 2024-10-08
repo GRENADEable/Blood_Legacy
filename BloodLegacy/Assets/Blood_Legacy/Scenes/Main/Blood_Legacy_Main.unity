@@ -4053,7 +4053,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15.406}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 80.99992, y: 361}
+  m_AnchoredPosition: {x: 47.74302, y: 361}
   m_SizeDelta: {x: 286.127, y: 107.643}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &308637328
@@ -6303,7 +6303,7 @@ MonoBehaviour:
         RandomDurationMultiplier: {x: 0.5, y: 2}
         Owner: {fileID: 336153742}
         DebugActive: 0
-        PauseDuration: 1.6
+        PauseDuration: 1.5
         RandomizePauseDuration: 0
         MinPauseDuration: 1
         MaxPauseDuration: 3
@@ -7340,7 +7340,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 12.23}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -129.00003, y: 69}
+  m_AnchoredPosition: {x: -162.25693, y: 69}
   m_SizeDelta: {x: 329.11, y: 147.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &353025438
@@ -8062,7 +8062,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 3553013
+    rgba: 4281743093
   m_fontColor: {r: 0.9622642, g: 0.21333215, b: 0.21333215, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -8164,7 +8164,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10.856}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -187, y: 396}
+  m_AnchoredPosition: {x: -220.2569, y: 396}
   m_SizeDelta: {x: 286.127, y: 107.643}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &374405305
@@ -10584,7 +10584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 283, y: 160}
+  m_AnchoredPosition: {x: 249.7431, y: 160}
   m_SizeDelta: {x: 644.659, y: 462.762}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &536708950
@@ -10792,7 +10792,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 258.2569, y: -240.90778}
+  m_AnchoredPosition: {x: 225, y: -240.90778}
   m_SizeDelta: {x: 744.724, y: 319.989}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &554450338
@@ -22233,9 +22233,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 008d9bc7c75242745ae3108eda5be260, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 02e0625357241b643a1b2bac0d90777d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -22814,7 +22814,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 23.979233, y: -21.81427}
+  m_AnchoredPosition: {x: 20, y: -16}
   m_SizeDelta: {x: -270.60297, y: -257.966}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &808412659
@@ -22837,10 +22837,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'We gotta regroup with April, we can''t take all these demons ourselves.
-
-    Where
-    the hell is she?'
+  m_text: We can't take all these demons ourselves, we have to regroup with April.
+    Where the hell is she?!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b5ff7314b47750a4cafb7aebd5799f6c, type: 2}
   m_sharedMaterial: {fileID: 7108760223754154878, guid: b5ff7314b47750a4cafb7aebd5799f6c, type: 2}
@@ -22954,7 +22952,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 416.50006, y: 121.95}
+  m_AnchoredPosition: {x: 383.24316, y: 121.95}
   m_SizeDelta: {x: 312.91, y: 169.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &814844550
@@ -22969,34 +22967,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f0b0b6d0b7542bfbd20a3e05b04ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_IsTrail: 0
-  m_IgnoreCanvasScaler: 0
-  m_AbsoluteMode: 0
-  m_Scale3D: {x: 10, y: 10, z: 10}
-  m_AnimatableProperties: []
-  m_Particles:
-  - {fileID: 6956152258322262004}
-  - {fileID: 6986285183629746764}
-  - {fileID: 951233295}
-  - {fileID: 643626434}
-  - {fileID: 659499834}
-  - {fileID: 1953595448}
-  m_MeshSharing: 0
-  m_GroupId: 0
-  m_GroupMaxId: 0
-  m_PositionMode: 0
-  m_AutoScaling: 0
-  m_AutoScalingMode: 2
-  m_UseCustomView: 0
-  m_CustomViewSize: 10
 --- !u!222 &814844551
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23287,7 +23257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 566, y: 271}
+  m_AnchoredPosition: {x: 532.7431, y: 271}
   m_SizeDelta: {x: 566.242, y: 107.643}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &838508171
@@ -29539,8 +29509,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 803, y: -425.22}
-  m_SizeDelta: {x: -1871.58, y: -1031.58}
+  m_AnchoredPosition: {x: 665, y: -425.22003}
+  m_SizeDelta: {x: -1870, y: -1031.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &984381994
 MonoBehaviour:
@@ -30826,7 +30796,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -342, y: -25}
+  m_AnchoredPosition: {x: -375.2569, y: -25}
   m_SizeDelta: {x: 779.376, y: 733.601}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1137443409
@@ -35918,6 +35888,7 @@ MonoBehaviour:
   - id: 5
   - id: 6
   - id: 7
+  - id: 8
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   ForceStopFeedbacksOnDisable: 1
@@ -36365,6 +36336,50 @@ MonoBehaviour:
         SetStateOnSkip: 0
         StateOnSkip: 1
     00000006:
+      type: {class: MMF_AudioSource, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
+      data:
+        Active: 1
+        UniqueID: -1701821139
+        Label: June_Voice Over
+        Channel: 0
+        Chance: 100
+        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
+        Timing:
+          TimescaleMode: 0
+          ExcludeFromHoldingPauses: 0
+          ContributeToTotalDuration: 1
+          InitialDelay: 0
+          CooldownDuration: 0
+          InterruptsOnStop: 1
+          NumberOfRepeats: 0
+          RepeatForever: 0
+          DelayBetweenRepeats: 1
+          MMFeedbacksDirectionCondition: 0
+          PlayDirection: 0
+          ConstantIntensity: 0
+          UseIntensityInterval: 0
+          IntensityIntervalMin: 0
+          IntensityIntervalMax: 0
+          Sequence: {fileID: 0}
+          TrackID: 0
+          Quantized: 0
+          TargetBPM: 120
+        RandomizeOutput: 0
+        RandomMultiplier: {x: 0.8, y: 1}
+        RandomizeDuration: 0
+        RandomDurationMultiplier: {x: 0.5, y: 2}
+        Owner: {fileID: 1433393475}
+        DebugActive: 0
+        TargetAudioSource: {fileID: 1613496309}
+        Mode: 0
+        RandomSfx:
+        - {fileID: 8300000, guid: 2536ad5c335d5614ba3db591fff715d7, type: 3}
+        MinVolume: 1
+        MaxVolume: 1
+        MinPitch: 1
+        MaxPitch: 1
+        SfxAudioMixerGroup: {fileID: 0}
+    00000007:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
@@ -36407,7 +36422,7 @@ MonoBehaviour:
         ScriptDriven: 0
         AutoResume: 0
         AutoResumeAfter: 0.25
-    00000007:
+    00000008:
       type: {class: MMF_SetActive, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
@@ -36836,7 +36851,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1466084557}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -371.24512, y: -31.570936, z: 0}
+  m_LocalPosition: {x: -404.502, y: -31.570936, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 992860117}
@@ -40588,8 +40603,8 @@ MonoBehaviour:
         TargetAudioSource: {fileID: 730566795}
         Mode: 0
         RandomSfx: []
-        MinVolume: 1
-        MaxVolume: 1
+        MinVolume: 0.2
+        MaxVolume: 0.2
         MinPitch: 1
         MaxPitch: 1
         SfxAudioMixerGroup: {fileID: 0}
@@ -42155,8 +42170,8 @@ MonoBehaviour:
         TargetAudioSource: {fileID: 592909939}
         Mode: 0
         RandomSfx: []
-        MinVolume: 1
-        MaxVolume: 1
+        MinVolume: 0.2
+        MaxVolume: 0.2
         MinPitch: 1
         MaxPitch: 1
         SfxAudioMixerGroup: {fileID: 0}
@@ -45015,7 +45030,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2536ad5c335d5614ba3db591fff715d7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -47234,8 +47249,8 @@ MonoBehaviour:
         TargetAudioSource: {fileID: 338517953}
         Mode: 0
         RandomSfx: []
-        MinVolume: 1
-        MaxVolume: 1
+        MinVolume: 0.2
+        MaxVolume: 0.2
         MinPitch: 1
         MaxPitch: 1
         SfxAudioMixerGroup: {fileID: 0}
@@ -47535,7 +47550,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -356.43, y: 0.0000095367}
+  m_AnchoredPosition: {x: -389.6869, y: 0.0000095367}
   m_SizeDelta: {x: 778.86, y: 970.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1778232773
