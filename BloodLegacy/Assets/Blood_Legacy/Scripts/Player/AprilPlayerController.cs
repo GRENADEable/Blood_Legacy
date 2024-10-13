@@ -83,13 +83,20 @@ public class AprilPlayerController : MonoBehaviour
     private float dashingCooldown = 1f;
     #endregion
 
+    #region FXs
+    [Space, Header("FXs")]
+    [SerializeField]
+    [Tooltip("Block Particle Effects")]
+    private ParticleSystem blockFX = default;
+    #endregion
+
     #region Events
 
     #region Void Events
     public delegate void SendEvents();
     /// <summary>
-    /// Event sent from AprilPlayerController script to Enemy script;
-    /// Lets the enemies know that the Player is dead;
+    /// Event sent from AprilPlayerController script to Demon and MiniGamesManager Script;
+    /// Lets the Demon know that the Player is dead and restart the game;
     /// </summary>
     public static event SendEvents OnPlayerDead;
 
@@ -120,6 +127,10 @@ public class AprilPlayerController : MonoBehaviour
     ///// </summary>
     //public static event SendEventsBool OnPlayerBlock;
 
+    /// <summary>
+    /// Event sent from PlayerMovementV2 script to Demon Script;
+    /// Informs the Demons that the Player is Invincible;
+    /// </summary>
     public static event SendEventsBool OnPlayerInvincible;
     #endregion
 
@@ -132,7 +143,7 @@ public class AprilPlayerController : MonoBehaviour
     private bool _isFacingRight = true;
     private float _horizontalMoveX = default;
     private Vector2 _moveDirection2D = default;
-    private bool _isPlayerDamaged = default;
+    [SerializeField] private bool _isPlayerDamaged = default;
 
     [Header("Dash Mechanic")]
     [SerializeField] private bool _canDash = true;
@@ -152,19 +163,25 @@ public class AprilPlayerController : MonoBehaviour
     void OnEnable()
     {
         DemonDefault.OnPlayerDamage += OnPlayerDamageEventReceived;
+
         DemonChase.OnPlayerDamage += OnPlayerDamageEventReceived;
+        DemonChase.OnPlayerBlock += OnPlayerBlockEventReceived;
     }
 
     void OnDisable()
     {
         DemonDefault.OnPlayerDamage -= OnPlayerDamageEventReceived;
+
         DemonChase.OnPlayerDamage -= OnPlayerDamageEventReceived;
+        DemonChase.OnPlayerBlock -= OnPlayerBlockEventReceived;
     }
 
     void OnDestroy()
     {
         DemonDefault.OnPlayerDamage -= OnPlayerDamageEventReceived;
+
         DemonChase.OnPlayerDamage -= OnPlayerDamageEventReceived;
+        DemonChase.OnPlayerBlock -= OnPlayerBlockEventReceived;
     }
     #endregion
 
@@ -178,7 +195,13 @@ public class AprilPlayerController : MonoBehaviour
 
     void Update()
     {
-        if (currState == PlayerState.Dead || currState == PlayerState.Dashing || currState == PlayerState.Blocking)
+        if (currState == PlayerState.Dead || currState == PlayerState.Blocking || currState == PlayerState.Attacking)
+        {
+            _rb2D.velocity = Vector2.zero;
+            return;
+        }
+
+        if (currState == PlayerState.Dashing)
             return;
 
         if (currState == PlayerState.Moving || currState == PlayerState.Jumping)
@@ -266,19 +289,24 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     void PlayerDamaged()
     {
-        Debug.Log("Taking Damage");
+        //Debug.Log("Taking Damage");
         StartCoroutine(DamageBuffer());
     }
 
     /// <summary>
     /// Kills the Player and notifies the demons to become idle;
+    /// Also resets the Player state;
     /// </summary>
     void PlayerKilled()
     {
-        Debug.Log("Dead");
+        //Debug.Log("Dead");
         OnPlayerDead?.Invoke();
-        _rb2D.bodyType = RigidbodyType2D.Static;
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
+        _currPlayerHealth = maxPlayerHealth;
+        _playerAnim.Play("EmptyDamage");
+        _canDash = true;
+        _isPlayerDamaged = false;
+        currState = PlayerState.Moving;
     }
     #endregion
 
@@ -323,8 +351,11 @@ public class AprilPlayerController : MonoBehaviour
         OnPlayerInvincible?.Invoke(true);
         _playerAnim.SetBool("isDamaged", true);
         yield return new WaitForSeconds(damageInvincibility);
+
+        if (currState != PlayerState.Blocking)
+            OnPlayerInvincible?.Invoke(false);
+
         _isPlayerDamaged = false;
-        OnPlayerInvincible?.Invoke(false);
         _playerAnim.SetBool("isDamaged", false);
     }
     #endregion
@@ -374,7 +405,7 @@ public class AprilPlayerController : MonoBehaviour
         if (context.started && _canDash && currState == PlayerState.Moving)
         {
             StartCoroutine(Dash());
-            Debug.Log("Dashing");
+            //Debug.Log("Dashing");
         }
     }
 
@@ -402,7 +433,7 @@ public class AprilPlayerController : MonoBehaviour
     #endregion
 
     /// <summary>
-    /// Subbed to Event from Enemy Script;
+    /// Subbed to Event from Demon Script;
     /// Damages the Player;
     /// </summary>
     void OnPlayerDamageEventReceived()
@@ -455,6 +486,16 @@ public class AprilPlayerController : MonoBehaviour
             if (_hit2D.collider.GetComponent<DemonChase>() != null)
                 _hit2D.collider.GetComponent<DemonChase>().EnemyKill();
         }
+    }
+
+    /// <summary>
+    /// Subbed to Event from Demon Script;
+    /// Plays FX Particle for Blocking;
+    /// </summary>
+    void OnPlayerBlockEventReceived()
+    {
+        if (currState == PlayerState.Blocking)
+            blockFX.Play();
     }
     #endregion
 }

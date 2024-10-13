@@ -1,8 +1,6 @@
-using DG.Tweening;
-using System.Collections;
+using MoreMountains.Feedbacks;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MiniGameManager : MonoBehaviour
 {
@@ -41,15 +39,29 @@ public class MiniGameManager : MonoBehaviour
     private Animator redTintAnim = default;
 
     [SerializeField]
-    [Tooltip("Red Tint BG Img")]
-    private Image redTintBG = default;
+    [Tooltip("MMF_MiniGame_Restart Component to Restart the MiniGame")]
+    private MMF_Player mmfMiniGame = default;
+
+    //[SerializeField]
+    //[Tooltip("Red Tint BG Img")]
+    //private Image redTintBG = default;
+    #endregion
+
+    #region Events
+    public delegate void SendEvents();
+    /// <summary>
+    /// Event sent from MiniGameManager to Demons;
+    /// Changes the current state of the Demons to Chasing;
+    /// </summary>
+    public static event SendEvents OnDemonChase;
     #endregion
 
     #endregion
 
     #region Private Variables
     private int _currDemonsKilled = default;
-    private List<GameObject> _totalDemonObjs = new List<GameObject>();
+    [SerializeField] private List<GameObject> _totalDemonObjs = new List<GameObject>();
+    [SerializeField] private Vector3 _playerStartPos = default;
     #endregion
 
     #region Unity Callbacks
@@ -57,30 +69,33 @@ public class MiniGameManager : MonoBehaviour
     #region Events
     void OnEnable()
     {
-        DemonDefault.OnEnemyKillScore += OnEnemyKillScoreEventReceived;
+        DemonDefault.OnEnemyDead += OnEnemyDeadEventReceived;
 
-        DemonChase.OnEnemyKillScore += OnEnemyKillScoreEventReceived;
+        DemonChase.OnEnemyDead += OnEnemyDeadEventReceived;
+
+        AprilPlayerController.OnPlayerDead += OnPlayerDeadEventReceived;
     }
 
     void OnDisable()
     {
-        DemonDefault.OnEnemyKillScore -= OnEnemyKillScoreEventReceived;
+        DemonDefault.OnEnemyDead -= OnEnemyDeadEventReceived;
 
-        DemonChase.OnEnemyKillScore -= OnEnemyKillScoreEventReceived;
+        DemonChase.OnEnemyDead -= OnEnemyDeadEventReceived;
+
+        AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
     }
 
     void OnDestroy()
     {
-        DemonDefault.OnEnemyKillScore -= OnEnemyKillScoreEventReceived;
+        DemonDefault.OnEnemyDead -= OnEnemyDeadEventReceived;
 
-        DemonChase.OnEnemyKillScore -= OnEnemyKillScoreEventReceived;
+        DemonChase.OnEnemyDead -= OnEnemyDeadEventReceived;
+
+        AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
     }
     #endregion
 
-    void Start()
-    {
-
-    }
+    void Start() => _playerStartPos = playerPrefab.transform.position;
 
     void Update()
     {
@@ -89,6 +104,41 @@ public class MiniGameManager : MonoBehaviour
     #endregion
 
     #region My Functions
+    /// <summary>
+    /// Tied to MMF_MiniGame_Restart;
+    /// Resets the Player Position;
+    /// </summary>
+    public void OnPlayerReset()
+    {
+        playerPrefab.transform.position = _playerStartPos;
+        _totalDemonObjs.Clear();
+    }
+
+    /// <summary>
+    /// Tied to MMF_MiniGame_Restart;
+    /// Resets the Game;
+    /// </summary>
+    public void OnGameReset()
+    {
+        for (int i = 0; i < _totalDemonObjs.Count; i++)
+            Destroy(_totalDemonObjs[i]);
+
+        //_totalDemonObjs.Clear();
+        _currDemonsKilled = 0;
+        redTintAnim.Play("Empty");
+    }
+
+    /// <summary>
+    /// Tied to MMF_MiniGame_Restart;
+    /// Starts the game afte the Reset;
+    /// </summary>
+    public void OnGameStart()
+    {
+        playerPrefab.SetActive(true);
+        SpawnChaseDemon();
+        OnDemonChase?.Invoke();
+    }
+
     /// <summary>
     /// Spawns the Chase Demon;
     /// </summary>
@@ -113,7 +163,7 @@ public class MiniGameManager : MonoBehaviour
     /// Subbed to event from DemonEnemy and DemonChase;
     /// Spawns the next Demon after certain amount killed;
     /// </summary>
-    void OnEnemyKillScoreEventReceived(int score)
+    void OnEnemyDeadEventReceived()
     {
         _currDemonsKilled++;
         redTintAnim.SetTrigger("isTintTriggered");
@@ -127,11 +177,17 @@ public class MiniGameManager : MonoBehaviour
 
         if (_currDemonsKilled >= totalDemonsKilled)
         {
-            for (int i = 0; i < _totalDemonObjs.Count; i++)
-                _totalDemonObjs[i].SetActive(false);
+            //for (int i = 0; i < _totalDemonObjs.Count; i++)
+            //    _totalDemonObjs[i].SetActive(false);
 
-            redTintBG.DOFade(1, redTintFadeDelay);
+            //redTintBG.DOFade(1, redTintFadeDelay);
         }
     }
+
+    /// <summary>
+    /// Subbed to event from AprilPlayerController;
+    /// Restarts the game by playing the MiniGameRestartFeedback;
+    /// </summary>
+    void OnPlayerDeadEventReceived() => mmfMiniGame.PlayFeedbacks();
     #endregion
 }

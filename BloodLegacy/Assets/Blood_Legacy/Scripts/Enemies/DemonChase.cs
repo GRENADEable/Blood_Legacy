@@ -44,6 +44,10 @@ public class DemonChase : MonoBehaviour
     [SerializeField]
     [Tooltip("Player LayerMask to attach the Player")]
     private LayerMask playerLayer;
+
+    [SerializeField]
+    [Tooltip("Demon Blood Particle Effects")]
+    private ParticleSystem bloodFX = default;
     #endregion
 
     #region Events
@@ -57,15 +61,16 @@ public class DemonChase : MonoBehaviour
     public static event SendEvents OnPlayerDamage;
 
     /// <summary>
+    /// Event sent from DemonEnemy script to AprilPlayerController and AudioManager Scripts;
+    /// Plays SFX and FX for blocknig;;
+    /// </summary>
+    public static event SendEvents OnPlayerBlock;
+
+    /// <summary>
     /// Event sent from DemonEnemy to AudioManager Script;
     /// Kills the enemy and plays the death SFX;
     /// </summary>
     public static event SendEvents OnEnemyDead;
-    #endregion
-
-    #region Events Int
-    public delegate void SendEventsInt(int score);
-    public static event SendEventsInt OnEnemyKillScore;
     #endregion
 
     #endregion
@@ -75,6 +80,7 @@ public class DemonChase : MonoBehaviour
     #region Private Variables
     private Animator _demonAnim = default;
     private Rigidbody2D _demonrb2D = default;
+    private CapsuleCollider2D _demonCapsuleCol2D = default;
     //[SerializeField] private float _cooldownTimer = default;
     [SerializeField] private float _currDemonSpeed = default;
     [SerializeField] private EnemyState _currState = EnemyState.Chasing;
@@ -96,18 +102,24 @@ public class DemonChase : MonoBehaviour
     {
         AprilPlayerController.OnPlayerDead += OnPlayerDeadEventReceived;
         AprilPlayerController.OnPlayerInvincible += OnPlayerInvincibleEventReceived;
+
+        MiniGameManager.OnDemonChase += OnDemonChaseEventReceived;
     }
 
     void OnDisable()
     {
         AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
         AprilPlayerController.OnPlayerInvincible -= OnPlayerInvincibleEventReceived;
+
+        MiniGameManager.OnDemonChase -= OnDemonChaseEventReceived;
     }
 
     void OnDestroy()
     {
         AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
         AprilPlayerController.OnPlayerInvincible -= OnPlayerInvincibleEventReceived;
+
+        MiniGameManager.OnDemonChase -= OnDemonChaseEventReceived;
     }
     #endregion
 
@@ -115,6 +127,7 @@ public class DemonChase : MonoBehaviour
     {
         _demonAnim = GetComponent<Animator>();
         _demonrb2D = GetComponent<Rigidbody2D>();
+        _demonCapsuleCol2D = GetComponent<CapsuleCollider2D>();
         _initScale = transform.localScale;
         _currDemonSpeed = demonSpeed;
         //_cooldownTimer = atkCooldown;
@@ -150,19 +163,24 @@ public class DemonChase : MonoBehaviour
     public void EnemyKill()
     {
         OnEnemyDead?.Invoke();
-        OnEnemyKillScore?.Invoke(enemyScoreIncrement);
-        gameObject.SetActive(false);
-        //Destroy(gameObject);
-        //Debug.Log("Killing Enemy");
+        _currState = EnemyState.Dead;
+        _demonAnim.SetTrigger("isDead");
+        _demonAnim.SetBool("isMoving", false);
+        _demonAnim.SetBool("isAttacking", false);
+        _demonAnim.Play("C_Demon_2_Idle_Anim");
+        _demonrb2D.isKinematic = true;
+        _demonrb2D.velocity = Vector2.zero;
+        _demonCapsuleCol2D.enabled = false;
+        bloodFX.Play();
+        gameObject.layer = LayerMask.NameToLayer("Default");
+        this.enabled = false;
     }
+
     /// <summary>
     /// Tied to OnCharDisable Event on MMF_MiniGame_Intro;
     /// Changes the Demon speed after the cutscene;
     /// </summary>
-    public void OnDemonChaseDefault()
-    {
-        _currState = EnemyState.Chasing;
-    }
+    public void OnDemonChaseDefault() => _currState = EnemyState.Chasing;
 
     /// <summary>
     /// 
@@ -295,13 +313,20 @@ public class DemonChase : MonoBehaviour
         if (PlayerInSight() && _canAttackPlayer)
         {
             OnPlayerDamage?.Invoke();
-            //Debug.Log("Killing Player");
+            Debug.Log("Killing Player");
         }
+
+        if (PlayerInSight() && !_canAttackPlayer)
+        {
+            OnPlayerBlock?.Invoke();
+            Debug.Log("Player Blocking");
+        }
+
     }
 
     /// <summary>
-    /// Subbed to AprilPlayerController Script;
-    /// Lets the Enemy Script know that the player is Dead;
+    /// Subbed to event from AprilPlayerController Script;
+    /// Lets the Demon know that the player is Dead;
     /// </summary>
     void OnPlayerDeadEventReceived()
     {
@@ -312,6 +337,11 @@ public class DemonChase : MonoBehaviour
         //_isPlayerDead = true;
     }
 
+    /// <summary>
+    /// Subbed to event from AprilPlayerController Script;
+    /// Lets the Demon know that the player can't be damaged;
+    /// </summary>
+    /// <param name="isInvincible"> If true, can't be damaged. False, can damage; </param>
     void OnPlayerInvincibleEventReceived(bool isInvincible)
     {
         if (isInvincible)
@@ -319,5 +349,7 @@ public class DemonChase : MonoBehaviour
         else
             _canAttackPlayer = true;
     }
+
+    void OnDemonChaseEventReceived() => _currState = EnemyState.Chasing;
     #endregion
 }

@@ -50,11 +50,6 @@ public class DemonDefault : MonoBehaviour
     public static event SendEvents OnEnemyDead;
     #endregion
 
-    #region Events Int
-    public delegate void SendEventsInt(int score);
-    public static event SendEventsInt OnEnemyKillScore;
-    #endregion
-
     #endregion
 
     #endregion
@@ -142,7 +137,6 @@ public class DemonDefault : MonoBehaviour
     {
         OnEnemyDead?.Invoke();
         gameObject.SetActive(false);
-        OnEnemyKillScore?.Invoke(enemyScoreIncrement);
         _demonPatrol.IsDemonAlive = false;
         //Debug.Log("Killing Enemy");
     }

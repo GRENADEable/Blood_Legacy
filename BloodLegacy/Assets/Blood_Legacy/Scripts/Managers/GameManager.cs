@@ -95,6 +95,10 @@ public class GameManager : MonoBehaviour
             rendTexs[i].Release();
     }
 
+    #region Cheats
+
+    #endregion
+
     #endregion
 
     #region Events
