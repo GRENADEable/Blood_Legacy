@@ -40,11 +40,11 @@ public class MiniGameManager : MonoBehaviour
 
     [SerializeField]
     [Tooltip("MMF_MiniGame_Restart Component to Restart the MiniGame")]
-    private MMF_Player mmfMiniGame = default;
+    private MMF_Player mmfMiniGameRestart = default;
 
-    //[SerializeField]
-    //[Tooltip("Red Tint BG Img")]
-    //private Image redTintBG = default;
+    [SerializeField]
+    [Tooltip("MMF_MiniGame_Restart Component to End the MiniGame")]
+    private MMF_Player mmfMiniGameOutro = default;
     #endregion
 
     #region Events
@@ -60,8 +60,8 @@ public class MiniGameManager : MonoBehaviour
 
     #region Private Variables
     private int _currDemonsKilled = default;
-    [SerializeField] private List<GameObject> _totalDemonObjs = new List<GameObject>();
-    [SerializeField] private Vector3 _playerStartPos = default;
+    private List<GameObject> _totalDemonObjs = new List<GameObject>();
+    private Vector3 _playerStartPos = default;
     #endregion
 
     #region Unity Callbacks
@@ -108,11 +108,7 @@ public class MiniGameManager : MonoBehaviour
     /// Tied to MMF_MiniGame_Restart;
     /// Resets the Player Position;
     /// </summary>
-    public void OnPlayerReset()
-    {
-        playerPrefab.transform.position = _playerStartPos;
-        _totalDemonObjs.Clear();
-    }
+    public void OnPlayerReset() => playerPrefab.transform.position = _playerStartPos;
 
     /// <summary>
     /// Tied to MMF_MiniGame_Restart;
@@ -123,7 +119,7 @@ public class MiniGameManager : MonoBehaviour
         for (int i = 0; i < _totalDemonObjs.Count; i++)
             Destroy(_totalDemonObjs[i]);
 
-        //_totalDemonObjs.Clear();
+        _totalDemonObjs.Clear();
         _currDemonsKilled = 0;
         redTintAnim.Play("Empty");
     }
@@ -139,6 +135,14 @@ public class MiniGameManager : MonoBehaviour
         OnDemonChase?.Invoke();
     }
 
+    public void OnGameEnd()
+    {
+        for (int i = 0; i < _totalDemonObjs.Count; i++)
+            Destroy(_totalDemonObjs[i]);
+
+        _totalDemonObjs.Clear();
+    }
+
     /// <summary>
     /// Spawns the Chase Demon;
     /// </summary>
@@ -150,7 +154,7 @@ public class MiniGameManager : MonoBehaviour
 
         _totalDemonObjs.Add(chaseDemonObj);
 
-        Debug.Log("Spawning Chase Demon");
+        //Debug.Log("Spawning Chase Demon");
     }
     #endregion
 
@@ -176,18 +180,13 @@ public class MiniGameManager : MonoBehaviour
         }
 
         if (_currDemonsKilled >= totalDemonsKilled)
-        {
-            //for (int i = 0; i < _totalDemonObjs.Count; i++)
-            //    _totalDemonObjs[i].SetActive(false);
-
-            //redTintBG.DOFade(1, redTintFadeDelay);
-        }
+            mmfMiniGameOutro.PlayFeedbacks();
     }
 
     /// <summary>
     /// Subbed to event from AprilPlayerController;
     /// Restarts the game by playing the MiniGameRestartFeedback;
     /// </summary>
-    void OnPlayerDeadEventReceived() => mmfMiniGame.PlayFeedbacks();
+    void OnPlayerDeadEventReceived() => mmfMiniGameRestart.PlayFeedbacks();
     #endregion
 }

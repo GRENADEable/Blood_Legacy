@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Private Variables
-    private int _currVCamIndex = default;
+    [SerializeField] private int _currVCamIndex = default;
     #endregion
 
     #region Unity Callbacks
@@ -94,11 +94,6 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < rendTexs.Length; i++)
             rendTexs[i].Release();
     }
-
-    #region Cheats
-
-    #endregion
-
     #endregion
 
     #region Events

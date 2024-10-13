@@ -313,13 +313,13 @@ public class DemonChase : MonoBehaviour
         if (PlayerInSight() && _canAttackPlayer)
         {
             OnPlayerDamage?.Invoke();
-            Debug.Log("Killing Player");
+            //Debug.Log("Killing Player");
         }
 
         if (PlayerInSight() && !_canAttackPlayer)
         {
             OnPlayerBlock?.Invoke();
-            Debug.Log("Player Blocking");
+            //Debug.Log("Player Blocking");
         }
 
     }

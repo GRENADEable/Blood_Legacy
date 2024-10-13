@@ -301,12 +301,14 @@ public class AprilPlayerController : MonoBehaviour
     {
         //Debug.Log("Dead");
         OnPlayerDead?.Invoke();
-        gameObject.SetActive(false);
         _currPlayerHealth = maxPlayerHealth;
         _playerAnim.Play("EmptyDamage");
+        _playerAnim.Play("April_Blend");
         _canDash = true;
         _isPlayerDamaged = false;
         currState = PlayerState.Moving;
+        GetComponent<SpriteRenderer>().enabled = true;
+        gameObject.SetActive(false);
     }
     #endregion
 

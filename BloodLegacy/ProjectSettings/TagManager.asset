@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Comic_Rend_Tex_May
   - Comic_Rend_Tex_Demon_Shot
   - Comic_Rend_Tex_June_Callout
-  - 
+  - Comic_Rend_Tex_Mini_Game
   - 
   - 
   - 
