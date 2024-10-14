@@ -87,7 +87,25 @@ public class AprilPlayerController : MonoBehaviour
     [Space, Header("FXs")]
     [SerializeField]
     [Tooltip("Block Particle Effects")]
-    private ParticleSystem blockFX = default;
+    private GameObject blockFXPrefab = default;
+
+    [SerializeField]
+    [Tooltip("Block FX Spawn Position")]
+    private Transform blockFXSpawnPos = default;
+
+    [SerializeField]
+    [Tooltip("Dash Particle Effects")]
+    private GameObject dashFXPrefab = default;
+
+    [SerializeField]
+    [Tooltip("Block FX Spawn Position")]
+    private Transform dashFXSpawnPos = default;
+
+    [SerializeField]
+    [Tooltip("Dash Particle Effects")]
+    private GameObject swordSwipeFXPrefab = default;
+
+    //private ParticleSystem blockFX = default;
     #endregion
 
     #region Events
@@ -223,9 +241,11 @@ public class AprilPlayerController : MonoBehaviour
     #endregion
 
     #region My Functions
+
+    #region Gameplay
     /// <summary>
     /// Tied to OnCharEnable Event on MMF_MiniGame_Intro;
-    /// Enables the input afterthe cutscene;
+    /// Enables the input after the cutscene;
     /// </summary>
     public void OnAprilMove()
     {
@@ -233,6 +253,19 @@ public class AprilPlayerController : MonoBehaviour
         _isPlayerMoving = true;
     }
 
+    /// <summary>
+    /// Tied to OnCharDisable Event on MMF_MiniGame_Outro;
+    /// Disables the input;
+    /// </summary>
+    public void OnAprilFreeze()
+    {
+        currState = PlayerState.Dead;
+        _isPlayerMoving = false;
+        gameObject.SetActive(false);
+    }
+    #endregion
+
+    #region Player
     /// <summary>
     /// Player Movement function;
     /// </summary>
@@ -310,6 +343,24 @@ public class AprilPlayerController : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = true;
         gameObject.SetActive(false);
     }
+    #endregion
+
+    #region Cheats
+    /// <summary>
+    /// Subbed to evnet from MMF_MiniGame_Cheats;
+    /// Enables the Player Movement;
+    /// </summary>
+    public void OnMiniGameToggle()
+    {
+        currState = PlayerState.Moving;
+        _isPlayerMoving = true;
+    }
+    #endregion
+
+    #region FX
+
+    #endregion
+
     #endregion
 
     #region Coroutines
@@ -407,6 +458,7 @@ public class AprilPlayerController : MonoBehaviour
         if (context.started && _canDash && currState == PlayerState.Moving)
         {
             StartCoroutine(Dash());
+            Instantiate(dashFXPrefab, dashFXSpawnPos.position, Quaternion.identity,dashFXSpawnPos);
             //Debug.Log("Dashing");
         }
     }
@@ -434,6 +486,7 @@ public class AprilPlayerController : MonoBehaviour
     }
     #endregion
 
+    #region Player
     /// <summary>
     /// Subbed to Event from Demon Script;
     /// Damages the Player;
@@ -489,7 +542,9 @@ public class AprilPlayerController : MonoBehaviour
                 _hit2D.collider.GetComponent<DemonChase>().EnemyKill();
         }
     }
+    #endregion
 
+    #region FXs
     /// <summary>
     /// Subbed to Event from Demon Script;
     /// Plays FX Particle for Blocking;
@@ -497,7 +552,9 @@ public class AprilPlayerController : MonoBehaviour
     void OnPlayerBlockEventReceived()
     {
         if (currState == PlayerState.Blocking)
-            blockFX.Play();
+            Instantiate(blockFXPrefab, blockFXSpawnPos.position, Quaternion.identity);
     }
+    #endregion
+
     #endregion
 }

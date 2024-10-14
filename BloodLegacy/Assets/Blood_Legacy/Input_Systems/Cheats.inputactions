@@ -1,0 +1,34 @@
+{
+    "name": "Cheats",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "e3e71270-9e25-466e-a5e2-79f0d9cbff2a",
+            "actions": [
+                {
+                    "name": "MiniGameToggle",
+                    "type": "Button",
+                    "id": "7f03614a-b881-4ddf-8d1b-cb8be3373813",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "56dd615e-1af7-4753-a007-bbc9638d9e74",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MiniGameToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

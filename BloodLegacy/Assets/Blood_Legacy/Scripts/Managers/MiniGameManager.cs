@@ -1,6 +1,8 @@
 using MoreMountains.Feedbacks;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.InputSystem;
 
 public class MiniGameManager : MonoBehaviour
 {
@@ -26,6 +28,40 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("How long do you want to Fade In the Red Tint?")]
     private float redTintFadeDelay = default;
+
+    [SerializeField]
+    [Tooltip("How long do you want to Fade Out the Mini Game Tutorial World Canvas?")]
+    private float miniGameCanvasFadeDelay = default;
+    #endregion
+
+    #region UIs
+    [Space, Header("UIs")]
+    [SerializeField]
+    [Tooltip("The Mini Game Move Control UI World Canvas")]
+    private CanvasGroup miniGameMoveCanvas = default;
+
+    [SerializeField]
+    [Tooltip("The Mini Game Dash Control UI World Canvas")]
+    private CanvasGroup miniGameDashCanvas = default;
+
+    [SerializeField]
+    [Tooltip("The Mini Game Attack/Block Control UI World Canvas")]
+    private CanvasGroup miniGameAtkBlockCanvas = default;
+    #endregion
+
+    #region Feel
+    [Space, Header("Feel")]
+    [SerializeField]
+    [Tooltip("MMF_MiniGame_Restart Component to Restart the MiniGame")]
+    private MMF_Player mmfMiniGameRestart = default;
+
+    [SerializeField]
+    [Tooltip("MMF_MiniGame_Restart Component to End the MiniGame")]
+    private MMF_Player mmfMiniGameOutro = default;
+
+    [SerializeField]
+    [Tooltip("MMF_MiniGame_Cheats Component to for Mini Game Cheats")]
+    private MMF_Player mmfMiniGameCheats = default;
     #endregion
 
     #region Others
@@ -37,14 +73,13 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Red Tint Post Process Anim Controller")]
     private Animator redTintAnim = default;
+    #endregion
 
+    #region Cheats
+    [Space, Header("Cheats")]
     [SerializeField]
-    [Tooltip("MMF_MiniGame_Restart Component to Restart the MiniGame")]
-    private MMF_Player mmfMiniGameRestart = default;
-
-    [SerializeField]
-    [Tooltip("MMF_MiniGame_Restart Component to End the MiniGame")]
-    private MMF_Player mmfMiniGameOutro = default;
+    [Tooltip("Mini Games Panel GameObject")]
+    private GameObject miniGamePanel = default;
     #endregion
 
     #region Events
@@ -54,6 +89,12 @@ public class MiniGameManager : MonoBehaviour
     /// Changes the current state of the Demons to Chasing;
     /// </summary>
     public static event SendEvents OnDemonChase;
+
+    /// <summary>
+    /// Event sent from MiniGameManager and GameManager;
+    /// Cheats for Enabling MiniGame;
+    /// </summary>
+    public static event SendEvents OnMiniGameEnable;
     #endregion
 
     #endregion
@@ -104,6 +145,8 @@ public class MiniGameManager : MonoBehaviour
     #endregion
 
     #region My Functions
+
+    #region Gameplay
     /// <summary>
     /// Tied to MMF_MiniGame_Restart;
     /// Resets the Player Position;
@@ -126,7 +169,7 @@ public class MiniGameManager : MonoBehaviour
 
     /// <summary>
     /// Tied to MMF_MiniGame_Restart;
-    /// Starts the game afte the Reset;
+    /// Starts the game after the Reset;
     /// </summary>
     public void OnGameStart()
     {
@@ -135,6 +178,10 @@ public class MiniGameManager : MonoBehaviour
         OnDemonChase?.Invoke();
     }
 
+    /// <summary>
+    /// Tied to MMF_MiniGame_Outro;
+    /// Ends the game after Winning;
+    /// </summary>
     public void OnGameEnd()
     {
         for (int i = 0; i < _totalDemonObjs.Count; i++)
@@ -158,11 +205,35 @@ public class MiniGameManager : MonoBehaviour
     }
     #endregion
 
+    #region UI
+    public void OnMoveUIEnable() => miniGameMoveCanvas.DOFade(1, 0.5f);
+
+    public void OnDashUIEnable() => miniGameDashCanvas.DOFade(1, 0.5f);
+
+    public void OnAttkBlockUIEnable() => miniGameAtkBlockCanvas.DOFade(1, 0.5f);
+    #endregion
+
+    #region Cheats
+    #endregion
+
+    #endregion
+
     #region Coroutines
 
     #endregion
 
     #region Events
+    public void OnMiniGameToggle(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            mmfMiniGameCheats.PlayFeedbacks();
+            OnMiniGameEnable?.Invoke();
+            miniGamePanel.SetActive(true);
+            OnMoveUIEnable();
+        }
+    }
+
     /// <summary>
     /// Subbed to event from DemonEnemy and DemonChase;
     /// Spawns the next Demon after certain amount killed;
@@ -177,6 +248,13 @@ public class MiniGameManager : MonoBehaviour
             int spawnNumber = Random.Range(1, 3);
             for (int i = 0; i < spawnNumber; i++)
                 SpawnChaseDemon();
+        }
+
+        if (_currDemonsKilled == 1)
+        {
+            miniGameMoveCanvas.DOFade(0, miniGameCanvasFadeDelay);
+            miniGameDashCanvas.DOFade(0, miniGameCanvasFadeDelay);
+            miniGameAtkBlockCanvas.DOFade(0, miniGameCanvasFadeDelay);
         }
 
         if (_currDemonsKilled >= totalDemonsKilled)

@@ -59,17 +59,17 @@ public class GameManager : MonoBehaviour
     #region Events
     void OnEnable()
     {
-
+        MiniGameManager.OnMiniGameEnable += OnMiniGameToggleEventReceived;
     }
 
     void OnDisable()
     {
-
+        MiniGameManager.OnMiniGameEnable -= OnMiniGameToggleEventReceived;
     }
 
     void OnDestroy()
     {
-
+        MiniGameManager.OnMiniGameEnable -= OnMiniGameToggleEventReceived;
     }
     #endregion
 
@@ -86,32 +86,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region My Functions
-    /// <summary>
-    /// Releases and letft over Camera output render texture data;
-    /// </summary>
-    void ComicBookTexRelease()
-    {
-        for (int i = 0; i < rendTexs.Length; i++)
-            rendTexs[i].Release();
-    }
-    #endregion
-
-    #region Events
-
-    #region Input Systems
-    public void OnCamMoveNext(InputAction.CallbackContext context)
-    {
-        if (context.started && gmData.currState == GameMangerData.GameState.Book)
-            OnClick_ComicNext();
-    }
-
-    public void OnCamMovePrev(InputAction.CallbackContext context)
-    {
-        if (context.started && gmData.currState == GameMangerData.GameState.Book)
-            OnClick_ComicPrev();
-    }
-    #endregion
-
     /// <summary>
     /// Tied to Next_Comic_Button;
     /// Pans the camera to the next panel;
@@ -143,5 +117,45 @@ public class GameManager : MonoBehaviour
         _currVCamIndex--;
         vCams[_currVCamIndex].gameObject.SetActive(true);
     }
+
+    /// <summary>
+    /// Releases and letft over Camera output render texture data;
+    /// </summary>
+    void ComicBookTexRelease()
+    {
+        for (int i = 0; i < rendTexs.Length; i++)
+            rendTexs[i].Release();
+    }
+    #endregion
+
+    #region Events
+
+    #region Input Systems
+    public void OnCamMoveNext(InputAction.CallbackContext context)
+    {
+        if (context.started && gmData.currState == GameMangerData.GameState.Book)
+            OnClick_ComicNext();
+    }
+
+    public void OnCamMovePrev(InputAction.CallbackContext context)
+    {
+        if (context.started && gmData.currState == GameMangerData.GameState.Book)
+            OnClick_ComicPrev();
+    }
+    #endregion
+
+    /// <summary>
+    /// Subbed to event from MiniGameManager;
+    /// Enables the VCam for the Mini Game only;
+    /// </summary>
+    void OnMiniGameToggleEventReceived()
+    {
+        for (int i = 0; i < vCams.Length; i++)
+            vCams[i].gameObject.SetActive(false);
+
+        _currVCamIndex = 6;
+        vCams[_currVCamIndex].gameObject.SetActive(true);
+    }
+
     #endregion
 }
