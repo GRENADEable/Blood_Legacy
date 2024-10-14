@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,16 +17,20 @@ public class GameManager : MonoBehaviour
     private GameMangerData gmData = default;
     #endregion
 
-    #region Ints
-    [Space, Header("Ints")]
+    #region Ints and Floats
+    [Space, Header("Ints and Floats")]
     [SerializeField]
     [Range(1f, 7f)]
     [Tooltip("Timescale for debuggging")]
     private int timescaleModifier = 1;
-    #endregion
 
-    #region Floats
+    [SerializeField]
+    [Tooltip("April Hands BG Alpha ramp down value")]
+    private float aprilhandsFadeOut = default;
 
+    [SerializeField]
+    [Tooltip("How much time do you want the alpha to ramp down?")]
+    private float aprilhandsFadeOutDelay = default;
     #endregion
 
     #region Transforms
@@ -40,6 +46,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("All the render texture GameObjects")]
     private RenderTexture[] rendTexs = default;
+
+    [SerializeField]
+    [Tooltip("Red Background for the April Hands Panel")]
+    private Image aprilHandsRedBG = default;
     #endregion
 
     #region Virtual Cams
@@ -116,6 +126,15 @@ public class GameManager : MonoBehaviour
 
         _currVCamIndex--;
         vCams[_currVCamIndex].gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// Tied to MMF_April_Hands;
+    /// Pulses the Red Background when triggered;
+    /// </summary>
+    public void OnRedBGPulse()
+    {
+        aprilHandsRedBG.DOFade(aprilhandsFadeOut, aprilhandsFadeOutDelay).SetLoops(-1, LoopType.Yoyo);
     }
 
     /// <summary>
