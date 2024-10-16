@@ -16512,11 +16512,18 @@ MonoBehaviour:
   playerPrefab: {fileID: 1236144060}
   totalDemonsKilled: 8
   redTintFadeDelay: 1
+  miniGameCanvasFadeDelay: 0
+  miniGameMoveCanvas: {fileID: 0}
+  miniGameDashCanvas: {fileID: 0}
+  miniGameAtkBlockCanvas: {fileID: 0}
+  mmfMiniGameRestart: {fileID: 0}
+  mmfMiniGameOutro: {fileID: 0}
+  mmfMiniGameCheats: {fileID: 0}
   chaseDemonSpawnPos:
   - {fileID: 940047001}
   - {fileID: 749215038}
   redTintAnim: {fileID: 797731636}
-  redTintBG: {fileID: 0}
+  miniGamePanel: {fileID: 0}
 --- !u!114 &1235674687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16549,6 +16556,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gmData: {fileID: 11400000, guid: 73d00e7781226674f8e47e1e45afeab4, type: 2}
   timescaleModifier: 1
+  aprilhandsFadeOut: 0
+  aprilhandsFadeOutDelay: 0
   rendTexs:
   - {fileID: 8400000, guid: 1a919cb2291b99744969c376f7a4865c, type: 2}
   - {fileID: 8400000, guid: c9b298173f2915e4c83faf7971fa9c59, type: 2}
@@ -16556,6 +16565,7 @@ MonoBehaviour:
   - {fileID: 8400000, guid: f9ff82d2463f41842900f7a3be95e9ef, type: 2}
   - {fileID: 8400000, guid: dcf3a446d894d6443b70d433c5e9713a, type: 2}
   - {fileID: 8400000, guid: 1a92f27b4088ddb40aef7d222d01abfb, type: 2}
+  aprilHandsRedBG: {fileID: 0}
   vCams:
   - {fileID: 0}
   - {fileID: 0}
@@ -16568,6 +16578,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _currVCamIndex: 0
 --- !u!4 &1235674689
 Transform:
   m_ObjectHideFlags: 0
@@ -17440,7 +17451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1324498566
 Transform:
   m_ObjectHideFlags: 0
@@ -18856,7 +18867,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1477745692}
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.88233185, y: 0.4441207, z: -0.15000093}
+  m_LocalPosition: {x: 0.88262177, y: 0.4441207, z: -0.15000093}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 34855100}
