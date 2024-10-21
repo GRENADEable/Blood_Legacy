@@ -6949,7 +6949,7 @@ MonoBehaviour:
         RandomDurationMultiplier: {x: 0.5, y: 2}
         Owner: {fileID: 336153742}
         DebugActive: 0
-        PauseDuration: 1.5
+        PauseDuration: 2
         RandomizePauseDuration: 0
         MinPauseDuration: 1
         MaxPauseDuration: 3
@@ -7097,7 +7097,7 @@ MonoBehaviour:
         DebugActive: 0
         BoundImage: {fileID: 1977703871}
         Mode: 0
-        Duration: 1
+        Duration: 2
         AllowAdditivePlays: 0
         InstantAlpha: 1
         Curve:
@@ -7167,7 +7167,7 @@ MonoBehaviour:
         RandomDurationMultiplier: {x: 0.5, y: 2}
         Owner: {fileID: 336153742}
         DebugActive: 0
-        PauseDuration: 1
+        PauseDuration: 2
         RandomizePauseDuration: 0
         MinPauseDuration: 1
         MaxPauseDuration: 3
@@ -61253,10 +61253,10 @@ RectTransform:
   m_Father: {fileID: 1806561046}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00012207, y: 0.0000076294}
-  m_SizeDelta: {x: 1638.017, y: 819.81}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1977703871
 MonoBehaviour:
@@ -61278,7 +61278,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fbbbd18c35eb7014cb38b7a03e580e02, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb16cf34bee1b1f4d9894d8886eec845, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -61306,7 +61306,7 @@ Animator:
   m_GameObject: {fileID: 1977703869}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 97b6bac369ff7d34cbe69f04765a1288, type: 2}
+  m_Controller: {fileID: 9100000, guid: b6113a94e3e281e4eb73cbf9c5be31ba, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
