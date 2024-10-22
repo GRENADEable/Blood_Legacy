@@ -451,8 +451,8 @@ MonoBehaviour:
     m_Bits: 64
   circleRadius: 0.01
   boxCollider: {fileID: 3642204052734511365}
-  colliderDistance: 0.87
-  range: 1.9
+  colliderDistance: 1.69
+  range: 1.63
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -461,7 +461,7 @@ MonoBehaviour:
   dashingCooldown: 1
   blockFXPrefab: {fileID: 100004, guid: 18380488e29209446957af9017252417, type: 3}
   blockFXSpawnPos: {fileID: 3669997536678330232}
-  dashFXPrefab: {fileID: 7126856739083149067, guid: 492c0b3c44d5d5f4687137fd57e6e7f6, type: 3}
+  dashFXPrefab: {fileID: 5516914289366905485, guid: a77a05bde176067438956ee7b4b7a98b, type: 3}
   dashFXSpawnPos: {fileID: 4461887226708897687}
   swordSwipeFXPrefab: {fileID: 0}
   _isPlayerDamaged: 0

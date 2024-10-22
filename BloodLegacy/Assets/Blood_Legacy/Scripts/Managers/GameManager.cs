@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("GameManager Data")]
     private GameMangerData gmData = default;
+
+    [SerializeField]
+    [Tooltip("Do you wanna use the timescale modifier?")]
+    private bool isUsingTimeModifier = default;
     #endregion
 
     #region Ints and Floats
@@ -91,7 +95,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        Time.timeScale = timescaleModifier;
+        if (isUsingTimeModifier)
+            Time.timeScale = timescaleModifier;
     }
     #endregion
 
@@ -135,6 +140,20 @@ public class GameManager : MonoBehaviour
     public void OnRedBGPulse()
     {
         aprilHandsRedBG.DOFade(aprilhandsFadeOut, aprilhandsFadeOutDelay).SetLoops(-1, LoopType.Yoyo);
+    }
+
+    /// <summary>
+    /// Tied to MMF_MiniGame_April_Hit Feedback;
+    /// Freezes the game for a split second;
+    /// </summary>
+    /// <param name="isFreezing"> If true, freeze, else don't freeze; </param>
+    public void OnFreezeTimeToggle(bool isFreezing)
+    {
+        if (isFreezing)
+            Time.timeScale = 0.001f;
+        else
+            Time.timeScale = 1f;
+
     }
 
     /// <summary>

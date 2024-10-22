@@ -100,12 +100,6 @@ public class AprilPlayerController : MonoBehaviour
     [SerializeField]
     [Tooltip("Block FX Spawn Position")]
     private Transform dashFXSpawnPos = default;
-
-    [SerializeField]
-    [Tooltip("Dash Particle Effects")]
-    private GameObject swordSwipeFXPrefab = default;
-
-    //private ParticleSystem blockFX = default;
     #endregion
 
     #region Events
@@ -213,7 +207,7 @@ public class AprilPlayerController : MonoBehaviour
 
     void Update()
     {
-        if (currState == PlayerState.Dead || currState == PlayerState.Blocking || currState == PlayerState.Attacking)
+        if (currState == PlayerState.Dead || currState == PlayerState.Blocking || (currState == PlayerState.Attacking && IsPlayerGrounded()))
         {
             _rb2D.velocity = Vector2.zero;
             return;
@@ -266,6 +260,14 @@ public class AprilPlayerController : MonoBehaviour
     #endregion
 
     #region Player
+    public void OnJumpStarted()
+    {
+        _rb2D.velocity = new Vector2(_rb2D.velocity.x, jumpPower);
+        currState = PlayerState.Jumping;
+    }
+
+    public void OnJumpEnded() => currState = PlayerState.Moving;
+
     /// <summary>
     /// Player Movement function;
     /// </summary>
@@ -384,6 +386,7 @@ public class AprilPlayerController : MonoBehaviour
 
         _playerTrail.emitting = true;
         yield return new WaitForSeconds(dashingTime);
+        Instantiate(dashFXPrefab, dashFXSpawnPos.position, Quaternion.identity);
         _playerTrail.emitting = false;
         //_isPlayerDashing = false;
         currState = PlayerState.Moving;
@@ -428,8 +431,8 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     public void OnJumpPlayer(InputAction.CallbackContext context)
     {
-        if (context.performed && IsPlayerGrounded() && _isPlayerMoving)
-            _rb2D.velocity = new Vector2(_rb2D.velocity.x, jumpPower);
+        if (context.performed && IsPlayerGrounded() && _isPlayerMoving && currState != PlayerState.Blocking)
+            _playerAnim.SetTrigger("isJumping");
 
         if (context.canceled && _rb2D.velocity.y > 0f)
             _rb2D.velocity = new Vector2(_rb2D.velocity.x, _rb2D.velocity.y * 0.5f);
@@ -458,7 +461,6 @@ public class AprilPlayerController : MonoBehaviour
         if (context.started && _canDash && currState == PlayerState.Moving)
         {
             StartCoroutine(Dash());
-            Instantiate(dashFXPrefab, dashFXSpawnPos.position, Quaternion.identity,dashFXSpawnPos);
             //Debug.Log("Dashing");
         }
     }
@@ -469,7 +471,7 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     public void OnBlockPlayer(InputAction.CallbackContext context)
     {
-        if (context.started && currState == PlayerState.Moving)
+        if (context.started && currState == PlayerState.Moving && IsPlayerGrounded())
         {
             _playerAnim.SetBool("isBlocking", true);
             currState = PlayerState.Blocking;

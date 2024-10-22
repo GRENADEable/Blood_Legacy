@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class MiniGameManager : MonoBehaviour
 {
@@ -32,6 +33,17 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("How long do you want to Fade Out the Mini Game Tutorial World Canvas?")]
     private float miniGameCanvasFadeDelay = default;
+
+    [SerializeField]
+    [Tooltip("How long is the mini game duration?")]
+    private float miniGameTotalTime = default;
+    #endregion
+
+    #region Bools
+    [Space, Header("Bools")]
+    [SerializeField]
+    [Tooltip("For testing purposes")]
+    private bool isUsingFeedbacks = default;
     #endregion
 
     #region UIs
@@ -47,6 +59,14 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("The Mini Game Attack/Block Control UI World Canvas")]
     private CanvasGroup miniGameAtkBlockCanvas = default;
+
+    [SerializeField]
+    [Tooltip("Game Timer Text")]
+    private TextMeshProUGUI timerText = default;
+
+    [SerializeField]
+    [Tooltip("Demon Kill Counter Text")]
+    private TextMeshProUGUI demonKillText = default;
     #endregion
 
     #region Feel
@@ -58,6 +78,14 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("MMF_MiniGame_Restart Component to End the MiniGame")]
     private MMF_Player mmfMiniGameOutro = default;
+
+    [SerializeField]
+    [Tooltip("MMF_MiniGame_Enemy_Hit Component to react with Enemy Hit")]
+    private MMF_Player mmfMiniGameEnemyHit = default;
+
+    [SerializeField]
+    [Tooltip("MMF_MiniGame_Enemy_Hit Component to react with Enemy Hit")]
+    private MMF_Player mmfMiniGameAprilHit = default;
 
     [SerializeField]
     [Tooltip("MMF_MiniGame_Cheats Component to for Mini Game Cheats")]
@@ -101,8 +129,10 @@ public class MiniGameManager : MonoBehaviour
 
     #region Private Variables
     private int _currDemonsKilled = default;
+    [SerializeField] private float _currTime = default;
     private List<GameObject> _totalDemonObjs = new List<GameObject>();
     private Vector3 _playerStartPos = default;
+    [SerializeField] private bool _isMiniGameStarted = default;
     #endregion
 
     #region Unity Callbacks
@@ -113,6 +143,7 @@ public class MiniGameManager : MonoBehaviour
         DemonDefault.OnEnemyDead += OnEnemyDeadEventReceived;
 
         DemonChase.OnEnemyDead += OnEnemyDeadEventReceived;
+        DemonChase.OnPlayerDamage += OnPlayerDamageEventReceived;
 
         AprilPlayerController.OnPlayerDead += OnPlayerDeadEventReceived;
     }
@@ -122,6 +153,7 @@ public class MiniGameManager : MonoBehaviour
         DemonDefault.OnEnemyDead -= OnEnemyDeadEventReceived;
 
         DemonChase.OnEnemyDead -= OnEnemyDeadEventReceived;
+        DemonChase.OnPlayerDamage -= OnPlayerDamageEventReceived;
 
         AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
     }
@@ -131,16 +163,24 @@ public class MiniGameManager : MonoBehaviour
         DemonDefault.OnEnemyDead -= OnEnemyDeadEventReceived;
 
         DemonChase.OnEnemyDead -= OnEnemyDeadEventReceived;
+        DemonChase.OnPlayerDamage -= OnPlayerDamageEventReceived;
 
         AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
     }
     #endregion
 
-    void Start() => _playerStartPos = playerPrefab.transform.position;
+    void Start()
+    {
+        _playerStartPos = playerPrefab.transform.position;
+        _currTime = miniGameTotalTime;
+        UpdateTimerUI(_currTime);
+        UpdateKillUI(_currDemonsKilled);
+    }
 
     void Update()
     {
-
+        if (_isMiniGameStarted)
+            CountdownTimer();
     }
     #endregion
 
@@ -164,8 +204,17 @@ public class MiniGameManager : MonoBehaviour
 
         _totalDemonObjs.Clear();
         _currDemonsKilled = 0;
+        _currTime = miniGameTotalTime;
         redTintAnim.Play("Empty");
+        UpdateKillUI(_currDemonsKilled);
+        UpdateTimerUI(_currTime);
+        _isMiniGameStarted = false;
     }
+
+    /// <summary>
+    /// Enables the Mini Game Timer;
+    /// </summary>
+    public void OnGameTimerStart() => _isMiniGameStarted = true;
 
     /// <summary>
     /// Tied to MMF_MiniGame_Restart;
@@ -176,6 +225,7 @@ public class MiniGameManager : MonoBehaviour
         playerPrefab.SetActive(true);
         SpawnChaseDemon();
         OnDemonChase?.Invoke();
+        _isMiniGameStarted = true;
     }
 
     /// <summary>
@@ -206,23 +256,57 @@ public class MiniGameManager : MonoBehaviour
     #endregion
 
     #region UI
+    /// <summary>
+    /// Enables the Move UI Control Layout;
+    /// </summary>
     public void OnMoveUIEnable() => miniGameMoveCanvas.DOFade(1, 0.5f);
 
+    /// <summary>
+    /// Tied to T_Dash_UI;
+    /// Enables the Dash UI World Canvas;
+    /// </summary>
     public void OnDashUIEnable() => miniGameDashCanvas.DOFade(1, 0.5f);
 
+    /// <summary>
+    /// Tied to T_Atk_Block_UI;
+    /// Enables the Attack UI World Canvas;
+    /// </summary>
     public void OnAttkBlockUIEnable() => miniGameAtkBlockCanvas.DOFade(1, 0.5f);
-    #endregion
 
-    #region Cheats
-    #endregion
+    /// <summary>
+    /// Updates the timer Text UI;
+    /// </summary>
+    /// <param name="timer"> Timer float; </param>
+    void UpdateTimerUI(float timer) => timerText.text = $"Time: {_currTime:f0}";
 
-    #endregion
+    /// <summary>
+    /// Updates the kill counter UI;
+    /// </summary>
+    /// <param name="kills"> Kill int; </param>
+    void UpdateKillUI(int kills) => demonKillText.text = $"Kills: {kills}";
 
-    #region Coroutines
+    /// <summary>
+    /// Countdown timer of the MiniGame;
+    /// </summary>
+    void CountdownTimer()
+    {
+        _currTime -= Time.deltaTime;
+        UpdateTimerUI(_currTime);
+
+        if (_currTime <= 0)
+        {
+            _currTime = miniGameTotalTime;
+            mmfMiniGameRestart.PlayFeedbacks();
+        }
+    }
+    #endregion
 
     #endregion
 
     #region Events
+    /// <summary>
+    /// Cheats for enabling MiniGame;
+    /// </summary>
     public void OnMiniGameToggle(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -241,7 +325,10 @@ public class MiniGameManager : MonoBehaviour
     void OnEnemyDeadEventReceived()
     {
         _currDemonsKilled++;
+        UpdateKillUI(_currDemonsKilled);
         redTintAnim.SetTrigger("isTintTriggered");
+
+        mmfMiniGameEnemyHit.PlayFeedbacks();
 
         if (_totalDemonObjs.Count <= totalDemonsKilled)
         {
@@ -258,13 +345,28 @@ public class MiniGameManager : MonoBehaviour
         }
 
         if (_currDemonsKilled >= totalDemonsKilled)
-            mmfMiniGameOutro.PlayFeedbacks();
+        {
+            if (isUsingFeedbacks)
+                mmfMiniGameOutro.PlayFeedbacks();
+
+            _isMiniGameStarted = false;
+        }
     }
 
     /// <summary>
     /// Subbed to event from AprilPlayerController;
     /// Restarts the game by playing the MiniGameRestartFeedback;
     /// </summary>
-    void OnPlayerDeadEventReceived() => mmfMiniGameRestart.PlayFeedbacks();
+    void OnPlayerDeadEventReceived()
+    {
+        if (isUsingFeedbacks)
+            mmfMiniGameRestart.PlayFeedbacks();
+    }
+
+    /// <summary>
+    /// Subbed to DemonChase Event;
+    /// Plays Feedback for April Hit;
+    /// </summary>
+    void OnPlayerDamageEventReceived() => mmfMiniGameAprilHit.PlayFeedbacks();
     #endregion
 }

@@ -47,7 +47,7 @@ public class DemonChase : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Demon Blood Particle Effects")]
-    private ParticleSystem bloodFX = default;
+    private ParticleSystem[] bloodFX = default;
     #endregion
 
     #region Events
@@ -93,6 +93,7 @@ public class DemonChase : MonoBehaviour
     private Vector3 _initScale = default;
     private Vector3 _direction = default;
     [SerializeField] private bool _canAttackPlayer = true;
+    [SerializeField] private int _randDeathIndex = default;
     #endregion
 
     #region Unity Callbacks
@@ -130,6 +131,7 @@ public class DemonChase : MonoBehaviour
         _demonCapsuleCol2D = GetComponent<CapsuleCollider2D>();
         _initScale = transform.localScale;
         _currDemonSpeed = demonSpeed;
+        _randDeathIndex = Random.Range(0, 2);
         //_cooldownTimer = atkCooldown;
     }
 
@@ -162,16 +164,15 @@ public class DemonChase : MonoBehaviour
     /// </summary>
     public void EnemyKill()
     {
-        OnEnemyDead?.Invoke();
         _currState = EnemyState.Dead;
         _demonAnim.SetTrigger("isDead");
+        _demonAnim.SetInteger("deadParameter", _randDeathIndex);
         _demonAnim.SetBool("isMoving", false);
         _demonAnim.SetBool("isAttacking", false);
         _demonAnim.Play("C_Demon_2_Idle_Anim");
         _demonrb2D.isKinematic = true;
         _demonrb2D.velocity = Vector2.zero;
         _demonCapsuleCol2D.enabled = false;
-        bloodFX.Play();
         gameObject.layer = LayerMask.NameToLayer("Default");
         this.enabled = false;
     }
@@ -181,6 +182,16 @@ public class DemonChase : MonoBehaviour
     /// Changes the Demon speed after the cutscene;
     /// </summary>
     public void OnDemonChaseDefault() => _currState = EnemyState.Chasing;
+
+    /// <summary>
+    /// Tied to C_Demon_2_Dead_Anim;
+    /// Plays the blood effect and sends events;
+    /// </summary>
+    public void OnDemonDead()
+    {
+        bloodFX[_randDeathIndex].Play();
+        OnEnemyDead?.Invoke();
+    }
 
     /// <summary>
     /// 
