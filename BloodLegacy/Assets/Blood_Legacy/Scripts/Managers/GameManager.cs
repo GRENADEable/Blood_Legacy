@@ -134,6 +134,18 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Tied to Restart_Button;
+    /// Restarts the Game;
+    /// </summary>
+    public void OnRestartGame() => gmData.ChangeLevel(Application.loadedLevel);
+
+    /// <summary>
+    /// Tied to Exit_Button;
+    /// Exits the Game;
+    /// </summary>
+    public void OnExitGame() => gmData.QuitGame();
+
+    /// <summary>
     /// Tied to MMF_April_Hands;
     /// Pulses the Red Background when triggered;
     /// </summary>

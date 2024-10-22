@@ -68,6 +68,21 @@ public class GameMangerData : ScriptableObject
         if (state.Contains("Exit"))
             currState = GameState.Exit;
     }
+
+    /// <summary>
+    /// Changes Level using the int Values;
+    /// </summary>
+    /// <param name="level"> Int variable for the Scenes added in Build Windows; </param>
+    public void ChangeLevel(int level) => Application.LoadLevel(level);
+
+    /// <summary>
+    /// Closes the Game;
+    /// </summary>
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Game Closed");
+    }
     #endregion
 
     #endregion
