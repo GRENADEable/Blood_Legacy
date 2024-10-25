@@ -10613,7 +10613,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A group of superhuman Demihumans, stands as the last line of defense
+  m_text: The Execution Demon Corp, a group of superhuman Demihumans, stands as the
+    last line of defense
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b5ff7314b47750a4cafb7aebd5799f6c, type: 2}
   m_sharedMaterial: {fileID: 7108760223754154878, guid: b5ff7314b47750a4cafb7aebd5799f6c, type: 2}
@@ -10622,7 +10623,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4261412864
+    rgba: 687865856
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -22716,7 +22717,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 3959422976
+    rgba: 0
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -24792,34 +24793,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f0b0b6d0b7542bfbd20a3e05b04ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_IsTrail: 0
-  m_IgnoreCanvasScaler: 0
-  m_AbsoluteMode: 0
-  m_Scale3D: {x: 50, y: 50, z: 50}
-  m_AnimatableProperties: []
-  m_Particles:
-  - {fileID: 6956152258322262004}
-  - {fileID: 6986285183629746764}
-  - {fileID: 951233295}
-  - {fileID: 643626434}
-  - {fileID: 659499834}
-  - {fileID: 1953595448}
-  m_MeshSharing: 0
-  m_GroupId: 0
-  m_GroupMaxId: 0
-  m_PositionMode: 1
-  m_AutoScaling: 0
-  m_AutoScalingMode: 2
-  m_UseCustomView: 0
-  m_CustomViewSize: 10
 --- !u!222 &814844551
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27288,6 +27261,8 @@ PlayableDirector:
   - key: {fileID: 545436457613276708, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
     value: {fileID: 899169649}
   - key: {fileID: -3655742390565095663, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
+    value: {fileID: 1613496309}
+  - key: {fileID: 6692526075645685883, guid: f16e6f41e7419074f968bf3a4691fe08, type: 2}
     value: {fileID: 1613496309}
   m_ExposedReferences:
     m_References: []
