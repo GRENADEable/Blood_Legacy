@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SocialPlatforms;
 
 public class AprilPlayerController : MonoBehaviour
 {
@@ -245,6 +244,16 @@ public class AprilPlayerController : MonoBehaviour
     {
         currState = PlayerState.Moving;
         _isPlayerMoving = true;
+    }
+
+    /// <summary>
+    /// Tied to OnCharDisable Event on MMF_MiniGame_Start;
+    /// Pauses the input on the cutscene;
+    /// </summary>
+    public void OnAprilPause()
+    {
+        currState = PlayerState.Dead;
+        _isPlayerMoving = false;
     }
 
     /// <summary>
