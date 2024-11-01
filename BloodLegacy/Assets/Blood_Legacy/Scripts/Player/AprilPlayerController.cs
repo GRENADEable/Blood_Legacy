@@ -520,16 +520,22 @@ public class AprilPlayerController : MonoBehaviour
 
     /// <summary>
     /// Tied to AnimEvent on C_April_Attack_Anim;
-    /// Toggles the movement of the Player when Attacking;
+    /// Tops the movement when Player when attack starts;
     /// </summary>
-    public void OnPlayerAttacking()
+    public void OnPlayerAttackStart()
     {
-        _isPlayerMoving = !_isPlayerMoving;
+        _isPlayerMoving = false;
+        currState = PlayerState.Attacking;
+    }
 
-        if (_isPlayerMoving)
-            currState = PlayerState.Moving;
-        else
-            currState = PlayerState.Attacking;
+    /// <summary>
+    /// Tied to AnimEvent on C_April_Attack_Anim;
+    /// Tops the movement when Player when attack ends;
+    /// </summary>
+    public void OnPlayerAttackEnd()
+    {
+        _isPlayerMoving = true;
+        currState = PlayerState.Moving;
     }
 
     /// <summary>
