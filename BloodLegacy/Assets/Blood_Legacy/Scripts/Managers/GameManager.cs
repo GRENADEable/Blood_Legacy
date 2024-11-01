@@ -38,11 +38,21 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Transforms
-
+    [Space, Header("Transforms")]
+    [SerializeField]
+    [Tooltip("The End Position of the Book to show ending")]
+    private Transform bookEndPos = default;
     #endregion
 
     #region GameObjects
+    [Space, Header("GameObjects")]
+    [SerializeField]
+    [Tooltip("Comic Book GameObject")]
+    private GameObject bookObj = default;
 
+    [SerializeField]
+    [Tooltip("Comic Book Page GameObject")]
+    private GameObject[] comicPagesObjs = default;
     #endregion
 
     #region UIs
@@ -165,6 +175,15 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0.001f;
         else
             Time.timeScale = 1f;
+
+    }
+
+    public void OnBookEnd()
+    {
+        bookObj.transform.SetPositionAndRotation(bookEndPos.position, bookEndPos.rotation);
+
+        for (int i = 0; i < comicPagesObjs.Length; i++)
+            comicPagesObjs[i].SetActive(false);
 
     }
 
