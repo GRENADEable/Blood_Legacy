@@ -994,7 +994,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 3553013
+    rgba: 4281743093
   m_fontColor: {r: 0.9607843, g: 0.21176471, b: 0.21176471, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -2849,7 +2849,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806768382}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.09, y: 16.99, z: -3.72}
+  m_LocalPosition: {x: -0.28, y: 16.99, z: -3.72}
   m_LocalScale: {x: 0.9676664, y: 0.9676664, z: 0.9676664}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4473,7 +4473,7 @@ SpriteRenderer:
   m_Size: {x: 1.96, y: 1.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1284923760
