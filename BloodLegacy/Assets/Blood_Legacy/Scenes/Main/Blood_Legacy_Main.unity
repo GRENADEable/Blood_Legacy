@@ -11139,7 +11139,7 @@ MonoBehaviour:
     00000001:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 906401846
         Label: Holding Pause
         Channel: 0
@@ -11284,7 +11284,7 @@ MonoBehaviour:
     00000004:
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 0
+        Active: 1
         UniqueID: -583298639
         Label: Holding Pause
         Channel: 0
@@ -65429,7 +65429,6 @@ MonoBehaviour:
   miniGameAtkBlockCanvas: {fileID: 1486982915}
   timerText: {fileID: 959048456}
   demonKillText: {fileID: 1570813113}
-  mmfMiniGameIntro: {fileID: 0}
   mmfMiniGameRestart: {fileID: 2089595847}
   mmfMiniGameOutro: {fileID: 1362337494}
   mmfMiniGameEnemyHit: {fileID: 1427337982}
