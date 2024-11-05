@@ -69,8 +69,8 @@ public class MiniGameManager : MonoBehaviour
     private TextMeshProUGUI demonKillText = default;
     #endregion
 
-    #region Feel
-    [Space, Header("Feel")]
+    #region Feels
+    [Space, Header("Feels")]
     [SerializeField]
     [Tooltip("MMF_MiniGame_Restart Component to Restart the MiniGame")]
     private MMF_Player mmfMiniGameRestart = default;

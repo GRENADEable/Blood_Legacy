@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using UnityEngine.UI;
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 
 public class GameManager : MonoBehaviour
 {
@@ -65,6 +64,14 @@ public class GameManager : MonoBehaviour
     [Tooltip("Red Background for the April Hands Panel")]
     private Image aprilHandsRedBG = default;
     #endregion
+
+    #region Feels
+    [Space, Header("Feels")]
+    [SerializeField]
+    [Tooltip("MMF_MiniGame_Cheats Component to for triggered april transform")]
+    private MMF_Player mmfAprilTransformCheats = default;
+    #endregion
+
 
     #region Virtual Cams
     [SerializeField]
@@ -178,6 +185,10 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Tied to MMF_Book_Credits;
+    /// Changes the position and rotation of the book to set up for the credit section;
+    /// </summary>
     public void OnBookEnd()
     {
         bookObj.transform.SetPositionAndRotation(bookEndPos.position, bookEndPos.rotation);
@@ -210,6 +221,20 @@ public class GameManager : MonoBehaviour
     {
         if (context.started && gmData.currState == GameMangerData.GameState.Book)
             OnClick_ComicPrev();
+    }
+
+    public void OnAprilTransformToggle(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            for (int i = 0; i < vCams.Length; i++)
+                vCams[i].gameObject.SetActive(false);
+
+            _currVCamIndex = 9;
+            vCams[_currVCamIndex].gameObject.SetActive(true);
+
+            mmfAprilTransformCheats.PlayFeedbacks();
+        }
     }
     #endregion
 
