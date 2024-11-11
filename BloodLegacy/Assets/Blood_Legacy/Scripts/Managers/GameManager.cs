@@ -72,7 +72,6 @@ public class GameManager : MonoBehaviour
     private MMF_Player mmfAprilTransformCheats = default;
     #endregion
 
-
     #region Virtual Cams
     [SerializeField]
     [Tooltip("Array of Virtual Cams for the Comic Book")]
@@ -182,7 +181,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0.001f;
         else
             Time.timeScale = 1f;
-
     }
 
     /// <summary>

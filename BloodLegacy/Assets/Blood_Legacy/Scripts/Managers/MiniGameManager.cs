@@ -18,6 +18,14 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Player Prefab GameObject in Scene")]
     private GameObject playerPrefab = default;
+
+    [SerializeField]
+    [Tooltip("Mini Game HUD Panel")]
+    private GameObject miniGameHUDPanel = default;
+
+    [SerializeField]
+    [Tooltip("Skip MiniGame Panel")]
+    private GameObject miniGameSkipPanel = default;
     #endregion
 
     #region Ints and Floats
@@ -25,6 +33,10 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("After how many demons to kill to goto the next panel?")]
     private int totalDemonsKilled = default;
+
+    [SerializeField]
+    [Tooltip("After how many deaths do you want to show the skip paenl?")]
+    private int totaldeathToSkip = 3;
 
     [SerializeField]
     [Tooltip("How long do you want to Fade In the Red Tint?")]
@@ -72,8 +84,12 @@ public class MiniGameManager : MonoBehaviour
     #region Feels
     [Space, Header("Feels")]
     [SerializeField]
-    [Tooltip("MMF_MiniGame_Restart Component to Restart the MiniGame")]
-    private MMF_Player mmfMiniGameRestart = default;
+    [Tooltip("MMF_MiniGame_Long_Restart Component to Restart the MiniGame")]
+    private MMF_Player mmfMiniGameLongRestart = default;
+
+    [SerializeField]
+    [Tooltip("MMF_MiniGame_Short_Restart Component to Restart the MiniGame")]
+    private MMF_Player mmfMiniGameShortRestart = default;
 
     [SerializeField]
     [Tooltip("MMF_MiniGame_Restart Component to End the MiniGame")]
@@ -86,6 +102,10 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("MMF_MiniGame_Enemy_Hit Component to react with Enemy Hit")]
     private MMF_Player mmfMiniGameAprilHit = default;
+
+    [SerializeField]
+    [Tooltip("MMF_MiniGame_Skip Component to for Mini Game Skipping")]
+    private MMF_Player mmfMiniGameSkip = default;
 
     [SerializeField]
     [Tooltip("MMF_MiniGame_Cheats Component to for Mini Game Cheats")]
@@ -129,7 +149,8 @@ public class MiniGameManager : MonoBehaviour
 
     #region Private Variables
     private int _currDemonsKilled = default;
-    [SerializeField] private float _currTime = default;
+    private float _currTime = default;
+    [SerializeField] private int _currRespawnCount = default;
     private List<GameObject> _totalDemonObjs = new List<GameObject>();
     private Vector3 _playerStartPos = default;
     [SerializeField] private bool _isMiniGameStarted = default;
@@ -191,7 +212,11 @@ public class MiniGameManager : MonoBehaviour
     /// Tied to MMF_MiniGame_Restart;
     /// Resets the Player Position;
     /// </summary>
-    public void OnPlayerReset() => playerPrefab.transform.position = _playerStartPos;
+    public void OnPlayerReset()
+    {
+        miniGameHUDPanel.SetActive(false);
+        playerPrefab.transform.position = _playerStartPos;
+    }
 
     /// <summary>
     /// Tied to MMF_MiniGame_Restart;
@@ -204,6 +229,7 @@ public class MiniGameManager : MonoBehaviour
 
         _totalDemonObjs.Clear();
         _currDemonsKilled = 0;
+        _currRespawnCount++;
         _currTime = miniGameTotalTime;
         redTintAnim.Play("Empty");
         UpdateKillUI(_currDemonsKilled);
@@ -217,12 +243,31 @@ public class MiniGameManager : MonoBehaviour
     public void OnGameTimerStart() => _isMiniGameStarted = true;
 
     /// <summary>
-    /// Tied to MMF_MiniGame_Restart;
+    /// Tied to MMF_MiniGame_Long_Restart;
     /// Starts the game after the Reset;
     /// </summary>
     public void OnGameStart()
     {
+        if (_currRespawnCount >= totaldeathToSkip)
+            miniGameSkipPanel.SetActive(true);
+        else
+        {
+            playerPrefab.SetActive(true);
+            SpawnChaseDemon();
+            OnDemonChase?.Invoke();
+            _isMiniGameStarted = true;
+            miniGameHUDPanel.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// Tied to MMF_MiniGame_Quick_Restart;
+    /// Starts the game quickly after the Reset;
+    /// </summary>
+    public void OnGameStartQuick()
+    {
         playerPrefab.SetActive(true);
+        miniGameSkipPanel.SetActive(false);
         SpawnChaseDemon();
         OnDemonChase?.Invoke();
         _isMiniGameStarted = true;
@@ -274,6 +319,29 @@ public class MiniGameManager : MonoBehaviour
     public void OnAttkBlockUIEnable() => miniGameAtkBlockCanvas.DOFade(1, 0.5f);
 
     /// <summary>
+    /// Tied to MMF_MiniGame_Start Feedback Event;
+    /// Fades out the UI canvas after the cutscene ends;
+    /// </summary>
+    public void OnMiniGameUIFade()
+    {
+        miniGameMoveCanvas.DOFade(0, miniGameCanvasFadeDelay);
+        miniGameDashCanvas.DOFade(0, miniGameCanvasFadeDelay);
+        miniGameAtkBlockCanvas.DOFade(0, miniGameCanvasFadeDelay);
+    }
+
+    /// <summary>
+    /// Tied to Mini_Game_Yes_Button;
+    /// Skips the Mini Game;
+    /// </summary>
+    public void OnClick_SkipMiniGame() => mmfMiniGameSkip.PlayFeedbacks();
+
+    /// <summary>
+    /// Tied to Mini_Game_No_Button;
+    /// Restarts the Mini Game;
+    /// </summary>
+    public void OnClick_RetryMiniGame() => mmfMiniGameShortRestart.PlayFeedbacks();
+
+    /// <summary>
     /// Updates the timer Text UI;
     /// </summary>
     /// <param name="timer"> Timer float; </param>
@@ -296,7 +364,7 @@ public class MiniGameManager : MonoBehaviour
         if (_currTime <= 0)
         {
             _currTime = miniGameTotalTime;
-            mmfMiniGameRestart.PlayFeedbacks();
+            mmfMiniGameLongRestart.PlayFeedbacks();
         }
     }
     #endregion
@@ -337,12 +405,12 @@ public class MiniGameManager : MonoBehaviour
                 SpawnChaseDemon();
         }
 
-        if (_currDemonsKilled == 1)
-        {
-            miniGameMoveCanvas.DOFade(0, miniGameCanvasFadeDelay);
-            miniGameDashCanvas.DOFade(0, miniGameCanvasFadeDelay);
-            miniGameAtkBlockCanvas.DOFade(0, miniGameCanvasFadeDelay);
-        }
+        //if (_currDemonsKilled == 1)
+        //{
+        //    miniGameMoveCanvas.DOFade(0, miniGameCanvasFadeDelay);
+        //    miniGameDashCanvas.DOFade(0, miniGameCanvasFadeDelay);
+        //    miniGameAtkBlockCanvas.DOFade(0, miniGameCanvasFadeDelay);
+        //}
 
         if (_currDemonsKilled >= totalDemonsKilled)
         {
@@ -360,7 +428,7 @@ public class MiniGameManager : MonoBehaviour
     void OnPlayerDeadEventReceived()
     {
         if (isUsingFeedbacks)
-            mmfMiniGameRestart.PlayFeedbacks();
+            mmfMiniGameLongRestart.PlayFeedbacks();
     }
 
     /// <summary>
