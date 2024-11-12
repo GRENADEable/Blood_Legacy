@@ -113,13 +113,19 @@ public class AprilPlayerController : MonoBehaviour
 
     /// <summary>
     /// Event sent from AprilPlayerController script to GameManager Script;
-    /// For shooting Enemies, an Event shortcut to update UI;
+    /// For killing Enemies, an Event shortcut to update UI;
     /// </summary>
     public static event SendEvents OnPlayerKill;
 
     /// <summary>
+    /// Event sent from AprilPlayerController script to GameManager Script;
+    /// For damaging the Player, update the health UI;
+    /// </summary>
+    public static event SendEvents OnPlayerHit;
+
+    /// <summary>
     /// Event sent from AprilPlayerController script to AudioManager Script;
-    /// For shooting Enemies, an Event shortcut to update UI;
+    /// For killing Enemies, an Event shortcut to update UI;
     /// </summary>
     public static event SendEvents OnSwordSwipe;
     #endregion
@@ -165,7 +171,7 @@ public class AprilPlayerController : MonoBehaviour
     private Animator _playerAnim = default;
     [SerializeField] private bool _isPlayerMoving = true;
     private RaycastHit2D _hit2D = default;
-    [SerializeField] private int _currPlayerHealth = 0;
+    private int _currPlayerHealth = 0;
     #endregion
 
     #region Unity Callbacks
@@ -243,6 +249,9 @@ public class AprilPlayerController : MonoBehaviour
     public void OnAprilMove()
     {
         currState = PlayerState.Moving;
+        //_playerAnim.Play("Empty");
+        //_playerAnim.Play("EmptyDamage");
+        //_playerAnim.Play("EmptyDeath");
         _isPlayerMoving = true;
     }
 
@@ -253,6 +262,10 @@ public class AprilPlayerController : MonoBehaviour
     public void OnAprilPause()
     {
         currState = PlayerState.Dead;
+        _rb2D.velocity = Vector2.zero;
+        _playerAnim.Play("C_April_Idle_V2_Anim");
+        //_playerAnim.Play("EmptyBlock");
+        _playerAnim.SetBool("isBlocking", false);
         _isPlayerMoving = false;
     }
 
@@ -331,11 +344,7 @@ public class AprilPlayerController : MonoBehaviour
     /// <summary>
     /// Damages the Player and adds invincibility buffer for few seconds;
     /// </summary>
-    void PlayerDamaged()
-    {
-        //Debug.Log("Taking Damage");
-        StartCoroutine(DamageBuffer());
-    }
+    void PlayerDamaged() => StartCoroutine(DamageBuffer());
 
     /// <summary>
     /// Kills the Player and notifies the demons to become idle;
@@ -345,14 +354,18 @@ public class AprilPlayerController : MonoBehaviour
     {
         //Debug.Log("Dead");
         OnPlayerDead?.Invoke();
+        _playerAnim.SetTrigger("isDead");
         _currPlayerHealth = maxPlayerHealth;
         _playerAnim.Play("EmptyDamage");
         _playerAnim.Play("April_Blend");
+        _playerAnim.Play("EmptyDeath");
         _canDash = true;
         _isPlayerDamaged = false;
         currState = PlayerState.Moving;
+        this.enabled = false;
+        _rb2D.velocity = Vector2.zero;
         GetComponent<SpriteRenderer>().enabled = true;
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
     #endregion
 
@@ -414,6 +427,7 @@ public class AprilPlayerController : MonoBehaviour
     {
         _isPlayerDamaged = true;
         OnPlayerInvincible?.Invoke(true);
+        OnPlayerHit?.Invoke();
         _playerAnim.SetBool("isDamaged", true);
         yield return new WaitForSeconds(damageInvincibility);
 

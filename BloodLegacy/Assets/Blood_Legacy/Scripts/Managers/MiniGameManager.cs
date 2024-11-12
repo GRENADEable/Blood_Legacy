@@ -26,6 +26,10 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Skip MiniGame Panel")]
     private GameObject miniGameSkipPanel = default;
+
+    [SerializeField]
+    [Tooltip("HP GameObjects")]
+    private GameObject[] hpObjs = default;
     #endregion
 
     #region Ints and Floats
@@ -51,12 +55,10 @@ public class MiniGameManager : MonoBehaviour
     private float miniGameTotalTime = default;
     #endregion
 
-    #region Bools
-    [Space, Header("Bools")]
-    [SerializeField]
-    [Tooltip("For testing purposes")]
-    private bool isUsingFeedbacks = default;
-    #endregion
+    //#region Bools
+    //[Space, Header("Bools")]
+
+    //#endregion
 
     #region UIs
     [Space, Header("UIs")]
@@ -126,6 +128,10 @@ public class MiniGameManager : MonoBehaviour
     #region Cheats
     [Space, Header("Cheats")]
     [SerializeField]
+    [Tooltip("For testing purposes")]
+    private bool isUsingFeedbacks = default;
+
+    [SerializeField]
     [Tooltip("Mini Games Panel GameObject")]
     private GameObject miniGamePanel = default;
     #endregion
@@ -150,10 +156,11 @@ public class MiniGameManager : MonoBehaviour
     #region Private Variables
     private int _currDemonsKilled = default;
     private float _currTime = default;
-    [SerializeField] private int _currRespawnCount = default;
+    private int _currRespawnCount = default;
     private List<GameObject> _totalDemonObjs = new List<GameObject>();
     private Vector3 _playerStartPos = default;
-    [SerializeField] private bool _isMiniGameStarted = default;
+    private bool _isMiniGameStarted = default;
+    private int _currHP = 0;
     #endregion
 
     #region Unity Callbacks
@@ -167,6 +174,7 @@ public class MiniGameManager : MonoBehaviour
         DemonChase.OnPlayerDamage += OnPlayerDamageEventReceived;
 
         AprilPlayerController.OnPlayerDead += OnPlayerDeadEventReceived;
+        AprilPlayerController.OnPlayerHit += OnPlayerHitEventReceived;
     }
 
     void OnDisable()
@@ -177,6 +185,7 @@ public class MiniGameManager : MonoBehaviour
         DemonChase.OnPlayerDamage -= OnPlayerDamageEventReceived;
 
         AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
+        AprilPlayerController.OnPlayerHit -= OnPlayerHitEventReceived;
     }
 
     void OnDestroy()
@@ -187,6 +196,7 @@ public class MiniGameManager : MonoBehaviour
         DemonChase.OnPlayerDamage -= OnPlayerDamageEventReceived;
 
         AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
+        AprilPlayerController.OnPlayerHit -= OnPlayerHitEventReceived;
     }
     #endregion
 
@@ -196,6 +206,7 @@ public class MiniGameManager : MonoBehaviour
         _currTime = miniGameTotalTime;
         UpdateTimerUI(_currTime);
         UpdateKillUI(_currDemonsKilled);
+        _currHP = hpObjs.Length;
     }
 
     void Update()
@@ -215,6 +226,7 @@ public class MiniGameManager : MonoBehaviour
     public void OnPlayerReset()
     {
         miniGameHUDPanel.SetActive(false);
+        playerPrefab.SetActive(false);
         playerPrefab.transform.position = _playerStartPos;
     }
 
@@ -268,6 +280,7 @@ public class MiniGameManager : MonoBehaviour
     {
         playerPrefab.SetActive(true);
         miniGameSkipPanel.SetActive(false);
+        miniGameHUDPanel.SetActive(true);
         SpawnChaseDemon();
         OnDemonChase?.Invoke();
         _isMiniGameStarted = true;
@@ -429,6 +442,12 @@ public class MiniGameManager : MonoBehaviour
     {
         if (isUsingFeedbacks)
             mmfMiniGameLongRestart.PlayFeedbacks();
+
+        _currHP = hpObjs.Length;
+
+        for (int i = 0; i < hpObjs.Length; i++)
+            hpObjs[i].SetActive(true);
+
     }
 
     /// <summary>
@@ -436,5 +455,15 @@ public class MiniGameManager : MonoBehaviour
     /// Plays Feedback for April Hit;
     /// </summary>
     void OnPlayerDamageEventReceived() => mmfMiniGameAprilHit.PlayFeedbacks();
+
+    /// <summary>
+    /// Subbed to event from AprilPlayerController;
+    /// Updates the HP UI;
+    /// </summary>
+    void OnPlayerHitEventReceived()
+    {
+        _currHP--;
+        hpObjs[_currHP].SetActive(false);
+    }
     #endregion
 }

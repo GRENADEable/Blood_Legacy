@@ -187,7 +187,11 @@ public class DemonChase : MonoBehaviour
     /// Tied to OnCharDisable Event on MMF_MiniGame_Intro;
     /// Changes the Demon speed after the cutscene;
     /// </summary>
-    public void OnDemonIdleDefault() => _currState = EnemyState.Dead;
+    public void OnDemonIdleDefault()
+    {
+        _currState = EnemyState.Dead;
+        _demonAnim.Play("C_Demon_2_Idle_Anim");
+    }
 
     /// <summary>
     /// Tied to C_Demon_2_Dead_Anim;
