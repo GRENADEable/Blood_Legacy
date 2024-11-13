@@ -70,6 +70,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("MMF_MiniGame_Cheats Component to for triggered april transform")]
     private MMF_Player mmfAprilTransformCheats = default;
+
+    [SerializeField]
+    [Tooltip("MMF_Game_Restart Component to restart Game")]
+    private MMF_Player mmfRestartGame = default;
     #endregion
 
     #region Virtual Cams
@@ -194,6 +198,15 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < comicPagesObjs.Length; i++)
             comicPagesObjs[i].SetActive(false);
 
+    }
+
+    public void OnButton_Restart()
+    {
+        if (gmData.currState == GameMangerData.GameState.Book)
+        {
+            mmfRestartGame.PlayFeedbacks();
+            gmData.currState = GameMangerData.GameState.Exit;
+        }
     }
 
     /// <summary>

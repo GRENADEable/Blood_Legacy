@@ -33,6 +33,7 @@ public class AudioManager : MonoBehaviour
 
         AprilPlayerController.OnPlayerDead += OnPlayerDeadEventReceived;
         AprilPlayerController.OnSwordSwipe += OnSwordSwipeEventReceived;
+        AprilPlayerController.OnPlayerBlock += OnPlayerBlockEventReceived;
     }
 
     void OnDisable()
@@ -42,6 +43,7 @@ public class AudioManager : MonoBehaviour
 
         AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
         AprilPlayerController.OnSwordSwipe -= OnSwordSwipeEventReceived;
+        AprilPlayerController.OnPlayerBlock -= OnPlayerBlockEventReceived;
     }
 
     void OnDestroy()
@@ -51,6 +53,7 @@ public class AudioManager : MonoBehaviour
 
         AprilPlayerController.OnPlayerDead -= OnPlayerDeadEventReceived;
         AprilPlayerController.OnSwordSwipe -= OnSwordSwipeEventReceived;
+        AprilPlayerController.OnPlayerBlock -= OnPlayerBlockEventReceived;
     }
     #endregion
 
@@ -96,5 +99,7 @@ public class AudioManager : MonoBehaviour
         sfxAud.PlayOneShot(sfxClips[0]);
         sfxAud.PlayOneShot(sfxClips[1]);
     }
+
+    void OnPlayerBlockEventReceived() => sfxAud.PlayOneShot(sfxClips[4]);
     #endregion
 }

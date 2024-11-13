@@ -128,6 +128,8 @@ public class AprilPlayerController : MonoBehaviour
     /// For killing Enemies, an Event shortcut to update UI;
     /// </summary>
     public static event SendEvents OnSwordSwipe;
+
+    public static event SendEvents OnPlayerBlock;
     #endregion
 
     #region Bool Events
@@ -584,7 +586,10 @@ public class AprilPlayerController : MonoBehaviour
     void OnPlayerBlockEventReceived()
     {
         if (currState == PlayerState.Blocking)
+        {
             Instantiate(blockFXPrefab, blockFXSpawnPos.position, Quaternion.identity);
+            OnPlayerBlock?.Invoke();
+        }
     }
     #endregion
 
