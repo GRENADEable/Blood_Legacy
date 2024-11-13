@@ -286,6 +286,12 @@ public class AprilPlayerController : MonoBehaviour
 
     public void OnJumpEnded() => currState = PlayerState.Moving;
 
+    public void OnDeathAnimEnded()
+    {
+        Debug.Log("Anim Reset");
+        GetComponent<SpriteRenderer>().enabled = false;
+    }
+
     /// <summary>
     /// Player Movement function;
     /// </summary>

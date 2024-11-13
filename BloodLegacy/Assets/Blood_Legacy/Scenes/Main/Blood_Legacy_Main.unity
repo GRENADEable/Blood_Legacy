@@ -18824,7 +18824,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554450338}
-  m_LocalRotation: {x: 0.0038967442, y: -0.05601047, z: 0.00021860332, w: 0.99842256}
+  m_LocalRotation: {x: 0.0038967412, y: -0.056010433, z: 0.00021860302, w: 0.99842256}
   m_LocalPosition: {x: 1.1398093, y: 6.2315164, z: -2.9061475}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -55696,6 +55696,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6548281447124944040, guid: a8a8e0295316ecb449fcbc6236aeeef6, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548281447124944040, guid: a8a8e0295316ecb449fcbc6236aeeef6, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -55705,6 +55709,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6548281447124944040, guid: a8a8e0295316ecb449fcbc6236aeeef6, type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548281447124944040, guid: a8a8e0295316ecb449fcbc6236aeeef6, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6711125048357960387, guid: a8a8e0295316ecb449fcbc6236aeeef6, type: 3}
@@ -56641,7 +56649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a383a59789add44499740ed95914b64, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.0015
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a383a59789add44499740ed95914b64, type: 3}
       propertyPath: m_LocalPosition.z
@@ -75231,7 +75239,7 @@ MonoBehaviour:
   - {fileID: 1598934092}
   - {fileID: 2093654409}
   - {fileID: 1407706598}
-  totalDemonsKilled: 1
+  totalDemonsKilled: 8
   totaldeathToSkip: 3
   redTintFadeDelay: 1
   miniGameCanvasFadeDelay: 6
@@ -75261,7 +75269,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538017493}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
