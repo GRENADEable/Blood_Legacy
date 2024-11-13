@@ -74173,7 +74173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gmData: {fileID: 11400000, guid: 73d00e7781226674f8e47e1e45afeab4, type: 2}
   isUsingTimeModifier: 1
-  timescaleModifier: 7
+  timescaleModifier: 1
   aprilhandsFadeOut: 0.15
   aprilhandsFadeOutDelay: 1
   bookEndPos: {fileID: 1783195709}
@@ -76274,7 +76274,7 @@ MonoBehaviour:
         RandomDurationMultiplier: {x: 0.5, y: 2}
         Owner: {fileID: 1586240651}
         DebugActive: 0
-        PauseDuration: 3
+        PauseDuration: 0.01
         RandomizePauseDuration: 0
         MinPauseDuration: 1
         MaxPauseDuration: 3
