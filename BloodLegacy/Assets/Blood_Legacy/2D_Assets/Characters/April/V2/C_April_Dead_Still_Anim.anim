@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: C_April_Block_V2_Anim
+  m_Name: C_April_Dead_Still_Anim
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: f7984a1666da4954c8cac2a37ae26e24, type: 3}
+      value: {fileID: 21300000, guid: cf88e6f3ccb84cd498e04187607be2fd, type: 3}
     - time: 0.2
-      value: {fileID: 21300000, guid: f7984a1666da4954c8cac2a37ae26e24, type: 3}
+      value: {fileID: 21300000, guid: cf88e6f3ccb84cd498e04187607be2fd, type: 3}
     - time: 0.4
-      value: {fileID: 21300000, guid: f7984a1666da4954c8cac2a37ae26e24, type: 3}
+      value: {fileID: 21300000, guid: cf88e6f3ccb84cd498e04187607be2fd, type: 3}
     - time: 0.6
-      value: {fileID: 21300000, guid: f7984a1666da4954c8cac2a37ae26e24, type: 3}
+      value: {fileID: 21300000, guid: cf88e6f3ccb84cd498e04187607be2fd, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,10 +46,10 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: f7984a1666da4954c8cac2a37ae26e24, type: 3}
-    - {fileID: 21300000, guid: f7984a1666da4954c8cac2a37ae26e24, type: 3}
-    - {fileID: 21300000, guid: f7984a1666da4954c8cac2a37ae26e24, type: 3}
-    - {fileID: 21300000, guid: f7984a1666da4954c8cac2a37ae26e24, type: 3}
+    - {fileID: 21300000, guid: cf88e6f3ccb84cd498e04187607be2fd, type: 3}
+    - {fileID: 21300000, guid: cf88e6f3ccb84cd498e04187607be2fd, type: 3}
+    - {fileID: 21300000, guid: cf88e6f3ccb84cd498e04187607be2fd, type: 3}
+    - {fileID: 21300000, guid: cf88e6f3ccb84cd498e04187607be2fd, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

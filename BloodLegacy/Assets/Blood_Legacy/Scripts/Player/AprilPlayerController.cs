@@ -249,9 +249,6 @@ public class AprilPlayerController : MonoBehaviour
     public void OnAprilMove()
     {
         currState = PlayerState.Moving;
-        //_playerAnim.Play("Empty");
-        //_playerAnim.Play("EmptyDamage");
-        //_playerAnim.Play("EmptyDeath");
         _isPlayerMoving = true;
     }
 
@@ -264,7 +261,6 @@ public class AprilPlayerController : MonoBehaviour
         currState = PlayerState.Dead;
         _rb2D.velocity = Vector2.zero;
         _playerAnim.Play("C_April_Idle_V2_Anim");
-        //_playerAnim.Play("EmptyBlock");
         _playerAnim.SetBool("isBlocking", false);
         _isPlayerMoving = false;
     }
@@ -352,7 +348,6 @@ public class AprilPlayerController : MonoBehaviour
     /// </summary>
     void PlayerKilled()
     {
-        //Debug.Log("Dead");
         OnPlayerDead?.Invoke();
         _playerAnim.SetTrigger("isDead");
         _currPlayerHealth = maxPlayerHealth;
@@ -361,7 +356,7 @@ public class AprilPlayerController : MonoBehaviour
         _playerAnim.Play("EmptyDeath");
         _canDash = true;
         _isPlayerDamaged = false;
-        currState = PlayerState.Moving;
+        currState = PlayerState.Dead;
         this.enabled = false;
         _rb2D.velocity = Vector2.zero;
         GetComponent<SpriteRenderer>().enabled = true;
