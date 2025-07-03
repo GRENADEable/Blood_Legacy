@@ -42525,30 +42525,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 34855100}
     m_Modifications:
-    - target: {fileID: 154557370581349235, guid: d467290385871d54d831a0c2ef28537c, type: 3}
-      propertyPath: m_Size.x
-      value: 13.653334
-      objectReference: {fileID: 0}
-    - target: {fileID: 154557370581349235, guid: d467290385871d54d831a0c2ef28537c, type: 3}
-      propertyPath: m_Size.y
-      value: 13.653334
-      objectReference: {fileID: 0}
-    - target: {fileID: 154557370581349235, guid: d467290385871d54d831a0c2ef28537c, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1615921113777843147, guid: d467290385871d54d831a0c2ef28537c, type: 3}
-      propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 1615921113777843147, guid: d467290385871d54d831a0c2ef28537c, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 13.653334
-      objectReference: {fileID: 0}
-    - target: {fileID: 1615921113777843147, guid: d467290385871d54d831a0c2ef28537c, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 13.653334
-      objectReference: {fileID: 0}
     - target: {fileID: 4149151595596881062, guid: d467290385871d54d831a0c2ef28537c, type: 3}
       propertyPath: m_Name
       value: C_April_3
@@ -42596,10 +42572,6 @@ PrefabInstance:
     - target: {fileID: 4149151595596881065, guid: d467290385871d54d831a0c2ef28537c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6116684661482212511, guid: d467290385871d54d831a0c2ef28537c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d467290385871d54d831a0c2ef28537c, type: 3}
