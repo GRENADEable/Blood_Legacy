@@ -262,7 +262,7 @@ public class AprilPlayerController : MonoBehaviour
     {
         currState = PlayerState.Dead;
         _rb2D.velocity = Vector2.zero;
-        _playerAnim.Play("C_April_Idle_V2_Anim");
+        _playerAnim.Play("C_April_Idle_Anim");
         _playerAnim.SetBool("isBlocking", false);
         _isPlayerMoving = false;
     }
